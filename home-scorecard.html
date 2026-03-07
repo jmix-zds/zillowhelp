@@ -341,19 +341,15 @@ let homes = [];
 let pending = null;
 
 // JSONBIN SHARED STORAGE - all family members read/write the same bin
-const JSONBIN_ID  = '69ac4cecae596e708f69ca9b';
-const JSONBIN_KEY = '$2a$10$GQW5.iKv1as9jtbb1aQXyuFoe0U1NncXs4HARKzCpDdDCF4msuk1S';
+const JSONBIN_ID  = '69ac4febae596e708f69d2f9';
+const JSONBIN_KEY = '';
 const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
 
 async function loadHomes() {
-  if (JSONBIN_ID === 'YOUR_BIN_ID_HERE') {
-    homes = JSON.parse(localStorage.getItem('hs_local')||'[]');
-    return;
-  }
   try {
-    const r = await fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } });
+    const r = await fetch(JSONBIN_URL + '/latest');
     const d = await r.json();
-    homes = Array.isArray(d.record) ? d.record : [];
+    homes = Array.isArray(d.record.homes) ? d.record.homes : [];
   } catch(e) {
     homes = JSON.parse(localStorage.getItem('hs_local')||'[]');
   }
@@ -361,14 +357,18 @@ async function loadHomes() {
 
 async function saveHomes() {
   localStorage.setItem('hs_local', JSON.stringify(homes));
-  if (JSONBIN_ID === 'YOUR_BIN_ID_HERE') return;
   try {
-    await fetch(JSONBIN_URL, {
+    const r = await fetch(JSONBIN_URL, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
-      body: JSON.stringify(homes)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({homes: homes})
     });
-    setSyncBadge('Synced ' + new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}), true);
+    const d = await r.json();
+    if (d.record) {
+      setSyncBadge('Synced ' + new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}), true);
+    } else {
+      setSyncBadge('Sync failed', false);
+    }
   } catch(e) {
     setSyncBadge('Sync failed', false);
   }
@@ -380,7 +380,6 @@ function setSyncBadge(msg, ok) {
 }
 
 setInterval(async () => {
-  if (JSONBIN_ID === 'YOUR_BIN_ID_HERE') return;
   const prev = JSON.stringify(homes);
   await loadHomes();
   if (JSON.stringify(homes) !== prev) { renderAll(); setSyncBadge('Updated', true); }
@@ -676,8 +675,7 @@ async function init() {
   document.getElementById('homes-grid').innerHTML = '<div class="empty" style="grid-column:1/-1"><div class="empty-icon">⟳</div><p style="margin-top:12px">Loading shared homes…</p></div>';
   await loadHomes();
   renderAll();
-  if (JSONBIN_ID !== 'YOUR_BIN_ID_HERE') setSyncBadge('Connected', true);
-  else setSyncBadge('Local mode - see setup', false);
+  setSyncBadge('Connected', true);
 }
 init();
 </script>
