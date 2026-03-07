@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Home Search</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1117; --surface: #181c27; --surface2: #1e2333;
+  --border: #2a3045; --border2: #333d58;
+  --text: #e8eaf2; --text-soft: #8890aa; --text-muted: #4a526a;
+  --gold: #e8b84b; --gold-dim: #9a7a2e; --gold-glow: rgba(232,184,75,0.12);
+  --green: #4caf82; --green-dim: #1a3d2e;
+  --red: #e06060; --red-dim: #3d1a1a;
+  --blue: #5b8dee; --blue-dim: #1a2a4a;
+  --radius: 14px;
+}
+body { font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+
+/* HEADER */
+.hdr { padding:48px 48px 40px; position:relative; border-bottom:1px solid var(--border); background:linear-gradient(135deg,#0f1117,#141824); overflow:hidden; }
+.hdr::before { content:''; position:absolute; top:-80px; right:-80px; width:400px; height:400px; background:radial-gradient(circle,rgba(232,184,75,.07),transparent 65%); pointer-events:none; }
+.hdr-tag { font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.hdr-tag::before { content:''; display:block; width:20px; height:1px; background:var(--gold); }
+.hdr h1 { font-family:'Lora',serif; font-size:clamp(26px,4vw,42px); font-weight:700; line-height:1.1; color:#fff; margin-bottom:10px; }
+.hdr h1 span { color:var(--gold); }
+.hdr-sub { font-size:14px; color:var(--text-soft); font-weight:300; max-width:500px; line-height:1.6; }
+.hdr-pills { display:flex; gap:10px; margin-top:24px; flex-wrap:wrap; }
+.pill { padding:5px 14px; border-radius:100px; border:1px solid var(--border2); font-size:12px; color:var(--text-soft); background:var(--surface); }
+.pill strong { color:var(--gold); font-weight:600; }
+
+/* NAV */
+.nav { display:flex; align-items:center; padding:0 48px; background:var(--surface); border-bottom:1px solid var(--border); gap:4px; overflow-x:auto; scrollbar-width:none; position:sticky; top:0; z-index:200; }
+.nav::-webkit-scrollbar { display:none; }
+.nav-btn { padding:14px 18px; border:none; background:none; font-family:'Outfit',sans-serif; font-size:13px; font-weight:500; color:var(--text-soft); cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent; position:relative; top:1px; transition:color .2s; }
+.nav-btn:hover { color:var(--text); }
+.nav-btn.active { color:var(--gold); border-bottom-color:var(--gold); font-weight:600; }
+.nav-badge { display:inline-block; margin-left:6px; padding:2px 7px; border-radius:100px; font-size:10px; font-weight:700; background:var(--surface2); color:var(--text-soft); transition:all .2s; }
+.nav-btn.active .nav-badge { background:var(--gold-glow); color:var(--gold); }
+.nav-sep { width:1px; height:20px; background:var(--border); margin:0 6px; flex-shrink:0; }
+
+/* MAIN */
+main { padding:36px 48px 80px; max-width:1200px; }
+
+/* PANELS */
+.panel { display:none; }
+.panel.active { display:block; animation:fadeUp .25s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ADD BTN */
+.add-btn { display:flex; align-items:center; gap:8px; padding:11px 22px; border-radius:10px; background:var(--gold); color:#0f1117; font-family:'Outfit',sans-serif; font-size:13px; font-weight:700; border:none; cursor:pointer; transition:all .18s; margin-bottom:32px; }
+.add-btn:hover { background:#f0c85a; transform:translateY(-1px); }
+
+/* MODAL */
+.overlay { display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.75); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px; }
+.overlay.open { display:flex; }
+.modal { background:var(--surface); border:1px solid var(--border2); border-radius:20px; padding:36px; width:100%; max-width:580px; position:relative; animation:modalIn .25s cubic-bezier(.34,1.56,.64,1); max-height:90vh; overflow-y:auto; }
+@keyframes modalIn { from{opacity:0;transform:scale(.92)} to{opacity:1;transform:scale(1)} }
+.modal h2 { font-family:'Lora',serif; font-size:22px; font-weight:700; margin-bottom:6px; }
+.modal-sub { font-size:13px; color:var(--text-soft); margin-bottom:28px; line-height:1.5; }
+.modal-x { position:absolute; top:18px; right:18px; background:var(--surface2); border:1px solid var(--border); color:var(--text-soft); width:32px; height:32px; border-radius:8px; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; transition:all .15s; }
+.modal-x:hover { color:var(--text); }
+
+/* INPUTS */
+.inp-grp { margin-bottom:18px; }
+.inp-grp label { display:block; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-soft); margin-bottom:8px; }
+.inp-grp input, .inp-grp textarea { width:100%; padding:12px 16px; background:var(--bg); border:1px solid var(--border2); border-radius:10px; color:var(--text); font-family:'Outfit',sans-serif; font-size:14px; outline:none; resize:vertical; transition:border-color .2s; }
+.inp-grp input:focus, .inp-grp textarea:focus { border-color:var(--gold); }
+.inp-grp input::placeholder { color:var(--text-muted); }
+
+.fetch-btn { width:100%; padding:14px; border-radius:10px; background:var(--gold); color:#0f1117; font-family:'Outfit',sans-serif; font-size:14px; font-weight:700; border:none; cursor:pointer; transition:all .18s; display:flex; align-items:center; justify-content:center; gap:8px; }
+.fetch-btn:hover:not(:disabled) { background:#f0c85a; }
+.fetch-btn:disabled { opacity:.5; cursor:not-allowed; }
+
+.status { margin-top:12px; padding:11px 14px; border-radius:10px; font-size:13px; display:none; align-items:center; gap:10px; }
+.status.loading { display:flex; background:var(--blue-dim); color:var(--blue); border:1px solid #2a3d6a; }
+.status.error   { display:flex; background:var(--red-dim);  color:var(--red);  border:1px solid #5a2a2a; }
+.status.success { display:flex; background:var(--green-dim);color:var(--green);border:1px solid #1a5a3a; }
+.spin { width:15px; height:15px; border:2px solid currentColor; border-top-color:transparent; border-radius:50%; flex-shrink:0; animation:spin .7s linear infinite; }
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* PREVIEW */
+.preview { display:none; margin-top:20px; }
+.preview.show { display:block; }
+.prev-addr { font-family:'Lora',serif; font-size:17px; font-weight:600; margin-bottom:3px; }
+.prev-city { font-size:13px; color:var(--text-soft); margin-bottom:12px; }
+.prev-facts { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
+.pf { font-size:13px; color:var(--text-soft); }
+.pf strong { color:var(--gold); }
+
+.score-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:4px; }
+.si-row { display:flex; flex-direction:column; gap:5px; }
+.si-row label { font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--text-muted); }
+.si-row input[type=range] { accent-color:var(--gold); cursor:pointer; }
+.si-val { font-size:13px; font-weight:700; color:var(--gold); }
+
+.save-btn { width:100%; margin-top:18px; padding:14px; border-radius:10px; background:var(--green); color:#fff; font-family:'Outfit',sans-serif; font-size:14px; font-weight:700; border:none; cursor:pointer; transition:all .18s; }
+.save-btn:hover { background:#5dc996; }
+
+/* SUMMARY ROW */
+.sum-row { display:flex; gap:14px; margin-bottom:30px; flex-wrap:wrap; }
+.sc { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px 22px; flex:1; min-width:130px; }
+.sc-val { font-family:'Lora',serif; font-size:26px; font-weight:700; }
+.sc-val.g { color:var(--gold); }
+.sc-label { font-size:12px; color:var(--text-muted); margin-top:3px; }
+
+/* CARDS */
+.homes-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:18px; }
+.hcard { background:var(--surface); border:1px solid var(--border); border-radius:18px; overflow:hidden; cursor:pointer; transition:all .22s; position:relative; }
+.hcard:hover { border-color:var(--gold-dim); transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.4); }
+.hcard-top { padding:20px 22px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.hcard-addr { font-family:'Lora',serif; font-size:16px; font-weight:600; line-height:1.3; }
+.hcard-city { font-size:12px; color:var(--text-soft); margin-top:3px; }
+.sc-circ { flex-shrink:0; width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; font-family:'Lora',serif; border:2px solid; }
+.sc-a { border-color:var(--green); color:var(--green); background:var(--green-dim); }
+.sc-b { border-color:var(--blue);  color:var(--blue);  background:var(--blue-dim); }
+.sc-c { border-color:var(--gold);  color:var(--gold);  background:var(--gold-glow); }
+.sc-d { border-color:var(--red);   color:var(--red);   background:var(--red-dim); }
+.hcard-body { padding:16px 22px 18px; }
+.cfacts { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+.cf { font-size:12px; color:var(--text-muted); }
+.cf strong { display:block; font-size:13px; color:var(--text); font-weight:600; margin-bottom:1px; }
+.mbars { display:flex; flex-direction:column; gap:6px; }
+.mbr { display:flex; align-items:center; gap:9px; font-size:11px; }
+.mbl { width:78px; color:var(--text-muted); flex-shrink:0; }
+.mbt { flex:1; height:3px; background:var(--border2); border-radius:4px; overflow:hidden; }
+.mbf { height:100%; border-radius:4px; background:var(--gold); transition:width .6s ease; }
+.mbv { width:20px; text-align:right; font-weight:600; color:var(--text-soft); font-size:11px; }
+.cnote { margin-top:12px; padding:10px 12px; background:var(--bg); border-radius:8px; border-left:2px solid var(--gold-dim); font-size:12px; color:var(--text-soft); font-style:italic; line-height:1.5; }
+.cactions { display:flex; gap:8px; margin-top:12px; padding-top:12px; border-top:1px solid var(--border); }
+.cab { flex:1; padding:7px; border-radius:7px; border:1px solid var(--border2); background:none; color:var(--text-soft); font-family:'Outfit',sans-serif; font-size:11px; font-weight:500; cursor:pointer; transition:all .15s; text-align:center; text-decoration:none; display:flex; align-items:center; justify-content:center; }
+.cab:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-glow); }
+.cab.del:hover { border-color:var(--red); color:var(--red); background:var(--red-dim); }
+.rank-tag { position:absolute; top:10px; left:10px; background:var(--gold); color:#0f1117; font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:3px 10px; border-radius:100px; }
+
+/* DETAIL */
+.back-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; border:1px solid var(--border2); background:none; color:var(--text-soft); font-family:'Outfit',sans-serif; font-size:13px; cursor:pointer; margin-bottom:22px; transition:all .15s; }
+.back-btn:hover { border-color:var(--gold); color:var(--gold); }
+.dhero { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:30px 34px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; }
+.dhero h2 { font-family:'Lora',serif; font-size:clamp(20px,3vw,32px); font-weight:700; margin-bottom:4px; }
+.dhero .city { font-size:14px; color:var(--text-soft); margin-bottom:16px; }
+.dfacts { display:flex; gap:12px; flex-wrap:wrap; }
+.df { padding:10px 16px; background:var(--bg); border:1px solid var(--border); border-radius:10px; text-align:center; }
+.df-val { font-size:17px; font-weight:700; font-family:'Lora',serif; }
+.df-label { font-size:11px; color:var(--text-muted); margin-top:2px; }
+.dbig { text-align:center; flex-shrink:0; }
+.bigc { width:105px; height:105px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid; margin:0 auto 8px; }
+.bigc-num { font-family:'Lora',serif; font-size:30px; font-weight:700; line-height:1; }
+.bigc-lbl { font-size:11px; color:var(--text-muted); }
+.grade-w { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+.zillow-lnk { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--blue); text-decoration:none; padding:4px 10px; border-radius:6px; background:var(--blue-dim); margin-top:8px; }
+.zillow-lnk:hover { opacity:.8; }
+
+.dsec { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:24px 28px; margin-bottom:18px; }
+.dsec h3 { font-family:'Lora',serif; font-size:17px; font-weight:600; margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
+.srow { display:flex; align-items:center; gap:16px; padding:10px 0; border-bottom:1px solid var(--border); }
+.srow:last-child { border-bottom:none; padding-bottom:0; }
+.srow-lbl { width:155px; flex-shrink:0; font-size:14px; font-weight:500; }
+.srow-sub { font-size:11px; color:var(--text-muted); font-weight:400; }
+.strack { flex:1; height:6px; background:var(--border2); border-radius:6px; overflow:hidden; }
+.sfill { height:100%; border-radius:6px; transition:width .8s cubic-bezier(.22,1,.36,1); }
+.sf-g { background:linear-gradient(90deg,var(--green-dim),var(--green)); }
+.sf-b { background:linear-gradient(90deg,var(--blue-dim),var(--blue)); }
+.sf-gold { background:linear-gradient(90deg,rgba(232,184,75,.2),var(--gold)); }
+.sf-r { background:linear-gradient(90deg,var(--red-dim),var(--red)); }
+.sval { width:36px; text-align:right; font-weight:700; font-size:15px; }
+
+.extras-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:10px; }
+.eitem { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:11px 14px; }
+.eitem-lbl { font-size:11px; color:var(--text-muted); margin-bottom:3px; }
+.eitem-val { font-size:14px; font-weight:600; }
+
+.pc-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.pro-h { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--green); margin-bottom:8px; }
+.con-h { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--red);   margin-bottom:8px; }
+.pro-i, .con-i { font-size:13px; color:var(--text-soft); padding:7px 10px; border-radius:8px; display:flex; align-items:flex-start; gap:7px; margin-bottom:6px; }
+.pro-i { background:var(--green-dim); }
+.con-i { background:var(--red-dim); }
+.pro-i::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+.con-i::before { content:'!'; color:var(--red);   font-weight:700; flex-shrink:0; }
+
+.nbox { background:var(--bg); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:10px; padding:16px 18px; margin-top:14px; }
+.nbox-h { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+.nbox p { font-size:14px; color:var(--text-soft); line-height:1.7; }
+
+/* COMPARE */
+.ctable-wrap { overflow-x:auto; border-radius:16px; border:1px solid var(--border); }
+.ctable { width:100%; border-collapse:collapse; font-size:13px; }
+.ctable th { padding:13px 17px; text-align:left; background:var(--surface2); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); border-bottom:1px solid var(--border); white-space:nowrap; }
+.ctable td { padding:12px 17px; border-bottom:1px solid var(--border); color:var(--text-soft); vertical-align:middle; }
+.ctable tr:last-child td { border-bottom:none; }
+.ctable tr:hover td { background:var(--surface2); color:var(--text); }
+.ctable td:first-child { font-weight:600; color:var(--text-muted); font-size:11px; text-transform:uppercase; letter-spacing:.05em; }
+.chip { display:inline-flex; align-items:center; justify-content:center; padding:3px 10px; border-radius:7px; font-weight:700; font-size:13px; }
+.ch-g  { background:var(--green-dim); color:var(--green); }
+.ch-go { background:var(--gold-glow);  color:var(--gold); }
+.ch-r  { background:var(--red-dim);   color:var(--red); }
+.ch-b  { background:var(--blue-dim);  color:var(--blue); }
+
+/* WEIGHTS */
+.wcard { background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:26px 30px; margin-bottom:22px; }
+.wcard h3 { font-family:'Lora',serif; font-size:19px; font-weight:600; margin-bottom:6px; }
+.wcard p { font-size:13px; color:var(--text-soft); margin-bottom:22px; line-height:1.6; }
+.wrow { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+.wrow label { width:185px; font-size:14px; font-weight:500; flex-shrink:0; }
+.wrow input[type=range] { flex:1; accent-color:var(--gold); cursor:pointer; }
+.wval { width:36px; text-align:right; font-weight:700; font-size:14px; color:var(--gold); }
+
+/* EMPTY */
+.empty { text-align:center; padding:72px 20px; color:var(--text-muted); }
+.empty-icon { font-size:44px; margin-bottom:14px; opacity:.4; }
+.empty h3 { font-family:'Lora',serif; font-size:20px; color:var(--text-soft); margin-bottom:8px; }
+.empty p { font-size:14px; line-height:1.6; max-width:340px; margin:0 auto; }
+
+@media(max-width:640px){
+  .hdr,.nav,main{padding-left:18px;padding-right:18px;}
+  .pc-grid{grid-template-columns:1fr;}
+  .srow-lbl{width:105px;}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-tag">Family Home Search</div>
+  <h1>Finding Our <span>Next Chapter</span></h1>
+  <p class="hdr-sub">Paste any Zillow listing URL — details pull automatically. Score it, add notes, share with family in Ohio.</p>
+  <div class="hdr-pills">
+    <div class="pill"><strong id="pill-count">0</strong> homes tracked</div>
+    <div class="pill">Auto-pulls from Zillow</div>
+    <div class="pill">Weighted scoring</div>
+    <div class="pill" id="sync-badge" style="color:var(--text-muted)">Connecting…</div>
+  </div>
+</div>
+
+<div class="nav" id="main-nav">
+  <button class="nav-btn active" onclick="showPanel('overview')">All Homes</button>
+  <div class="nav-sep"></div>
+  <span id="home-tabs"></span>
+  <div class="nav-sep"></div>
+  <button class="nav-btn" onclick="showPanel('compare')">Compare</button>
+  <button class="nav-btn" onclick="showPanel('weights')">⚖ Weights</button>
+</div>
+
+<main>
+  <!-- OVERVIEW -->
+  <div class="panel active" id="panel-overview">
+    <button class="add-btn" onclick="openModal()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Home from Zillow
+    </button>
+    <div class="sum-row" id="sum-row"></div>
+    <div class="homes-grid" id="homes-grid">
+      <div class="empty" style="grid-column:1/-1">
+        <div class="empty-icon">🏡</div>
+        <h3>No homes yet</h3>
+        <p>Click "Add Home from Zillow" above and paste a Zillow listing URL to get started.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARE -->
+  <div class="panel" id="panel-compare"><div id="compare-inner"></div></div>
+
+  <!-- WEIGHTS -->
+  <div class="panel" id="panel-weights">
+    <div class="wcard">
+      <h3>Scoring Weights</h3>
+      <p>Drag the sliders to reflect what matters most to your family. Every score updates instantly.</p>
+      <div id="weight-rows"></div>
+    </div>
+    <div class="wcard">
+      <h3>How It Works</h3>
+      <p style="margin:0;line-height:1.8">Each home is rated 1–10 across five categories. The overall score is a weighted average shown as a percentage. School ratings, lot size, walk score, and taxes come directly from Zillow. You set the scores — <strong style="color:var(--gold)">we do the math</strong>.</p>
+    </div>
+  </div>
+
+  <!-- DETAIL views injected -->
+  <div id="detail-panels"></div>
+</main>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">✕</button>
+    <h2>Add a Home</h2>
+
+    <div style="background:var(--blue-dim);border:1px solid #2a3d6a;border-radius:10px;padding:14px 16px;margin-bottom:22px;font-size:13px;color:var(--blue);line-height:1.7;">
+      <strong style="display:block;margin-bottom:6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;">How to add a listing — 3 steps</strong>
+      1. Paste the Zillow URL below<br>
+      2. Open the Zillow page → press <strong>Ctrl+A</strong> then <strong>Ctrl+C</strong> to select &amp; copy all text<br>
+      3. Paste it into the text box below and hit Extract
+    </div>
+
+    <div class="inp-grp">
+      <label>Zillow URL</label>
+      <input type="url" id="url-in" placeholder="https://www.zillow.com/homedetails/…" />
+    </div>
+
+    <div class="inp-grp">
+      <label>Zillow Page Text <span style="color:var(--text-muted);font-weight:400;text-transform:none;letter-spacing:0">(Ctrl+A, Ctrl+C on the listing page, paste here)</span></label>
+      <textarea id="paste-in" rows="4" placeholder="Paste the copied Zillow page text here…" style="font-size:12px;"></textarea>
+    </div>
+
+    <button class="fetch-btn" id="fetch-btn" onclick="doFetch()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Extract Listing Details
+    </button>
+    <div class="status" id="status-box"><div class="spin" id="spin"></div><span id="status-txt"></span></div>
+
+    <div class="preview" id="preview">
+      <div class="prev-addr" id="prev-addr"></div>
+      <div class="prev-city" id="prev-city"></div>
+      <div class="prev-facts" id="prev-facts"></div>
+
+      <div class="inp-grp" style="margin-top:14px;margin-bottom:10px">
+        <label>Your Notes</label>
+        <textarea id="notes-in" rows="2" placeholder="First impressions, what stood out, any concerns…"></textarea>
+      </div>
+
+      <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px">Score This Home (1–10)</div>
+      <div class="score-grid" id="score-inputs"></div>
+
+      <button class="save-btn" onclick="saveHome()">✓ Save This Home</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CATS = [
+  {id:'safety',  label:'Neighborhood Safety',icon:'🏡',sub:'Crime, feel, walkability',   fill:'sf-g'},
+  {id:'location',label:'Commute & Location',  icon:'📍',sub:'Access, errands, proximity', fill:'sf-b'},
+  {id:'value',   label:'Price & Value',        icon:'💰',sub:'Price/sqft, market comp',   fill:'sf-gold'},
+  {id:'size',    label:'Size & Layout',         icon:'📐',sub:'Beds, baths, flow',         fill:'sf-r'},
+  {id:'yard',    label:'Yard & Outdoor',        icon:'🌿',sub:'Space for kids, privacy',   fill:'sf-g'},
+];
+let weights = {safety:1,location:1,value:1,size:1,yard:1};
+let homes = [];
+let pending = null;
+
+// JSONBIN SHARED STORAGE - all family members read/write the same bin
+const JSONBIN_ID  = '69ac4cecae596e708f69ca9b';
+const JSONBIN_KEY = '$2a$10$GQW5.iKv1as9jtbb1aQXyuFoe0U1NncXs4HARKzCpDdDCF4msuk1S';
+const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
+
+async function loadHomes() {
+  if (JSONBIN_ID === 'YOUR_BIN_ID_HERE') {
+    homes = JSON.parse(localStorage.getItem('hs_local')||'[]');
+    return;
+  }
+  try {
+    const r = await fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } });
+    const d = await r.json();
+    homes = Array.isArray(d.record) ? d.record : [];
+  } catch(e) {
+    homes = JSON.parse(localStorage.getItem('hs_local')||'[]');
+  }
+}
+
+async function saveHomes() {
+  localStorage.setItem('hs_local', JSON.stringify(homes));
+  if (JSONBIN_ID === 'YOUR_BIN_ID_HERE') return;
+  try {
+    await fetch(JSONBIN_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
+      body: JSON.stringify(homes)
+    });
+    setSyncBadge('Synced ' + new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}), true);
+  } catch(e) {
+    setSyncBadge('Sync failed', false);
+  }
+}
+
+function setSyncBadge(msg, ok) {
+  const el = document.getElementById('sync-badge');
+  if (el) { el.textContent = msg; el.style.color = ok ? 'var(--green)' : 'var(--red)'; }
+}
+
+setInterval(async () => {
+  if (JSONBIN_ID === 'YOUR_BIN_ID_HERE') return;
+  const prev = JSON.stringify(homes);
+  await loadHomes();
+  if (JSON.stringify(homes) !== prev) { renderAll(); setSyncBadge('Updated', true); }
+}, 45000);
+
+function score(h){ const tw=CATS.reduce((s,c)=>s+weights[c.id],0); const ws=CATS.reduce((s,c)=>s+(h.scores[c.id]||5)*weights[c.id],0); return Math.round(ws/tw/10*100); }
+function grade(p){ if(p>=83) return{cls:'sc-a',col:'var(--green)',word:'Excellent'}; if(p>=72) return{cls:'sc-b',col:'var(--blue)',word:'Very Good'}; if(p>=60) return{cls:'sc-c',col:'var(--gold)',word:'Good'}; return{cls:'sc-d',col:'var(--red)',word:'Below Avg'}; }
+function chipCls(v){ return v>=8?'ch-g':v>=6?'ch-go':'ch-r'; }
+
+// MODAL
+function openModal(){ document.getElementById('overlay').classList.add('open'); document.getElementById('url-in').value=''; document.getElementById('preview').classList.remove('show'); setStatus('',''); pending=null; setTimeout(()=>document.getElementById('url-in').focus(),100); }
+function closeModal(){ document.getElementById('overlay').classList.remove('open'); }
+document.getElementById('overlay').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeModal(); });
+
+function setStatus(type,msg){
+  const b=document.getElementById('status-box');
+  b.className='status'+(type?' '+type:'');
+  document.getElementById('status-txt').textContent=msg;
+  document.getElementById('spin').style.display=type==='loading'?'block':'none';
+}
+
+async function doFetch(){
+  const url = document.getElementById('url-in').value.trim();
+  const pasteText = document.getElementById('paste-in').value.trim();
+
+  if(!url || !url.includes('zillow.com')){ setStatus('error','Please enter a valid Zillow URL above.'); return; }
+  if(!pasteText || pasteText.length < 80){ setStatus('error','Please paste the Zillow page text too (see instructions above).'); return; }
+
+  document.getElementById('fetch-btn').disabled = true;
+  document.getElementById('preview').classList.remove('show');
+  setStatus('loading', 'Extracting listing details…');
+
+  try {
+    const trimmed = pasteText.slice(0, 14000);
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are a real estate data extractor. The user will paste text copied from a Zillow listing page. Extract all available fields and return ONLY a valid JSON object — no markdown fences, no explanation, no preamble. Use null for any field not found.
+
+Return exactly this shape:
+{
+  "address": "street address only",
+  "city": "City, ST ZIP",
+  "price": "$XXX,XXX",
+  "beds": <number>,
+  "baths": <number>,
+  "sqft": "X,XXX sq ft",
+  "lotSize": "X.XX acres",
+  "yearBuilt": <number>,
+  "pricePerSqft": "$XXX/sqft",
+  "annualTax": "$X,XXX",
+  "schoolRating": "X/10 (School Name)",
+  "walkScore": <number>,
+  "hoaFee": "$XXX/mo",
+  "description": "2-sentence summary of what makes this home notable",
+  "pros": ["pro1", "pro2", "pro3"],
+  "cons": ["con1", "con2", "con3"]
+}
+
+First character MUST be {. Last character MUST be }. Nothing else.`,
+        messages: [{ role: 'user', content: `Extract listing data from this Zillow page text:\n\n${trimmed}` }]
+      })
+    });
+
+    const data = await res.json();
+    const text = data.content.filter(b => b.type === 'text').map(b => b.text).join('').trim();
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start === -1 || end === -1) throw new Error('Could not find JSON in response.');
+    const p = JSON.parse(text.slice(start, end + 1));
+
+    pending = {...p, url, id:null, scores:{safety:5,location:5,value:5,size:5,yard:5}, notes:''};
+
+    document.getElementById('prev-addr').textContent = p.address||'Unknown Address';
+    document.getElementById('prev-city').textContent = p.city||'';
+    document.getElementById('prev-facts').innerHTML = [
+      p.price     && `<div class="pf"><strong>${p.price}</strong> list</div>`,
+      p.beds      && `<div class="pf"><strong>${p.beds}bd/${p.baths}ba</strong></div>`,
+      p.sqft      && `<div class="pf"><strong>${p.sqft}</strong></div>`,
+      p.yearBuilt && `<div class="pf">Built <strong>${p.yearBuilt}</strong></div>`,
+      p.schoolRating && `<div class="pf">Schools <strong>${p.schoolRating}</strong></div>`,
+    ].filter(Boolean).join('');
+
+    document.getElementById('score-inputs').innerHTML = CATS.map(c=>`
+      <div class="si-row">
+        <label>${c.icon} ${c.label.split(' ')[0]}</label>
+        <input type="range" min="1" max="10" value="5" oninput="pending.scores['${c.id}']=+this.value;this.nextElementSibling.textContent=this.value">
+        <div class="si-val">5</div>
+      </div>`).join('');
+
+    document.getElementById('preview').classList.add('show');
+    setStatus('success','✓ Listing loaded — score it and save');
+
+  } catch(e){
+    console.error(e);
+    setStatus('error', 'Could not parse the listing. Make sure you pasted enough text from the Zillow page.');
+  } finally {
+    document.getElementById('fetch-btn').disabled=false;
+  }
+}
+
+async function saveHome(){
+  if(!pending) return;
+  pending.notes = document.getElementById('notes-in').value;
+  pending.id = 'h'+Date.now();
+  homes.push(pending);
+  await saveHomes(); closeModal(); renderAll();
+}
+
+async function removeHome(id){
+  if(!confirm('Remove this home from your list?')) return;
+  homes=homes.filter(h=>h.id!==id);
+  await saveHomes(); renderAll(); showPanel('overview');
+}
+
+// ── RENDER ──────────────────────────────────────────────────────────────────
+function renderAll(){
+  document.getElementById('pill-count').textContent=homes.length;
+  renderOverview(); renderNavTabs(); renderDetails(); renderCompare(); renderWeights();
+}
+
+function renderOverview(){
+  const sorted=[...homes].map(h=>({...h,pct:score(h)})).sort((a,b)=>b.pct-a.pct);
+  if(sorted.length){
+    const avg=Math.round(sorted.reduce((s,h)=>s+h.pct,0)/sorted.length);
+    const best=sorted[0];
+    document.getElementById('sum-row').innerHTML=`
+      <div class="sc"><div class="sc-val">${homes.length}</div><div class="sc-label">Homes</div></div>
+      <div class="sc"><div class="sc-val g">${avg}%</div><div class="sc-label">Avg Score</div></div>
+      <div class="sc"><div class="sc-val g">${best.pct}%</div><div class="sc-label">Top Score</div></div>
+      <div class="sc"><div class="sc-val" style="font-size:17px">${best.address}</div><div class="sc-label">Leading · ${best.city}</div></div>`;
+  } else { document.getElementById('sum-row').innerHTML=''; }
+
+  const grid=document.getElementById('homes-grid');
+  if(!sorted.length){
+    grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="empty-icon">🏡</div><h3>No homes yet</h3><p>Click "Add Home from Zillow" and paste a listing URL to get started.</p></div>`;
+    return;
+  }
+  grid.innerHTML=sorted.map((h,i)=>{
+    const g=grade(h.pct);
+    return `<div class="hcard" onclick="showPanel('detail-${h.id}')">
+      ${i===0?'<div class="rank-tag">Leading</div>':''}
+      <div class="hcard-top" style="${i===0?'padding-top:32px':''}">
+        <div><div class="hcard-addr">${h.address}</div><div class="hcard-city">${h.city}</div></div>
+        <div class="sc-circ ${g.cls}">${h.pct}%</div>
+      </div>
+      <div class="hcard-body">
+        <div class="cfacts">
+          <div class="cf"><strong>${h.price||'—'}</strong>List Price</div>
+          <div class="cf"><strong>${h.beds||'?'}bd / ${h.baths||'?'}ba</strong>Beds/Baths</div>
+          <div class="cf"><strong>${h.sqft||'—'}</strong>Sq Footage</div>
+          <div class="cf"><strong>${g.word}</strong>Grade</div>
+        </div>
+        <div class="mbars">
+          ${CATS.map(c=>`<div class="mbr"><div class="mbl">${c.icon} ${c.label.split(' ')[0]}</div><div class="mbt"><div class="mbf" style="width:${(h.scores[c.id]||5)*10}%"></div></div><div class="mbv">${h.scores[c.id]||5}</div></div>`).join('')}
+        </div>
+        ${h.notes?`<div class="cnote">${h.notes}</div>`:''}
+        <div class="cactions">
+          <button class="cab" onclick="event.stopPropagation();showPanel('detail-${h.id}')">Detail</button>
+          ${h.url?`<a class="cab" href="${h.url}" target="_blank" onclick="event.stopPropagation()">Zillow ↗</a>`:''}
+          <button class="cab del" onclick="event.stopPropagation();removeHome('${h.id}')">Remove</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderNavTabs(){
+  document.getElementById('home-tabs').innerHTML=homes.map(h=>{
+    const p=score(h);
+    const short=h.address.split(' ').slice(0,3).join(' ');
+    return `<button class="nav-btn" id="ntab-${h.id}" onclick="showPanel('detail-${h.id}')">${short}<span class="nav-badge">${p}%</span></button>`;
+  }).join('');
+}
+
+function renderDetails(){
+  document.getElementById('detail-panels').innerHTML=homes.map(h=>{
+    const p=score(h); const g=grade(p);
+    return `<div class="panel" id="panel-detail-${h.id}">
+      <button class="back-btn" onclick="showPanel('overview')">← All Homes</button>
+      <div class="dhero">
+        <div>
+          <h2>${h.address}</h2>
+          <div class="city">${h.city}</div>
+          ${h.url?`<a class="zillow-lnk" href="${h.url}" target="_blank">View on Zillow ↗</a>`:''}
+          <div class="dfacts" style="margin-top:16px">
+            ${[h.price&&`<div class="df"><div class="df-val">${h.price}</div><div class="df-label">List Price</div></div>`,
+               h.beds&&`<div class="df"><div class="df-val">${h.beds}/${h.baths}</div><div class="df-label">Bed/Bath</div></div>`,
+               h.sqft&&`<div class="df"><div class="df-val">${h.sqft}</div><div class="df-label">Sq Ft</div></div>`,
+               h.yearBuilt&&`<div class="df"><div class="df-val">${h.yearBuilt}</div><div class="df-label">Year Built</div></div>`,
+            ].filter(Boolean).join('')}
+          </div>
+        </div>
+        <div class="dbig">
+          <div class="bigc" style="border-color:${g.col};background:${g.col}18">
+            <div class="bigc-num" style="color:${g.col}">${p}%</div>
+            <div class="bigc-lbl">score</div>
+          </div>
+          <div class="grade-w" style="color:${g.col}">${g.word}</div>
+        </div>
+      </div>
+
+      <div class="dsec">
+        <h3>📊 Category Scores</h3>
+        ${CATS.map(c=>{
+          const col=c.fill==='sf-g'?'var(--green)':c.fill==='sf-b'?'var(--blue)':c.fill==='sf-gold'?'var(--gold)':'var(--red)';
+          return `<div class="srow">
+            <div class="srow-lbl">${c.icon} ${c.label}<div class="srow-sub">${c.sub}</div></div>
+            <div class="strack"><div class="sfill ${c.fill}" style="width:${(h.scores[c.id]||5)*10}%"></div></div>
+            <div class="sval" style="color:${col}">${h.scores[c.id]||5}/10</div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      ${(h.pricePerSqft||h.lotSize||h.annualTax||h.schoolRating||h.walkScore||h.hoaFee)?`
+      <div class="dsec">
+        <h3>📋 Zillow Data</h3>
+        <div class="extras-grid">
+          ${h.pricePerSqft?`<div class="eitem"><div class="eitem-lbl">Price / Sq Ft</div><div class="eitem-val">${h.pricePerSqft}</div></div>`:''}
+          ${h.lotSize?`<div class="eitem"><div class="eitem-lbl">Lot Size</div><div class="eitem-val">${h.lotSize}</div></div>`:''}
+          ${h.annualTax?`<div class="eitem"><div class="eitem-lbl">Annual Tax</div><div class="eitem-val">${h.annualTax}</div></div>`:''}
+          ${h.schoolRating?`<div class="eitem"><div class="eitem-lbl">School Rating</div><div class="eitem-val">${h.schoolRating}</div></div>`:''}
+          ${h.walkScore?`<div class="eitem"><div class="eitem-lbl">Walk Score</div><div class="eitem-val">${h.walkScore}/100</div></div>`:''}
+          ${h.hoaFee?`<div class="eitem"><div class="eitem-lbl">HOA</div><div class="eitem-val">${h.hoaFee}</div></div>`:''}
+        </div>
+      </div>`:''}
+
+      ${(h.pros?.length||h.cons?.length)?`
+      <div class="dsec">
+        <h3>✅ Pros & Watch-outs</h3>
+        <div class="pc-grid">
+          <div><div class="pro-h">Pros</div>${(h.pros||[]).map(x=>`<div class="pro-i">${x}</div>`).join('')}</div>
+          <div><div class="con-h">Watch Out For</div>${(h.cons||[]).map(x=>`<div class="con-i">${x}</div>`).join('')}</div>
+        </div>
+      </div>`:''}
+
+      ${h.notes?`<div class="nbox"><div class="nbox-h">Our Notes</div><p>${h.notes}</p></div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function renderCompare(){
+  if(!homes.length){
+    document.getElementById('compare-inner').innerHTML=`<div class="empty"><div class="empty-icon">📊</div><h3>Nothing to compare</h3><p>Add at least two homes to see a side-by-side breakdown.</p></div>`;
+    return;
+  }
+  const sorted=[...homes].map(h=>({...h,pct:score(h)})).sort((a,b)=>b.pct-a.pct);
+  const rows=[
+    {lbl:'Overall Score', fn:h=>`<span class="chip ${h.pct>=75?'ch-g':h.pct>=65?'ch-go':'ch-r'}">${h.pct}%</span>`},
+    {lbl:'Price',         fn:h=>h.price||'—'},
+    {lbl:'Beds/Baths',    fn:h=>`${h.beds||'?'}/${h.baths||'?'}`},
+    {lbl:'Sq Footage',    fn:h=>h.sqft||'—'},
+    {lbl:'Year Built',    fn:h=>h.yearBuilt||'—'},
+    {lbl:'Price/Sqft',   fn:h=>h.pricePerSqft||'—'},
+    {lbl:'Annual Tax',   fn:h=>h.annualTax||'—'},
+    {lbl:'School Rating',fn:h=>h.schoolRating||'—'},
+    {lbl:'Walk Score',   fn:h=>h.walkScore?`${h.walkScore}/100`:'—'},
+    ...CATS.map(c=>({lbl:`${c.icon} ${c.label}`, fn:h=>`<span class="chip ${chipCls(h.scores[c.id]||5)}">${h.scores[c.id]||5}/10</span>`}))
+  ];
+  document.getElementById('compare-inner').innerHTML=`<div class="ctable-wrap"><table class="ctable">
+    <thead><tr><th>Category</th>${sorted.map(h=>`<th>${h.address.split(' ').slice(0,3).join(' ')}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(r=>`<tr><td>${r.lbl}</td>${sorted.map(h=>`<td>${r.fn(h)}</td>`).join('')}</tr>`).join('')}</tbody>
+  </table></div>`;
+}
+
+function renderWeights(){
+  document.getElementById('weight-rows').innerHTML=CATS.map(c=>`
+    <div class="wrow">
+      <label>${c.icon} ${c.label}</label>
+      <input type="range" min="0" max="3" step=".5" value="${weights[c.id]}"
+        oninput="weights['${c.id}']=parseFloat(this.value);this.nextElementSibling.textContent=this.value+'×';renderAll();">
+      <div class="wval">${weights[c.id]}×</div>
+    </div>`).join('');
+}
+
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const t=document.getElementById('panel-'+id);
+  if(t) t.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>{
+    const fn=b.getAttribute('onclick')||'';
+    if(fn.includes(`'${id}'`)) b.classList.add('active');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+async function init() {
+  document.getElementById('homes-grid').innerHTML = '<div class="empty" style="grid-column:1/-1"><div class="empty-icon">⟳</div><p style="margin-top:12px">Loading shared homes…</p></div>';
+  await loadHomes();
+  renderAll();
+  if (JSONBIN_ID !== 'YOUR_BIN_ID_HERE') setSyncBadge('Connected', true);
+  else setSyncBadge('Local mode - see setup', false);
+}
+init();
+</script>
+</body>
+</html>
