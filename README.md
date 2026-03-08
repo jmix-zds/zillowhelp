@@ -58,9 +58,29 @@ total = monthly_PI + (annual_tax / 12) + $100 insurance [+ HOA if applicable]
    ```
    1234 Example St, City, OH 44XXX - XX minutes
    ```
-5. Open a Claude Code session in this repo and say: *"Parse [filename].html and add it to index.html"*
+5. Run the parser script from this repo directory:
+   ```
+   python3 add_home.py "~/Documents/Househunting/filename.html"
+   ```
+   This prints a summary of all extracted data and generates a ready-to-paste HTML card.
 
-Claude will extract all property data from the Redfin HTML (price, beds, baths, sqft, tax, HOA, basement, heating, roof, price history, etc.), calculate the score, calculate all three payment scenarios, and insert the full card into the page.
+6. Review the summary output, then open a Claude Code session and say:
+   *"Add [filename].html to index.html"* — Claude will use the script output to insert the card, fill in pros/cons/notes, update the rankings, compare table, and header buttons.
+
+**What the script extracts automatically:**
+- Price, beds, baths, sqft, $/sqft
+- Year built, lot size, style, stories
+- Garage, basement, heating/cooling, roof, exterior
+- Annual tax, HOA, days on market, price history
+- Score (weighted 5-category formula)
+- All three payment scenarios (standard recast, best case, payoff estimate)
+- Nearby recently sold comps (from the Redfin listing itself)
+
+**What still needs Claude (or manual editing):**
+- Pros/cons list
+- Key note / summary paragraph
+- Comps analysis sentence
+- Inserting the card in the right rank order and updating the compare table
 
 > **Why Redfin?** Redfin server-renders all property facts into the saved HTML. Zillow renders via JavaScript so saved pages are mostly empty. Redfin gives us tax, HOA, basement type, heating/cooling, roof, and full price history all in one save.
 
@@ -68,14 +88,28 @@ Claude will extract all property data from the Redfin HTML (price, beds, baths, 
 
 ---
 
+## How to Remove a House
+
+1. Delete the home's `<div class="dcard" id="home-N">...</div><!-- end home-N -->` block from `index.html`
+2. Remove its column from the compare table (`<th>` in both header rows, and one `<td>` from each data row)
+3. Remove its row from the rankings section
+4. Re-number the remaining `home-N` IDs if needed to keep them sequential
+5. Update the header category winner buttons if the removed home held any category wins
+6. Open a Claude Code session and say: *"Remove [address] from index.html"* — Claude will handle all of the above
+
+---
+
 ## Project Structure
 
 ```
-index.html   — The entire page: CSS, HTML, and data in one file
-README.md            — This file
+index.html     — The entire page: CSS, HTML, and data in one file
+add_home.py    — Parser script: extracts all data from a saved Redfin HTML and generates a card
+README.md      — This file
 ```
 
 All CSS and content lives in `index.html` — no build step, no dependencies beyond Google Fonts. It opens directly in a browser or serves from GitHub Pages as-is.
+
+`add_home.py` requires only Python 3 (standard library, no pip installs needed).
 
 ---
 
