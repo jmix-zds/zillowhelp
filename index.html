@@ -135,6 +135,18 @@ main{max-width:1100px;padding:52px 60px 100px;}
 /* ── NOTES + PROS/CONS ── */
 .notes-box{margin:0 36px 28px;padding:16px 20px;background:var(--paper);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;}
 .notes-box-h{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.comps-section{margin:16px 20px 20px;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.comps-section-h{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding:10px 14px 8px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;}
+.comps-section-h span{font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink3);}
+.comps-table{width:100%;border-collapse:collapse;font-size:12px;}
+.comps-table th{text-align:left;padding:6px 10px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);background:var(--bg2);border-bottom:1px solid var(--border);}
+.comps-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--ink1);}
+.comps-table tr:last-child td{border-bottom:none;}
+.comps-table tr:hover td{background:var(--bg2);}
+.comps-table .ct-price{font-weight:600;color:var(--blue);}
+.comps-table .ct-subj{background:rgba(201,151,58,.07);font-weight:600;}
+.comps-table .ct-subj .ct-price{color:var(--gold2);}
+.comps-range{font-size:12px;color:var(--ink2);padding:8px 14px;border-top:1px solid var(--border);background:var(--bg2);}
 .notes-box p{font-size:14px;color:var(--ink3);line-height:1.7;font-style:italic;}
 .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 36px 28px;}
 .pc-h{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
@@ -537,6 +549,27 @@ main{max-width:1100px;padding:52px 60px 100px;}
         <div class="notes-box-h">Key Note</div>
         <p>Cape Cod with a fully attached MIL suite — separate entrance, own kitchen, bath, deck, and independently metered gas, electric, and water. No other home reviewed has this. At $244,500 with a motivated seller and 0.65 acres, it offers the best combination of price, space, and unique utility. The 98 DOM is worth a direct conversation with the agent.</p>
       </div>
+
+      <div class="comps-section">
+        <div class="comps-section-h">Nearby Recently Sold <span>5 of 6 comps · same zip · from Redfin listing</span></div>
+        <table class="comps-table">
+          <thead>
+            <tr><th>Address</th><th>Sold Date</th><th>Price</th><th>Beds/Ba</th><th>Sq Ft</th><th>$/sqft</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr class="ct-subj">
+              <td><strong>4556 Fishcreek Rd</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+              <td>Listed</td><td class="ct-price">$244,500</td><td>3 / 1.5</td><td>1,666</td><td>$147</td><td>Largest of comps</td>
+            </tr>
+            <tr><td>4078 Pardee Rd, Stow</td><td>Feb 19, 2026</td><td class="ct-price">$285,000</td><td>4 / 2</td><td>2,026</td><td>$141</td><td>4 yrs newer</td></tr>
+            <tr><td>4322 Lorwood Dr, Stow</td><td>Jan 12, 2026</td><td class="ct-price">$250,000</td><td>3 / 2</td><td>1,480</td><td>$169</td><td>186 sqft smaller</td></tr>
+            <tr><td>2260 E Gilwood Dr, Stow</td><td>Feb 27, 2026</td><td class="ct-price">$310,000</td><td>3 / 2</td><td>1,332</td><td>$233</td><td>334 sqft smaller</td></tr>
+            <tr><td>2568 Celia Dr, Stow</td><td>Jul 1, 2025</td><td class="ct-price">$306,000</td><td>3 / 2.5</td><td>1,362</td><td>$225</td><td>304 sqft smaller</td></tr>
+            <tr><td>4620 Fishcreek Rd, Stow</td><td>May 2, 2025</td><td class="ct-price">$275,000</td><td>3 / 2</td><td>1,225</td><td>$225</td><td>Same street; 441 sqft smaller</td></tr>
+          </tbody>
+        </table>
+        <div class="comps-range">Comps range: <strong>$250,000 – $310,000</strong> &nbsp;·&nbsp; Fishcreek at $244,500 is <strong>priced below every comp</strong> and is the largest or near-largest home — strong value signal.</div>
+      </div>
     </div><!-- end home-1 -->
 
     <!-- HOME 2 · OGILBY DR -->
@@ -664,6 +697,27 @@ main{max-width:1100px;padding:52px 60px 100px;}
         <div class="notes-box-h">Key Note</div>
         <p>The only home that checks every box on paper — 4 beds, 2.5 baths, 2,016 sqft, best commute, Hudson schools. The single issue is price: at $375K it's $75K over budget, and the interest cost on the larger loan is significantly higher than any other home. Worth seeing in person to decide if the location premium is worth it.</p>
       </div>
+
+      <div class="comps-section">
+        <div class="comps-section-h">Nearby Recently Sold <span>5 of 6 comps · same zip · from Redfin listing</span></div>
+        <table class="comps-table">
+          <thead>
+            <tr><th>Address</th><th>Sold Date</th><th>Price</th><th>Beds/Ba</th><th>Sq Ft</th><th>$/sqft</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr class="ct-subj">
+              <td><strong>5866 Ogilby Dr</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+              <td>Listed</td><td class="ct-price">$375,000</td><td>4 / 2.5</td><td>2,016</td><td>$186</td><td>Priced well below comps</td>
+            </tr>
+            <tr><td>1590 Amboy Dr, Hudson</td><td>Nov 25, 2025</td><td class="ct-price">$429,000</td><td>4 / 2.5</td><td>2,016</td><td>$213</td><td>Same sqft; 6 yrs older</td></tr>
+            <tr><td>5899 Bradford Way, Hudson</td><td>Sep 9, 2025</td><td class="ct-price">$425,000</td><td>4 / 2.5</td><td>2,016</td><td>$211</td><td>Same sqft; 1 yr older</td></tr>
+            <tr><td>1705 Barlow Rd, Hudson</td><td>Feb 13, 2026</td><td class="ct-price">$460,000</td><td>4 / 2.5</td><td>1,885</td><td>$244</td><td>131 sqft smaller</td></tr>
+            <tr><td>47 Colony Dr, Hudson</td><td>Jun 5, 2025</td><td class="ct-price">$480,000</td><td>3 / 2</td><td>2,002</td><td>$240</td><td>14 sqft smaller</td></tr>
+            <tr><td>41 Clairhaven Dr, Hudson</td><td>Dec 2, 2025</td><td class="ct-price">$425,000</td><td>3 / 2</td><td>1,630</td><td>$261</td><td>386 sqft smaller</td></tr>
+          </tbody>
+        </table>
+        <div class="comps-range">Comps range: <strong>$425,000 – $480,000</strong> &nbsp;·&nbsp; Ogilby at $375,000 is <strong>$50,000–$105,000 below every comp</strong> — all 5 comparable Hudson homes sold significantly higher.</div>
+      </div>
     </div><!-- end home-2 -->
 
     <!-- HOME 3 · LOVERS LN -->
@@ -790,6 +844,27 @@ main{max-width:1100px;padding:52px 60px 100px;}
         <div class="notes-box-h">Key Note</div>
         <p>The best value per square foot at $130/sqft with a 4-car garage that no other home can match. Three price cuts of $30K total signal serious seller motivation — there may be room to go lower. The 24-min commute is the primary drag on the score and will be a daily reality to weigh against the price advantage.</p>
       </div>
+
+      <div class="comps-section">
+        <div class="comps-section-h">Nearby Recently Sold <span>5 of 6 comps · same zip · from Redfin listing</span></div>
+        <table class="comps-table">
+          <thead>
+            <tr><th>Address</th><th>Sold Date</th><th>Price</th><th>Beds/Ba</th><th>Sq Ft</th><th>$/sqft</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr class="ct-subj">
+              <td><strong>4866 Lovers Ln</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+              <td>Listed</td><td class="ct-price">$249,900</td><td>4 / 1.5</td><td>1,924</td><td>$130</td><td>Largest of comps</td>
+            </tr>
+            <tr><td>255 North Ave, Ravenna</td><td>Nov 25, 2025</td><td class="ct-price">$144,000</td><td>4 / 1</td><td>1,248</td><td>$115</td><td>676 sqft smaller; 17 yrs older</td></tr>
+            <tr><td>7017 Peck Rd, Ravenna</td><td>Oct 30, 2025</td><td class="ct-price">$345,000</td><td>3 / 2</td><td>1,656</td><td>$208</td><td>268 sqft smaller; larger lot</td></tr>
+            <tr><td>422 Oak Manor Dr, Ravenna</td><td>Jul 24, 2025</td><td class="ct-price">$265,000</td><td>3 / 1.5</td><td>2,040</td><td>$130</td><td>116 sqft larger</td></tr>
+            <tr><td>7342 Peck Rd, Ravenna</td><td>Nov 4, 2025</td><td class="ct-price">$209,000</td><td>2 / 1.5</td><td>1,212</td><td>$172</td><td>712 sqft smaller</td></tr>
+            <tr><td>4525 Coe Rd, Ravenna</td><td>Dec 10, 2025</td><td class="ct-price">$248,000</td><td>3 / 2</td><td>—</td><td>—</td><td>Larger lot; 4 yrs older</td></tr>
+          </tbody>
+        </table>
+        <div class="comps-range">Comps range: <strong>$144,000 – $345,000</strong> &nbsp;·&nbsp; Wide range reflects Ravenna's mixed market. Lovers Ln at $249,900 is mid-range but is the largest home — the $130/sqft asking rate matches the cheapest comp on a per-sqft basis.</div>
+      </div>
     </div><!-- end home-3 -->
 
     <!-- HOME 4 · OAK HILL DR -->
@@ -915,6 +990,27 @@ main{max-width:1100px;padding:52px 60px 100px;}
       <div class="notes-box">
         <div class="notes-box-h">Key Note</div>
         <p>The standout feature here is 2.5 baths in a 3-bedroom home — more bathrooms than most homes reviewed at this price point. The brick exterior and full basement add long-term value. The 17-min commute and single-bedroom shortfall are the main trade-offs. Was listed at $280K and dropped to $250K — there may be further flexibility.</p>
+      </div>
+
+      <div class="comps-section">
+        <div class="comps-section-h">Nearby Recently Sold <span>5 of 6 comps · Kent / Streetsboro area · from Redfin listing</span></div>
+        <table class="comps-table">
+          <thead>
+            <tr><th>Address</th><th>Sold Date</th><th>Price</th><th>Beds/Ba</th><th>Sq Ft</th><th>$/sqft</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr class="ct-subj">
+              <td><strong>1799 Oak Hill Dr</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+              <td>Listed</td><td class="ct-price">$250,000</td><td>3 / 2.5</td><td>1,568</td><td>$159</td><td>—</td>
+            </tr>
+            <tr><td>8807 Kelly Ln, Streetsboro</td><td>Nov 26, 2025</td><td class="ct-price">$325,000</td><td>3 / 2.5</td><td>1,624</td><td>$200</td><td>56 sqft larger; 39 yrs newer</td></tr>
+            <tr><td>1448 Jude Ave, Streetsboro</td><td>Oct 31, 2025</td><td class="ct-price">$335,000</td><td>2 / 2.5</td><td>—</td><td>—</td><td>46 yrs newer</td></tr>
+            <tr><td>7775 Diagonal Rd, Kent</td><td>Dec 31, 2025</td><td class="ct-price">$380,000</td><td>4 / 3</td><td>2,398</td><td>$158</td><td>830 sqft larger; 5 yrs newer</td></tr>
+            <tr><td>6530 Towner Dr, Kent</td><td>Dec 31, 2025</td><td class="ct-price">$190,000</td><td>2 / 1.5</td><td>936</td><td>$203</td><td>632 sqft smaller; 42 yrs older</td></tr>
+            <tr><td>1730 State Route 303, Streetsboro</td><td>Jun 16, 2025</td><td class="ct-price">$252,000</td><td>3 / 1</td><td>1,484</td><td>$170</td><td>84 sqft smaller; 22 yrs older</td></tr>
+          </tbody>
+        </table>
+        <div class="comps-range">Comps range: <strong>$190,000 – $380,000</strong> &nbsp;·&nbsp; Wide spread across Kent/Streetsboro. Oak Hill at $250K is near the low end — comparable newer homes in Streetsboro sold $75K–$85K higher for similar square footage.</div>
       </div>
     </div><!-- end home-4 -->
 
@@ -1043,6 +1139,27 @@ main{max-width:1100px;padding:52px 60px 100px;}
       <div class="notes-box">
         <div class="notes-box-h">Key Note</div>
         <p>The lowest property tax of any home reviewed saves real money every month. The finished walk-out basement adds usable square footage beyond the listed 1,506 sqft. Lake community living at $54/mo HOA is solid value if the amenities fit the lifestyle. The 108 DOM with only a $3,100 price cut suggests the seller may be stubborn on price — worth a stronger offer.</p>
+      </div>
+
+      <div class="comps-section">
+        <div class="comps-section-h">Nearby Recently Sold <span>5 of 6 comps · Aurora / Twinsburg area · from Redfin listing</span></div>
+        <table class="comps-table">
+          <thead>
+            <tr><th>Address</th><th>Sold Date</th><th>Price</th><th>Beds/Ba</th><th>Sq Ft</th><th>$/sqft</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr class="ct-subj">
+              <td><strong>10265 Beaver Trl</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+              <td>Listed</td><td class="ct-price">$275,900</td><td>3 / 2.5</td><td>1,506</td><td>$183</td><td>Smallest of comps</td>
+            </tr>
+            <tr><td>3320 Blossom Trl, Twinsburg</td><td>Nov 7, 2025</td><td class="ct-price">$285,000</td><td>3 / 2.5</td><td>1,404</td><td>$203</td><td>102 sqft smaller; 43 yrs newer</td></tr>
+            <tr><td>3401 Mallard Ct, Aurora</td><td>Dec 12, 2025</td><td class="ct-price">$325,000</td><td>2 / 2</td><td>1,812</td><td>$179</td><td>306 sqft larger; 30 yrs newer</td></tr>
+            <tr><td>3336 Blossom Trl, Twinsburg</td><td>Nov 18, 2025</td><td class="ct-price">$354,900</td><td>4 / 3.5</td><td>1,680</td><td>$211</td><td>174 sqft larger; 43 yrs newer</td></tr>
+            <tr><td>10487 Florida St, Aurora</td><td>Dec 2, 2025</td><td class="ct-price">$315,000</td><td>3 / 2</td><td>1,650</td><td>$191</td><td>144 sqft larger; 15 yrs newer</td></tr>
+            <tr><td>3314 Fenmore Ln, Aurora</td><td>Nov 10, 2025</td><td class="ct-price">$370,000</td><td>3 / 2.5</td><td>1,384</td><td>$267</td><td>122 sqft smaller; 34 yrs newer</td></tr>
+          </tbody>
+        </table>
+        <div class="comps-range">Comps range: <strong>$285,000 – $370,000</strong> &nbsp;·&nbsp; Beaver Trl at $275,900 is <strong>below every comp</strong> but is also the smallest and oldest home in the area — the discount reflects age, not poor value.</div>
       </div>
     </div><!-- end home-5 -->
 
@@ -1173,6 +1290,27 @@ main{max-width:1100px;padding:52px 60px 100px;}
         <div class="notes-box-h">Key Note</div>
         <p>The renovation makes it look great and the sqft meets the target, but the $7,427 annual tax is a serious red flag — at $619/mo it adds roughly $300 more per month than comparable homes, negating much of the price advantage. One bathroom for a family of 4 is a practical dealbreaker. Verify the tax figure before scheduling a showing.</p>
       </div>
+
+      <div class="comps-section">
+        <div class="comps-section-h">Nearby Recently Sold <span>5 of 6 comps · Streetsboro area · from Redfin listing</span></div>
+        <table class="comps-table">
+          <thead>
+            <tr><th>Address</th><th>Sold Date</th><th>Price</th><th>Beds/Ba</th><th>Sq Ft</th><th>$/sqft</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr class="ct-subj">
+              <td><strong>9431 Briar Dr</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+              <td>Listed</td><td class="ct-price">$274,800</td><td>3 / 1</td><td>1,836</td><td>$150</td><td>⚠ $7,427/yr tax</td>
+            </tr>
+            <tr><td>1290 Edgewood Ln, Streetsboro</td><td>Dec 5, 2025</td><td class="ct-price">$343,000</td><td>3 / 2.5</td><td>1,876</td><td>$183</td><td>Similar sqft; 48 yrs newer</td></tr>
+            <tr><td>1932 Summers Ave, Streetsboro</td><td>Nov 26, 2025</td><td class="ct-price">$292,000</td><td>3 / 2.5</td><td>1,628</td><td>$179</td><td>208 sqft smaller</td></tr>
+            <tr><td>1159 Shawnee Trl, Streetsboro</td><td>Dec 19, 2025</td><td class="ct-price">$167,500</td><td>3 / 1.5</td><td>1,472</td><td>$114</td><td>364 sqft smaller; 29 yrs newer</td></tr>
+            <tr><td>1223 Cherokee Trl, Streetsboro</td><td>Nov 26, 2025</td><td class="ct-price">$255,000</td><td>4 / 1.5</td><td>1,550</td><td>$165</td><td>286 sqft smaller; 26 yrs newer</td></tr>
+            <tr><td>2926 Frost Rd, Mantua</td><td>Oct 31, 2025</td><td class="ct-price">$315,000</td><td>3 / 2</td><td>1,972</td><td>$160</td><td>136 sqft larger; 32 yrs newer</td></tr>
+          </tbody>
+        </table>
+        <div class="comps-range">Comps range: <strong>$167,500 – $343,000</strong> &nbsp;·&nbsp; Briar Dr is priced mid-range but all newer comps sold higher. The $7,427 tax burden is the outlier — factor that into any comparison against these comps.</div>
+      </div>
     </div><!-- end home-6 -->
 
     <!-- HOME 7 · CHARRING CROSS DR -->
@@ -1299,6 +1437,89 @@ main{max-width:1100px;padding:52px 60px 100px;}
       <div class="notes-box">
         <div class="notes-box-h">Key Note</div>
         <p>The cheapest home and lowest monthly payment of everything reviewed. In the best case scenario, the loan is paid off in roughly 2 years with ~$5,200 total interest — no other home comes close. The hard reality: 1 bathroom for 4 people is a daily friction point. Worth visiting only if price is the absolute priority and a bathroom addition is in the longer-term plan.</p>
+      </div>
+
+      <div class="comps-section">
+        <div class="comps-section-h">Nearby Recently Sold <span>6 comps · same zip · from Redfin listing</span></div>
+        <table class="comps-table">
+          <thead>
+            <tr>
+              <th>Address</th>
+              <th>Sold Date</th>
+              <th>Price</th>
+              <th>Beds/Ba</th>
+              <th>Sq Ft</th>
+              <th>$/sqft</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="ct-subj">
+              <td><strong>3846 Charring Cross Dr</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+              <td>Listed</td>
+              <td class="ct-price">$219,900</td>
+              <td>3 / 1</td>
+              <td>1,591</td>
+              <td>$138</td>
+              <td>Largest by sq ft</td>
+            </tr>
+            <tr>
+              <td>1986 Liberty Rd, Stow</td>
+              <td>Feb 2, 2026</td>
+              <td class="ct-price">$179,500</td>
+              <td>3 / 1</td>
+              <td>1,265</td>
+              <td>$142</td>
+              <td>326 sq ft smaller</td>
+            </tr>
+            <tr>
+              <td>3757 Seneca St, Stow</td>
+              <td>Jan 28, 2026</td>
+              <td class="ct-price">$200,000</td>
+              <td>3 / 1</td>
+              <td>1,232</td>
+              <td>$162</td>
+              <td>359 sq ft smaller</td>
+            </tr>
+            <tr>
+              <td>2293 Wickley Ave, Stow</td>
+              <td>Mar 2, 2026</td>
+              <td class="ct-price">$232,500</td>
+              <td>3 / 2</td>
+              <td>1,008</td>
+              <td>$231</td>
+              <td>583 sq ft smaller</td>
+            </tr>
+            <tr>
+              <td>4048 Burton Dr, Stow</td>
+              <td>Nov 14, 2025</td>
+              <td class="ct-price">$270,000</td>
+              <td>3 / 1.5</td>
+              <td>1,014</td>
+              <td>$266</td>
+              <td>577 sq ft smaller</td>
+            </tr>
+            <tr>
+              <td>3930 Klein Ave, Stow</td>
+              <td>Aug 21, 2025</td>
+              <td class="ct-price">$255,000</td>
+              <td>3 / 1.5</td>
+              <td>—</td>
+              <td>—</td>
+              <td>Finished basement</td>
+            </tr>
+            <tr>
+              <td>2317 Liberty Rd, Stow</td>
+              <td>Aug 29, 2025</td>
+              <td class="ct-price">$226,000</td>
+              <td>3 / 1.5</td>
+              <td>1,384</td>
+              <td>$163</td>
+              <td>207 sq ft smaller; basement</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="comps-range">Comps range: <strong>$179,500 – $270,000</strong> &nbsp;·&nbsp; Charring Cross is the <strong>largest home</strong> at the <strong>second-lowest price</strong> — all 6 comps are smaller, 4 sold for more.</div>
       </div>
     </div><!-- end home-7 -->
 
@@ -1429,6 +1650,27 @@ main{max-width:1100px;padding:52px 60px 100px;}
       <div class="notes-box">
         <div class="notes-box-h">Key Note</div>
         <p>The Hudson location and school district are genuine positives, but this home asks the most while delivering the least — over budget, smallest finished sqft, highest $/sqft, and 217 days on market. The market has already said no at $350K and $340K. If the Hudson location is a firm priority, the long DOM is leverage: a significant offer below $310K may be worth testing.</p>
+      </div>
+
+      <div class="comps-section">
+        <div class="comps-section-h">Nearby Recently Sold <span>5 of 6 comps · Stow / Hudson area · from Redfin listing</span></div>
+        <table class="comps-table">
+          <thead>
+            <tr><th>Address</th><th>Sold Date</th><th>Price</th><th>Beds/Ba</th><th>Sq Ft</th><th>$/sqft</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr class="ct-subj">
+              <td><strong>1620 Sapphire Dr</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+              <td>Listed</td><td class="ct-price">$330,000</td><td>3 / 1.5</td><td>1,514</td><td>$218</td><td>217 days on market</td>
+            </tr>
+            <tr><td>1877 Clearbrook Dr, Stow</td><td>Aug 11, 2025</td><td class="ct-price">$238,500</td><td>4 / 2</td><td>1,427</td><td>$167</td><td>87 sqft smaller; 14 yrs older</td></tr>
+            <tr><td>1784 Clearbrook Dr, Stow</td><td>Jan 28, 2026</td><td class="ct-price">$259,000</td><td>3 / 2</td><td>1,161</td><td>$223</td><td>353 sqft smaller; 18 yrs older</td></tr>
+            <tr><td>4630 Red Willow Rd, Stow</td><td>Feb 17, 2026</td><td class="ct-price">$265,000</td><td>3 / 1.5</td><td>1,092</td><td>$243</td><td>422 sqft smaller; 9 yrs older</td></tr>
+            <tr><td>5601 Sunset Dr, Hudson</td><td>Jul 23, 2025</td><td class="ct-price">$377,000</td><td>4 / 2.5</td><td>2,240</td><td>$168</td><td>726 sqft larger; 3 yrs older</td></tr>
+            <tr><td>1510 Winchell Dr, Hudson</td><td>Aug 28, 2025</td><td class="ct-price">$390,000</td><td>3 / 1.5</td><td>1,640</td><td>$238</td><td>126 sqft larger; 1 yr older</td></tr>
+          </tbody>
+        </table>
+        <div class="comps-range">Comps range: <strong>$238,500 – $390,000</strong> &nbsp;·&nbsp; Stow comps sold $65K–$91K less for smaller homes. Hudson comps are larger and pricier. Sapphire at $330K sits between both markets but is smaller than the Hudson comps — hard to justify at $218/sqft.</div>
       </div>
     </div><!-- end home-8 -->
 
