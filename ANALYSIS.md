@@ -8,152 +8,231 @@
 
 ## Section 1 — Independent Objective Assessment
 
-*This section sets aside the family's specific situation entirely. It answers a different question: of these eight homes, which three are the best real estate purchases by any reasonable measure — market value, location quality, financial efficiency, resale stability, and total cost of ownership? The family's debt-free timeline, office needs, and bathroom tolerance are not factors here. This is the view from outside.*
+*This section sets aside the family's specific situation entirely. It answers a different question: of these eight homes, which are the best real estate purchases by any reasonable measure? The criteria applied consistently across all eight homes: (1) comp position — how does the asking price compare to what similar nearby homes actually sold for? (2) location market tier — stability, liquidity, appreciation trajectory; (3) asset configuration — beds, baths, sqft, lot, unique features; (4) financial efficiency — loan remaining after recast, payoff speed, total interest, best-case monthly floor; (5) post-payoff ongoing cost — tax + HOA + insurance, which is the permanent housing floor regardless of mortgage; (6) build risk — age, systems, materials; (7) exit/resale floor — what happens if you need to sell?*
 
-*Why include this? Because when your agent and family contact walk through these homes, they should know which ones pass a cold, objective test — not just which ones fit your particular criteria. If there's strong overlap between the two lists, that's a powerful signal. Where they diverge, it's worth understanding why.*
+*The family's commute preference, office needs, bathroom tolerance, and debt-free timeline are not factors in this section.*
+
+---
+
+### Objective Full Rankings
+
+**Quick reference — all 8 homes:**
+
+| Rank | Home | Price | $/sqft | Config | Loan Rem. | Payoff | Interest | Best Mo. | Post-Payoff/mo |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Ogilby, Hudson | $375,000 | $186 | 4/2.5 | $170K | ~5 yr | ~$30K | $1,555 | $536 |
+| 2 | Fishcreek, Stow | $244,500 | $147 | 4/2+suite | $39.5K | ~2 yr | ~$2,800 | $732 | $495 |
+| 3 | Lovers Ln, Ravenna | $249,900 | $130 | 3/2 | $44.9K | ~2 yr | ~$3,500 | $716 | $447 |
+| 4 | Charring Cross, Stow | $219,900 | $138 | 3/1 | $14.9K | ~1 yr | ~$900 | $522 | $433 |
+| 5 | Oak Hill, Kent | $250,000 | $159 | 3/2.5 | $45K | ~2 yr | ~$3,500 | $780 | $510 |
+| 6 | Beaver Trl, Aurora | $275,900 | $183 | 3/1.5 | $70.9K | ~3 yr | ~$6,900 | $892 | $467 |
+| 7 | Briar Dr, Streetsboro | $274,800 | $150 | 3/1 | $69.8K | ~3 yr | ~$6,700 | $1,137 | $719 |
+| 8 | Sapphire, Hudson | $330,000 | $218 | 3/1.5 | $125K | ~4 yr | ~$18K | $1,341 | $592 |
+
+*Post-payoff/mo = annual property tax + HOA + $100 insurance, divided by 12. This is the permanent housing cost floor after the mortgage is gone.*
 
 ---
 
 ### Objective #1 — 5866 Ogilby Dr, Hudson OH
 
-**$375,000 · 4 bed / 2.5 bath · 2,016 sqft · Built 1974 · 9 min to school**
+**$375,000 · 4 bed / 2.5 bath · 2,016 sqft · Built 1974**
 
 #### The Comp Gap Is the Story
 
-Every other consideration about this home is secondary to one fact: five comparable Hudson homes sold between $425,000 and $480,000 in the last eight months. Ogilby is listed at $375,000. That is a gap of $50,000 to $105,000 below every single comparable sale, in the same zip code, for homes of similar size and configuration.
+Five comparable Hudson homes sold between $425,000 and $480,000 in the last eight months. Ogilby is listed at $375,000 — $50,000 to $105,000 below every single one. Same zip code. Similar configuration. This is not a subtle discount; it is a structural gap that would attract any serious buyer regardless of their personal circumstances.
 
-In real estate, a discount that size against confirmed recent comps is uncommon. It does not happen because the house is bad — it happens for a small number of reasons: the seller needs liquidity quickly, the seller has already bought elsewhere and is carrying two properties, or the seller simply misjudged the market downward. Any of those scenarios is a buyer's opportunity. The just-listed status (1 DOM) means no one has had the chance to act on it yet.
-
-To be specific about what the comp data means: if you paid $375,000 today and sold for the average comp price of $445,000 two years from now, that is $70,000 in equity gain on top of whatever principal you paid down. No other home on this list offers anything close to that trajectory.
+That gap translates directly: if you pay $375,000 today and sell at the average comp of $445,000 two years from now, that is $70,000 in equity gain on top of whatever principal you've paid down. No other home on this list comes close to that exit trajectory.
 
 #### Hudson Is the Right Market
 
-The greater Akron area has several suburban tiers. Hudson consistently sits at the top — strong schools, stable property values, low crime, desirable community. Homes in Hudson hold value better in downturns and appreciate faster in up markets than comparable homes in Stow, Kent, Aurora, or Ravenna. Buying in Hudson at a discount is categorically better than buying outside Hudson at fair value, all else equal.
+Hudson sits at the top of the greater Akron suburban tier — stable values, strong demand, smaller buyer pool volatility. It outperforms Stow, Kent, Aurora, and Ravenna in appreciation rate and liquidity across market cycles. Buying in Hudson at a meaningful discount is the best combination of market quality and entry price available in this search.
 
-#### The Home Itself Is Genuinely Well-Configured
+#### The Home Itself Has No Structural Weaknesses
 
-Four bedrooms and 2.5 baths is the most functional layout reviewed. The full basement adds expansion potential and storm shelter. The 0.46-acre lot is substantial. The colonial style on two stories is a classic Ohio floor plan that sells well and ages predictably. None of the red flags present in other homes — crushing tax, no basement, extreme age — apply here.
+4 bed / 2.5 bath / 2,016 sqft is the strongest configuration reviewed. Full basement provides storm shelter, storage, and expansion potential. 0.46-acre lot. Wood-burning fireplace, deck, patio. Aluminum siding is durable and low maintenance. No crushing tax, no missing basement, no one-bathroom constraint.
 
-The 1974 build is the one area requiring scrutiny. Get a full inspection with specific attention to the roof, HVAC, and electrical panel. Aluminum siding is durable and low maintenance. A wood-burning fireplace in Ohio is a practical feature, not a luxury. The deck and patio add outdoor livability without the overimprovement risk.
+The 1974 build requires a thorough inspection — roof, HVAC, electrical panel — but is not unusual for the market and carries moderate (not high) risk.
 
-#### The Exit Is Clean
+#### Post-Payoff Ongoing Cost: $536/mo
 
-If circumstances require a sale at any point after closing, the comp data provides a clear floor. A motivated sale at $420,000 recovers essentially all capital committed at closing plus meaningful gain. No other home on this list has that kind of exit floor. This matters in any scenario where the purchase doesn't go as planned.
+Tax ($436) + insurance ($100). Not the lowest on the list, but entirely reasonable for Hudson. There is no HOA.
 
 #### What This Ranking Does Not Claim
 
-This is not a claim that the 5-year payoff is easy. It requires execution: $30K bonuses landing every year for five years, the best-case monthly payment of $1,555 staying sustainable throughout. For a specific buyer with specific income concerns, that plan carries real risk. But the home itself — independent of that plan — is an objectively strong buy that would rank at or near the top of any qualified buyer's list in this market.
+Paying off a $170,000 loan requires five years of $30K December bonuses landing intact. That is execution risk, not property risk. The home itself is the strongest objective purchase on this list.
 
 ---
 
 ### Objective #2 — 4556 Fishcreek Rd, Stow OH
 
-**$244,500 · 4 bed / 2 bath + MIL suite · 1,666 sqft · Built 1953 · 12 min to school**
+**$244,500 · 4 bed / 2 bath + MIL suite · 1,666 sqft · Built 1953**
 
 #### Priced Below Every Comparable in Its Own Zip Code
 
-Five comparable Stow homes sold between $250,000 and $310,000 in the past year. Fishcreek is listed at $244,500 — below all of them — and is larger than all but one. A home on the same street (Fishcreek Rd) sold for $275,000 at 441 square feet less. The market is telling you this address is worth more than $244,500. The 98 days on market and two price cuts give you a motivated seller and confirmed room to negotiate.
+Five Stow comparables sold between $250,000 and $310,000 over the past year. Fishcreek is listed below all of them. A home on the same street sold for $275,000 at 441 square feet less. The 98-day DOM and two price cuts provide negotiating leverage on top of an already below-market asking price. An offer in the $230,000–$235,000 range is defensible given the comp data.
 
-An offer in the $230,000–$235,000 range is defensible against the comparable data and would represent genuinely exceptional value. Even at full ask, you are buying below comparable market value for the largest home on the street.
+#### The MIL Suite Is an Asset Class Unto Itself
 
-#### The MIL Suite Is a Rare Asset
+A fully self-contained living unit — private entrance, full kitchen, full bathroom, deck, independently metered gas, electric, and water — embedded in the purchase price of a home priced below its comps is exceptional. It represents embedded optionality that no other home on this list has at any price: rental income, extended family housing, private workspace, or simply future flexibility. The suite's potential is not counted in any financial scenario in this document — it is pure upside.
 
-Regardless of whether it is ever used as income property, the fully self-contained suite — private entrance, kitchen, full bath, deck, independently metered utilities — represents embedded square footage that does not appear in the headline number. It also represents optionality. An asset that can generate $800–$1,000/month in rental income, serve as a private workspace, house extended family, or simply provide flexibility that a standard home cannot is worth a premium. This home carries it at no visible premium over its comparable sales.
+#### 4 Bedrooms, 2 Full Baths, Largest Lot Reviewed
 
-For the purposes of this objective analysis: a home with a legally and physically separate living unit priced below market comps is a rare combination. The MIL suite alone would justify this home being in the top three.
-
-#### 4 Bedrooms, 2 Full Baths, 0.65 Acres
-
-The property configuration is strong: the largest lot reviewed, a functional 4-bedroom layout, two full bathrooms in the main house, and a third in the suite. The 1,666 sqft headline understates the total usable space once the suite is counted.
+The 0.65-acre lot is the largest reviewed. 4 bedrooms and 2 full baths in the main house, with a third bathroom in the suite. The headline sqft of 1,666 understates total usable space.
 
 #### The 1953 Build Is the Primary Risk
 
-This is the honest counterweight to everything above. 1953 is old. The systems — electrical, plumbing, HVAC — may be original or patchwork-updated. A thorough inspection is non-negotiable and should include: electrical panel age and amperage, cast iron vs. updated plumbing, furnace and water heater age, basement moisture history, and roof condition. If the inspection comes back with major deferred maintenance, use it aggressively in negotiation. At 98 DOM, the seller has limited leverage.
+This is non-negotiable: a pre-inspection offer on this home would be a mistake. The electrical panel, plumbing, furnace, water heater, and roof all need documented age and condition. At 98 DOM, the seller has been watching buyers walk — use the inspection report as a negotiating tool. The cape cod floor plan may also have sloped upper-floor ceilings; verify bedroom dimensions before committing.
 
-The cape cod style also means upper floor bedrooms may have sloped ceilings — verify that second-floor room dimensions are functional before falling in love with the floor plan.
+#### Post-Payoff Ongoing Cost: $495/mo
 
-#### Why It Ranks Above Charring Cross Objectively
-
-Charring Cross wins on pure financial efficiency. But on the question of objective real estate value — location quality, market comp positioning, asset configuration, resale flexibility — Fishcreek offers more. Four bedrooms is a more broadly marketable home than three. The MIL suite is an asset class that most buyers can't find at any price in this market. The lot is the largest reviewed. A buyer with no specific constraints would choose Fishcreek over Charring Cross for the same reasons you'd choose any larger, better-configured home at similar pricing.
+Tax ($395) + insurance ($100). One of the lower post-payoff floors reviewed. No HOA.
 
 ---
 
-### Objective #3 — 3846 Charring Cross Dr, Stow OH
+### Objective #3 — 4866 Lovers Ln, Ravenna OH
 
-**$219,900 · 3 bed / 1 bath · 1,591 sqft · Built 1962 · 14 min to school**
+**$249,900 · 3 bed / 2 bath · 1,924 sqft · Built 1967**
 
-#### Best Financial Efficiency of Any Home Reviewed
+*Note: This home was initially excluded from the objective ranking by incorrectly applying the family's 24-minute commute preference. Commute is irrelevant in an objective analysis. The correction is made here.*
 
-From a pure total-cost-of-ownership standpoint, no home on this list comes close. Remaining loan after $25K down and $180K recast: $14,900. Total interest paid over the life of the loan at 6%: approximately $900. There is no scenario in which another home beats that number. For any buyer deploying $205,000 at closing, Charring Cross generates the highest return on that capital by a wide margin.
+#### Best Price Per Square Foot of Any Home Reviewed
 
-The post-payoff ongoing cost — $433/mo in tax and insurance — is among the lowest reviewed and is a genuine measure of long-term financial efficiency. You are not just paying off a loan; you are arriving at a place where housing consumes less than $5,200 per year indefinitely.
+$130/sqft. The next closest is Charring Cross at $138/sqft for a home 333 square feet smaller. Lovers Lane gives you the second-largest home reviewed at the lowest cost-per-foot — that combination is genuinely hard to find at this price point in this market.
 
-#### Comps Support the Price
+#### The 4-Car Garage Has No Equivalent on This List
 
-Six comparable Stow sales between $179,500 and $270,000. Charring Cross is the largest home in that comp set at the second-lowest price. Four of the six smaller comparable homes sold for more. The market data does not suggest this home is overpriced — it suggests it is priced at the fair low end of its comp range. Just listed, so no negotiating history yet, but the comps don't provide much ammunition for aggressive lowballing either.
+No other home reviewed — at any price — has a 4-car garage. On half an acre in Ohio, that is workshop space, year-round storage, hobby or business use, and the kind of utility that appreciates in the minds of buyers when it comes time to sell. It is a rare embedded asset.
 
-Stow is a stable, desirable Akron suburb. Not Hudson, but a legitimate market where values hold and homes sell.
+#### Financial Efficiency Is the Second-Best on the List
 
-#### The Constraints Are Real and Should Not Be Minimized
+$44,900 remaining loan. First December bonus brings it to approximately $14,900. Paid off in year two. Total interest: ~$3,500. Best-case monthly of $716 is the second-lowest of any home reviewed. Post-payoff cost of $447/mo is the lowest of all eight homes — lower even than Charring Cross, because Lovers Lane's tax is lower.
 
-One bathroom is a functional limitation for any household with more than two people. No basement in Ohio eliminates storm shelter, eliminates natural overflow storage, and eliminates any path to expanding living space downward. The 1962 build requires the same inspection scrutiny as any home of that age. Three bedrooms limits long-term flexibility if the household grows or if dedicated office space becomes a hard requirement.
+Three price cuts totaling $30,000 and 129 days on market signal a motivated seller. An offer at $235,000–$238,000 is realistic.
 
-These are not disqualifying for the right buyer, but an agent showing this home should walk in knowing that the one-bathroom reality will be the first question from anyone who visits. Have a direct answer ready about whether an addition is feasible on the lot and what it would roughly cost.
+#### The Objective Knocks Are Real
 
-#### Why It Makes the Objective Top Three Despite Its Constraints
+**Comp position is not as strong as it looks.** The range in Ravenna runs $144,000 to $345,000 — Lovers Lane at $249,900 sits in the middle. That is categorically different from Ogilby (below every comp) or Fishcreek (below every comp). Lovers Lane is roughly fairly priced in Ravenna, not notably underpriced.
 
-Because financial efficiency is a legitimate objective measure. For any buyer where total interest paid, speed to ownership, and lowest ongoing housing cost are primary goals — which describes a large segment of the market, not just this family — Charring Cross is the strongest choice on the list. The constraints are real but bounded. The financial outcome is not matched by anything else reviewed.
+**Oil heat.** Forced air oil is a declining, volatile fuel. Conversion to gas runs $8,000–$15,000 depending on whether gas service is available on the street. Any objective buyer should price this in — it is effectively a deferred cost embedded in the purchase.
 
----
+**Ravenna's market tier is lower.** Less liquid, smaller buyer pool, slower appreciation than Stow or Hudson. The wide comp range ($144K–$345K) reflects market heterogeneity that doesn't exist in Stow or Hudson. If a forced sale is required in 2–3 years, Ravenna is the hardest exit on this list.
 
-### Objective Summary
+**Basement status is unverified.** This must be confirmed in person. It changes the usable space picture significantly and affects the storm-shelter question in Ohio.
 
-| | Ogilby | Fishcreek | Charring Cross |
-|---|---|---|---|
-| Market comp position | $50–105K below every comp | Below every comp | Fair low end of range |
-| Location tier | Hudson (top tier) | Stow (strong) | Stow (strong) |
-| Asset configuration | Best (4/2.5, 2,016 sqft, basement) | Strong (4/2 + suite, 0.65 ac) | Limited (3/1, no basement) |
-| Total interest paid | ~$30K | ~$2,800 | ~$900 |
-| Build risk | Moderate (1974) | High (1953) | Moderate (1962) |
-| Exit/resale floor | $425K+ (comp-supported) | $265K+ (comp-supported) | $200K+ (comp range bottom) |
-| Primary risk | Execution of 5-yr payoff plan | 1953 systems, inspection dependent | 1 bath, no basement |
+#### Why #3 Despite Those Knocks
 
-The overlap between this list and the family-preference list is complete — the same three homes appear in both. That is a meaningful signal. These are not homes that only work for one specific buyer with one specific set of constraints. They are objectively among the strongest purchase opportunities in the market being searched. The showing trip is well-targeted.
+The physical asset — most sqft for least cost-per-foot, two full baths, unique 4-car garage, half-acre lot, lowest post-payoff cost on the list — makes Lovers Lane the strongest home objectively in the $250K range. Charring Cross has better market positioning and financial efficiency but is objectively a lesser home (1 bath, no basement, 333 fewer sqft). The tiebreaker between #3 and #4 is genuinely close; Lovers Lane holds #3 on the strength of the physical asset. The market risk is real but manageable.
 
 ---
 
-### The Case That Was Unfairly Dismissed: 4866 Lovers Ln, Ravenna OH
+### Objective #4 — 3846 Charring Cross Dr, Stow OH
 
-**$249,900 · 3 bed / 2 bath · 1,924 sqft · Built 1967 · 24 min to school**
-**Best case: $716/mo · $44,900 loan remaining · ~2 years payoff · ~$3,500 total interest**
+**$219,900 · 3 bed / 1 bath · 1,591 sqft · Built 1962**
 
-The objective section made an error: it filtered Lovers Lane out using the family's 24-minute commute preference, which has no place in an analysis specifically designed to ignore their preferences. That was sloppy. Here is the honest objective evaluation.
+#### Best Pure Financial Efficiency Reviewed
 
-#### What Lovers Lane Has That Almost Nothing Else Does
+$14,900 remaining loan. ~1-year payoff with the December bonus. ~$900 total interest. These are the best numbers on the list by a significant margin and they are objectively meaningful to any buyer, not just this family. Speed to ownership and lowest total cost of acquisition are real criteria.
 
-**$130 per square foot.** That is the best value per dollar of any home on this entire list — and it is not close. At 1,924 square feet, you are getting the second-largest home reviewed at the lowest cost per square foot reviewed. The next best is Charring Cross at $138/sqft for 1,591 sqft. The difference is 333 more square feet for less money per square foot.
+Post-payoff ongoing cost of $433/mo is the second-lowest reviewed — only Lovers Lane is lower, and only by $14/mo.
 
-**The 4-car garage has no equivalent anywhere on this list at any price.** Not a 2-car, not a 3-car — a 4-car garage on a half-acre in Ohio. For workshop space, hobby use, storage, a small business operation, or simply the utility of never fighting for indoor parking in a midwest winter, that asset is genuinely rare. No other home reviewed offers anything close.
+#### Comp Position Is Strong in a Solid Market
 
-**Three price cuts totaling $30,000, 129 days on market.** The seller has dropped the price from $279,900 to $249,900 across three separate reductions. That is a seller who has been sitting, watching, and adjusting. That is a seller who will negotiate. A credible offer at $235,000–$238,000 is defensible against the comp data and realistic given the DOM.
+Charring Cross is the largest home in its comp set at the second-lowest price — four of the six comparable Stow homes sold for more despite being smaller. That is a legitimate below-market-for-size signal in a stable, liquid market. Stow is easier to exit than Ravenna if circumstances require it.
 
-**The financial math is excellent.** $44,900 remaining after recast. First December bonus takes it to roughly $14,900. Second year: paid off. Total interest: ~$3,500. Best-case monthly of $716 is the second-lowest of any home reviewed. This is among the best financial outcomes on the list.
+#### The Constraints Narrow the Objective Buyer Pool
 
-#### Why It Didn't Make the Objective Top Three — Honestly
+One bathroom will be the first question from every buyer at every showing, now and when it comes time to sell. No basement in Ohio is a genuine functional gap — storm shelter, storage, expansion potential all disappear. These are not catastrophic, but they restrict the audience for this home. Any agent pricing a resale of this property will need to account for the bathroom limitation in their CMA.
 
-Two legitimate concerns, neither of which is the commute:
+#### Why #4 and Not #3
 
-**Ravenna's market is weaker and less liquid than Stow or Hudson.** This is the most significant objective knock. Ravenna is not a bad market — it is a different tier. Homes take longer to sell, buyer pools are smaller, and appreciation runs slower than the Stow/Hudson corridor. The comp range reflects this: $144,000 to $345,000 in the same zip code is a very wide spread, suggesting less price stability and a more heterogeneous market. If circumstances force a sale in 2–3 years, the exit in Ravenna is harder than the exit in Stow and significantly harder than the exit in Hudson.
+The home itself is objectively lesser than Lovers Lane: fewer square feet, half the bathroom count, no 4-car garage, no basement. Charring Cross wins on financial efficiency and market tier. Lovers Lane wins on physical asset quality and post-payoff cost. Given that the comp positions of both are within the same general tier (Charring Cross at low end of Stow range, Lovers Lane mid-range of Ravenna), the physical home quality is the deciding factor between them. #4 is the right objective ranking, not a dismissal.
 
-**Oil heat.** Forced air oil heating is a volatile and declining fuel. Oil prices swing unpredictably, conversion to gas typically runs $8,000–$15,000 depending on whether gas service is available on the street, and most buyers today view oil heat as a deferred expense to factor into their offer. It is not a dealbreaker but it is a real ongoing cost that the other top homes do not carry.
+---
 
-#### Where It Actually Ranks Objectively
+### Objective #5 — 1799 Oak Hill Dr, Kent OH
 
-Lovers Lane is a legitimate #3 or #4 objectively — a genuinely close call against Charring Cross. Both have similar financial efficiency (2 years vs. 1 year payoff, $3,500 vs. $900 total interest). Charring Cross has the location advantage (Stow vs. Ravenna) and gas heat. Lovers Lane has the superior home (1,924 sqft vs. 1,591 sqft, 2 baths vs. 1, 4-car garage, better sqft value).
+**$250,000 · 3 bed / 2.5 bath · 1,568 sqft · Built 1972**
 
-The tiebreaker is resale and market stability: Stow will hold and move faster than Ravenna if you ever need to exit. That is the reason Charring Cross holds #3 in the objective ranking and Lovers Lane sits just outside it — not the commute, which is irrelevant to an objective analysis.
+#### What It Has Going For It
 
-For any buyer without a proximity constraint, Lovers Lane belongs in this conversation. It was wrong to exclude it without explanation, and the exclusion was driven by filtering that should not have applied here.
+2.5 baths at $250,000 is genuinely unusual in this market. Brick exterior is objectively durable and low-maintenance — it appreciates in buyer perception in ways aluminum and vinyl siding do not. Full basement adds storm shelter and real expansion potential. The 2-year payoff timeline matches Lovers Lane and Charring Cross. Newer Streetsboro homes of similar size sold for $325,000–$335,000, though the cross-market comparison between Kent and Streetsboro is imprecise.
+
+#### The Knocks
+
+Kent is a college town. College town real estate carries more volatility than suburban residential markets — higher rental demand can support prices in the short term but the buyer pool is more mixed and appreciation is less predictable. The home was relisted (from $280,000 to $250,000) — ask specifically why it was pulled and relisted rather than simply price-reduced. Baseboard + forced air heating is an older dual-system setup that warrants inspection of both. The comp comparison (Kent vs. Streetsboro) involves different submarkets, so the apparent $75K discount should be treated as directional rather than confirmed underpricing.
+
+#### Objective Verdict
+
+A solid home with a genuinely rare bathroom configuration at the price. The Kent market and relisting history are the primary uncertainties. Ranks #5 because the market tier and comp clarity are weaker than the four homes above it.
+
+---
+
+### Objective #6 — 10265 Beaver Trl, Aurora OH
+
+**$275,900 · 3 bed / 1.5 bath · 1,506 sqft · Built 1973**
+
+#### Overlooked in Earlier Analysis — Here Is the Honest Assessment
+
+Beaver Trail's comp position is actually the cleanest of the mid-tier homes: all five comparables in Aurora sold between $285,000 and $370,000. Aurora is a desirable, stable suburb — comfortably in the Stow tier of the greater Akron market. Below every comp in a solid market is a genuinely positive signal.
+
+The lowest property tax of any home reviewed ($3,751/yr, $313/mo) is an objective financial advantage that compounds after payoff. Post-payoff ongoing cost of $467/mo is the second-lowest on the list — behind only Lovers Lane — despite being in a better market than Ravenna. The finished walk-out basement adds real living space that the headline 1,506 sqft doesn't capture.
+
+#### The Knocks
+
+The home is objectively the smallest reviewed on the main floor (1,506 sqft) with the smallest lot (0.28 acres). 1.5 baths is a step down from 2 full baths. The HOA at $54/mo is modest but adds ongoing cost and restrictions. Most importantly: 108 days on market with only a $3,100 price cut. A seller who watches 3.5 months pass and cuts $3,100 on a $275,900 home either has a floor they won't go below or is detached from the market. Approach with a meaningful offer — $258,000–$262,000 is supportable against comps — and be prepared for resistance.
+
+#### Objective Verdict
+
+Ranks #6 because the home is the smallest reviewed and the 3-year payoff timeline is slower than the four homes above it. However, the Aurora market quality, below-comp pricing, and lowest-tax status make it a legitimately stronger objective choice than Briar Dr or Sapphire. It was previously under-analyzed.
+
+---
+
+### Objective #7 — 9431 Briar Dr, Streetsboro OH
+
+**$274,800 · 3 bed / 1 bath · 1,836 sqft · Built 1957**
+
+#### One Number Disqualifies This Home Regardless of Other Merits
+
+$7,427 per year in property tax. $619 per month. Every month. Forever. Whether the mortgage is paid off or not.
+
+The post-payoff ongoing cost of $719/mo is the highest on this list — higher than homes with mortgages still on them. For context: Beaver Trail's post-payoff cost is $467/mo; Charring Cross is $433/mo. Briar Dr's perpetual tax burden exceeds the post-payoff floor of every other home reviewed. "Financial freedom" at Briar Dr still means $8,600/yr in tax and insurance for life.
+
+The renovation makes the home look appealing, but cosmetic improvements don't change a tax assessment. One bathroom for any multi-person household is a practical constraint. No basement in Ohio is a structural limitation. The 1957 build underneath the renovation is the oldest non-Fishcreek home reviewed.
+
+Verify the tax figure before scheduling a showing. If it is a county assessment error, recalculate everything. If it is accurate, the showing is probably not worth the time.
+
+---
+
+### Objective #8 — 1620 Sapphire Dr, Hudson OH
+
+**$330,000 · 3 bed / 1.5 bath · 1,514 sqft · Built 1983**
+
+#### The Market Has Already Ranked This Home
+
+217 days on market. Listed at $350,000. No sale. Relisted at $340,000. No sale. Currently at $330,000 and still sitting. The market has evaluated this property at three different price points and said no each time. That is the most objective signal available.
+
+The comp picture confirms the market's judgment. Nearby Stow homes sold for $238,500–$265,000 for smaller properties. Comparable Hudson homes sold for $377,000–$390,000, but those homes were up to 726 square feet larger. Sapphire at $330,000 is priced above the Stow market and below the Hudson market it claims to belong to — it falls in a gap where it is too expensive for the Stow comparison and too small for the Hudson comparison.
+
+At $218/sqft it is the worst value-per-dollar of any home reviewed. The $125,000 remaining loan and 4-year payoff timeline place it as the slowest-paying mid-price home. The $592/mo post-payoff ongoing cost is second-highest on the list.
+
+The 1983 build is the newest reviewed — a genuine positive — but it is insufficient to overcome the pricing, the market signal, and the value-per-dollar.
+
+---
+
+### Section 1 Summary
+
+| Rank | Home | Comp Position | Market Tier | Asset Config | Post-Payoff/mo | Primary Risk |
+|---|---|---|---|---|---|---|
+| 1 | Ogilby, Hudson | $50–105K below ALL comps | Hudson — top | Best (4/2.5, 2,016 sqft, basement) | $536 | Execution of 5-yr payoff |
+| 2 | Fishcreek, Stow | Below ALL Stow comps | Stow — strong | Strong (4/2+suite, 0.65 ac) | $495 | 1953 systems |
+| 3 | Lovers Ln, Ravenna | Mid-range of comp spread | Ravenna — weaker | Strong (3/2, 1,924 sqft, 4-car garage) | $447 (lowest) | Oil heat, market liquidity |
+| 4 | Charring Cross, Stow | Largest home at low end | Stow — strong | Limited (3/1, no basement) | $433 | 1 bath limits buyer pool |
+| 5 | Oak Hill, Kent | Cross-market comparison | Kent — moderate | Good (3/2.5, basement, brick) | $510 | College town volatility, relisted |
+| 6 | Beaver Trl, Aurora | Below ALL Aurora comps | Aurora — strong | Small (3/1.5, 1,506 sqft) | $467 | Smallest home, stubborn seller |
+| 7 | Briar Dr, Streetsboro | Mid-range | Streetsboro — moderate | Decent (3/1, 1,836 sqft) | **$719 (highest)** | $7,427/yr tax is permanent |
+| 8 | Sapphire, Hudson | Between two markets, fits neither | Hudson address | Weakest (3/1.5, 1,514 sqft, $218/sqft) | $592 | Market rejected it three times |
+
+**Where objective and family preference diverge:** Lovers Lane ranks #3 objectively but does not make the family's showing list due to commute distance from the school. That divergence is legitimate and not a mistake — the commute is the right filter for the family section. But any agent or buyer without a proximity constraint should take Lovers Lane seriously.
 
 ---
 
