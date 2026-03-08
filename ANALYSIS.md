@@ -122,6 +122,41 @@ The overlap between this list and the family-preference list is complete — the
 
 ---
 
+### The Case That Was Unfairly Dismissed: 4866 Lovers Ln, Ravenna OH
+
+**$249,900 · 3 bed / 2 bath · 1,924 sqft · Built 1967 · 24 min to school**
+**Best case: $716/mo · $44,900 loan remaining · ~2 years payoff · ~$3,500 total interest**
+
+The objective section made an error: it filtered Lovers Lane out using the family's 24-minute commute preference, which has no place in an analysis specifically designed to ignore their preferences. That was sloppy. Here is the honest objective evaluation.
+
+#### What Lovers Lane Has That Almost Nothing Else Does
+
+**$130 per square foot.** That is the best value per dollar of any home on this entire list — and it is not close. At 1,924 square feet, you are getting the second-largest home reviewed at the lowest cost per square foot reviewed. The next best is Charring Cross at $138/sqft for 1,591 sqft. The difference is 333 more square feet for less money per square foot.
+
+**The 4-car garage has no equivalent anywhere on this list at any price.** Not a 2-car, not a 3-car — a 4-car garage on a half-acre in Ohio. For workshop space, hobby use, storage, a small business operation, or simply the utility of never fighting for indoor parking in a midwest winter, that asset is genuinely rare. No other home reviewed offers anything close.
+
+**Three price cuts totaling $30,000, 129 days on market.** The seller has dropped the price from $279,900 to $249,900 across three separate reductions. That is a seller who has been sitting, watching, and adjusting. That is a seller who will negotiate. A credible offer at $235,000–$238,000 is defensible against the comp data and realistic given the DOM.
+
+**The financial math is excellent.** $44,900 remaining after recast. First December bonus takes it to roughly $14,900. Second year: paid off. Total interest: ~$3,500. Best-case monthly of $716 is the second-lowest of any home reviewed. This is among the best financial outcomes on the list.
+
+#### Why It Didn't Make the Objective Top Three — Honestly
+
+Two legitimate concerns, neither of which is the commute:
+
+**Ravenna's market is weaker and less liquid than Stow or Hudson.** This is the most significant objective knock. Ravenna is not a bad market — it is a different tier. Homes take longer to sell, buyer pools are smaller, and appreciation runs slower than the Stow/Hudson corridor. The comp range reflects this: $144,000 to $345,000 in the same zip code is a very wide spread, suggesting less price stability and a more heterogeneous market. If circumstances force a sale in 2–3 years, the exit in Ravenna is harder than the exit in Stow and significantly harder than the exit in Hudson.
+
+**Oil heat.** Forced air oil heating is a volatile and declining fuel. Oil prices swing unpredictably, conversion to gas typically runs $8,000–$15,000 depending on whether gas service is available on the street, and most buyers today view oil heat as a deferred expense to factor into their offer. It is not a dealbreaker but it is a real ongoing cost that the other top homes do not carry.
+
+#### Where It Actually Ranks Objectively
+
+Lovers Lane is a legitimate #3 or #4 objectively — a genuinely close call against Charring Cross. Both have similar financial efficiency (2 years vs. 1 year payoff, $3,500 vs. $900 total interest). Charring Cross has the location advantage (Stow vs. Ravenna) and gas heat. Lovers Lane has the superior home (1,924 sqft vs. 1,591 sqft, 2 baths vs. 1, 4-car garage, better sqft value).
+
+The tiebreaker is resale and market stability: Stow will hold and move faster than Ravenna if you ever need to exit. That is the reason Charring Cross holds #3 in the objective ranking and Lovers Lane sits just outside it — not the commute, which is irrelevant to an objective analysis.
+
+For any buyer without a proximity constraint, Lovers Lane belongs in this conversation. It was wrong to exclude it without explanation, and the exclusion was driven by filtering that should not have applied here.
+
+---
+
 ---
 
 ## Who They Are and What They Actually Need
