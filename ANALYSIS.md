@@ -6,6 +6,124 @@
 
 ---
 
+## Section 1 — Independent Objective Assessment
+
+*This section sets aside the family's specific situation entirely. It answers a different question: of these eight homes, which three are the best real estate purchases by any reasonable measure — market value, location quality, financial efficiency, resale stability, and total cost of ownership? The family's debt-free timeline, office needs, and bathroom tolerance are not factors here. This is the view from outside.*
+
+*Why include this? Because when your agent and family contact walk through these homes, they should know which ones pass a cold, objective test — not just which ones fit your particular criteria. If there's strong overlap between the two lists, that's a powerful signal. Where they diverge, it's worth understanding why.*
+
+---
+
+### Objective #1 — 5866 Ogilby Dr, Hudson OH
+
+**$375,000 · 4 bed / 2.5 bath · 2,016 sqft · Built 1974 · 9 min to school**
+
+#### The Comp Gap Is the Story
+
+Every other consideration about this home is secondary to one fact: five comparable Hudson homes sold between $425,000 and $480,000 in the last eight months. Ogilby is listed at $375,000. That is a gap of $50,000 to $105,000 below every single comparable sale, in the same zip code, for homes of similar size and configuration.
+
+In real estate, a discount that size against confirmed recent comps is uncommon. It does not happen because the house is bad — it happens for a small number of reasons: the seller needs liquidity quickly, the seller has already bought elsewhere and is carrying two properties, or the seller simply misjudged the market downward. Any of those scenarios is a buyer's opportunity. The just-listed status (1 DOM) means no one has had the chance to act on it yet.
+
+To be specific about what the comp data means: if you paid $375,000 today and sold for the average comp price of $445,000 two years from now, that is $70,000 in equity gain on top of whatever principal you paid down. No other home on this list offers anything close to that trajectory.
+
+#### Hudson Is the Right Market
+
+The greater Akron area has several suburban tiers. Hudson consistently sits at the top — strong schools, stable property values, low crime, desirable community. Homes in Hudson hold value better in downturns and appreciate faster in up markets than comparable homes in Stow, Kent, Aurora, or Ravenna. Buying in Hudson at a discount is categorically better than buying outside Hudson at fair value, all else equal.
+
+#### The Home Itself Is Genuinely Well-Configured
+
+Four bedrooms and 2.5 baths is the most functional layout reviewed. The full basement adds expansion potential and storm shelter. The 0.46-acre lot is substantial. The colonial style on two stories is a classic Ohio floor plan that sells well and ages predictably. None of the red flags present in other homes — crushing tax, no basement, extreme age — apply here.
+
+The 1974 build is the one area requiring scrutiny. Get a full inspection with specific attention to the roof, HVAC, and electrical panel. Aluminum siding is durable and low maintenance. A wood-burning fireplace in Ohio is a practical feature, not a luxury. The deck and patio add outdoor livability without the overimprovement risk.
+
+#### The Exit Is Clean
+
+If circumstances require a sale at any point after closing, the comp data provides a clear floor. A motivated sale at $420,000 recovers essentially all capital committed at closing plus meaningful gain. No other home on this list has that kind of exit floor. This matters in any scenario where the purchase doesn't go as planned.
+
+#### What This Ranking Does Not Claim
+
+This is not a claim that the 5-year payoff is easy. It requires execution: $30K bonuses landing every year for five years, the best-case monthly payment of $1,555 staying sustainable throughout. For a specific buyer with specific income concerns, that plan carries real risk. But the home itself — independent of that plan — is an objectively strong buy that would rank at or near the top of any qualified buyer's list in this market.
+
+---
+
+### Objective #2 — 4556 Fishcreek Rd, Stow OH
+
+**$244,500 · 4 bed / 2 bath + MIL suite · 1,666 sqft · Built 1953 · 12 min to school**
+
+#### Priced Below Every Comparable in Its Own Zip Code
+
+Five comparable Stow homes sold between $250,000 and $310,000 in the past year. Fishcreek is listed at $244,500 — below all of them — and is larger than all but one. A home on the same street (Fishcreek Rd) sold for $275,000 at 441 square feet less. The market is telling you this address is worth more than $244,500. The 98 days on market and two price cuts give you a motivated seller and confirmed room to negotiate.
+
+An offer in the $230,000–$235,000 range is defensible against the comparable data and would represent genuinely exceptional value. Even at full ask, you are buying below comparable market value for the largest home on the street.
+
+#### The MIL Suite Is a Rare Asset
+
+Regardless of whether it is ever used as income property, the fully self-contained suite — private entrance, kitchen, full bath, deck, independently metered utilities — represents embedded square footage that does not appear in the headline number. It also represents optionality. An asset that can generate $800–$1,000/month in rental income, serve as a private workspace, house extended family, or simply provide flexibility that a standard home cannot is worth a premium. This home carries it at no visible premium over its comparable sales.
+
+For the purposes of this objective analysis: a home with a legally and physically separate living unit priced below market comps is a rare combination. The MIL suite alone would justify this home being in the top three.
+
+#### 4 Bedrooms, 2 Full Baths, 0.65 Acres
+
+The property configuration is strong: the largest lot reviewed, a functional 4-bedroom layout, two full bathrooms in the main house, and a third in the suite. The 1,666 sqft headline understates the total usable space once the suite is counted.
+
+#### The 1953 Build Is the Primary Risk
+
+This is the honest counterweight to everything above. 1953 is old. The systems — electrical, plumbing, HVAC — may be original or patchwork-updated. A thorough inspection is non-negotiable and should include: electrical panel age and amperage, cast iron vs. updated plumbing, furnace and water heater age, basement moisture history, and roof condition. If the inspection comes back with major deferred maintenance, use it aggressively in negotiation. At 98 DOM, the seller has limited leverage.
+
+The cape cod style also means upper floor bedrooms may have sloped ceilings — verify that second-floor room dimensions are functional before falling in love with the floor plan.
+
+#### Why It Ranks Above Charring Cross Objectively
+
+Charring Cross wins on pure financial efficiency. But on the question of objective real estate value — location quality, market comp positioning, asset configuration, resale flexibility — Fishcreek offers more. Four bedrooms is a more broadly marketable home than three. The MIL suite is an asset class that most buyers can't find at any price in this market. The lot is the largest reviewed. A buyer with no specific constraints would choose Fishcreek over Charring Cross for the same reasons you'd choose any larger, better-configured home at similar pricing.
+
+---
+
+### Objective #3 — 3846 Charring Cross Dr, Stow OH
+
+**$219,900 · 3 bed / 1 bath · 1,591 sqft · Built 1962 · 14 min to school**
+
+#### Best Financial Efficiency of Any Home Reviewed
+
+From a pure total-cost-of-ownership standpoint, no home on this list comes close. Remaining loan after $25K down and $180K recast: $14,900. Total interest paid over the life of the loan at 6%: approximately $900. There is no scenario in which another home beats that number. For any buyer deploying $205,000 at closing, Charring Cross generates the highest return on that capital by a wide margin.
+
+The post-payoff ongoing cost — $433/mo in tax and insurance — is among the lowest reviewed and is a genuine measure of long-term financial efficiency. You are not just paying off a loan; you are arriving at a place where housing consumes less than $5,200 per year indefinitely.
+
+#### Comps Support the Price
+
+Six comparable Stow sales between $179,500 and $270,000. Charring Cross is the largest home in that comp set at the second-lowest price. Four of the six smaller comparable homes sold for more. The market data does not suggest this home is overpriced — it suggests it is priced at the fair low end of its comp range. Just listed, so no negotiating history yet, but the comps don't provide much ammunition for aggressive lowballing either.
+
+Stow is a stable, desirable Akron suburb. Not Hudson, but a legitimate market where values hold and homes sell.
+
+#### The Constraints Are Real and Should Not Be Minimized
+
+One bathroom is a functional limitation for any household with more than two people. No basement in Ohio eliminates storm shelter, eliminates natural overflow storage, and eliminates any path to expanding living space downward. The 1962 build requires the same inspection scrutiny as any home of that age. Three bedrooms limits long-term flexibility if the household grows or if dedicated office space becomes a hard requirement.
+
+These are not disqualifying for the right buyer, but an agent showing this home should walk in knowing that the one-bathroom reality will be the first question from anyone who visits. Have a direct answer ready about whether an addition is feasible on the lot and what it would roughly cost.
+
+#### Why It Makes the Objective Top Three Despite Its Constraints
+
+Because financial efficiency is a legitimate objective measure. For any buyer where total interest paid, speed to ownership, and lowest ongoing housing cost are primary goals — which describes a large segment of the market, not just this family — Charring Cross is the strongest choice on the list. The constraints are real but bounded. The financial outcome is not matched by anything else reviewed.
+
+---
+
+### Objective Summary
+
+| | Ogilby | Fishcreek | Charring Cross |
+|---|---|---|---|
+| Market comp position | $50–105K below every comp | Below every comp | Fair low end of range |
+| Location tier | Hudson (top tier) | Stow (strong) | Stow (strong) |
+| Asset configuration | Best (4/2.5, 2,016 sqft, basement) | Strong (4/2 + suite, 0.65 ac) | Limited (3/1, no basement) |
+| Total interest paid | ~$30K | ~$2,800 | ~$900 |
+| Build risk | Moderate (1974) | High (1953) | Moderate (1962) |
+| Exit/resale floor | $425K+ (comp-supported) | $265K+ (comp-supported) | $200K+ (comp range bottom) |
+| Primary risk | Execution of 5-yr payoff plan | 1953 systems, inspection dependent | 1 bath, no basement |
+
+The overlap between this list and the family-preference list is complete — the same three homes appear in both. That is a meaningful signal. These are not homes that only work for one specific buyer with one specific set of constraints. They are objectively among the strongest purchase opportunities in the market being searched. The showing trip is well-targeted.
+
+---
+
+---
+
 ## Who They Are and What They Actually Need
 
 Before the rankings mean anything, this context changes the math significantly:
