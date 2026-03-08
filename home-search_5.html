@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Home Search · Ohio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1a2e;--ink2:#2d2d4a;--ink3:#4a4a6a;
+  --paper:#f5f3ee;--paper2:#ede9e0;--paper3:#e2ddd4;
+  --gold:#c9973a;--gold2:#e8b84b;--gold-light:#f5e6c8;
+  --green:#2d7a5a;--green-light:#d4ede4;
+  --red:#c0392b;--red-light:#fae0de;
+  --blue:#2c5f8a;--blue-light:#ddeaf5;
+  --shadow:0 2px 20px rgba(26,26,46,.08);
+  --shadow-lg:0 8px 48px rgba(26,26,46,.14);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+
+/* ── HEADER ── */
+.hdr{background:var(--ink);padding:64px 60px 56px;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.015) 40px,rgba(255,255,255,.015) 80px);}
+.hdr::after{content:'';position:absolute;top:-120px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,58,.18),transparent 65%);}
+.hdr-inner{position:relative;z-index:1;max-width:1000px;}
+.hdr-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-bottom:20px;}
+.hdr-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold2);}
+.hdr h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,64px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:16px;}
+.hdr h1 em{color:var(--gold2);font-style:normal;}
+.hdr-sub{font-size:16px;color:rgba(255,255,255,.55);font-weight:300;line-height:1.7;max-width:520px;}
+
+/* ── CATEGORY WINNER BUTTONS ── */
+.hdr-homes{display:flex;gap:12px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;}
+.hdr-cat-btn{flex:1;min-width:150px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px 18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:3px;transition:background .2s,border-color .2s,transform .2s;}
+.hdr-cat-btn:hover{background:rgba(255,255,255,.09);border-color:rgba(201,151,58,.5);transform:translateY(-2px);}
+.hdr-cat-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:4px;}
+.hdr-cat-addr{font-size:11px;color:rgba(255,255,255,.45);font-weight:400;}
+.hdr-cat-val{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin-top:2px;}
+
+/* ── SCHOOL BANNER ── */
+.school-banner{background:var(--ink2);padding:14px 60px;display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,.6);}
+.school-banner strong{color:var(--gold2);}
+
+/* ── MAIN ── */
+main{max-width:1100px;padding:52px 60px 100px;}
+
+/* ── SECTION LABEL ── */
+.sec-label{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--paper3);}
+
+/* ── RANKING ── */
+.ranking{display:flex;flex-direction:column;gap:16px;margin-bottom:56px;}
+.rank-card{background:#fff;border-radius:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:56px 1fr auto;align-items:center;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer;text-decoration:none;color:inherit;}
+.rank-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);}
+.rank-card.top{border:2px solid var(--gold);}
+.rank-num{width:56px;align-self:stretch;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--paper3);background:var(--ink);}
+.rank-card.top .rank-num{background:var(--gold);color:#fff;}
+.rank-body{padding:20px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.rank-addr{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;line-height:1.2;}
+.rank-city{font-size:13px;color:var(--ink3);margin-top:2px;}
+.rank-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.chip{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:4px;}
+.chip-gold{background:var(--gold-light);color:var(--gold);}
+.chip-green{background:var(--green-light);color:var(--green);}
+.chip-blue{background:var(--blue-light);color:var(--blue);}
+.chip-red{background:var(--red-light);color:var(--red);}
+.chip-gray{background:var(--paper2);color:var(--ink3);}
+.rank-score-wrap{padding:20px 28px 20px 0;text-align:center;flex-shrink:0;}
+.rank-score{width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2.5px solid;}
+.rank-score-num{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1;}
+.rank-score-lbl{font-size:9px;letter-spacing:.08em;text-transform:uppercase;margin-top:2px;opacity:.7;}
+.score-a{border-color:var(--green);color:var(--green);background:var(--green-light);}
+.score-b{border-color:var(--blue);color:var(--blue);background:var(--blue-light);}
+.score-c{border-color:var(--gold);color:var(--gold);background:var(--gold-light);}
+.score-d{border-color:var(--red);color:var(--red);background:var(--red-light);}
+
+/* ── DETAIL CARDS ── */
+.detail-cards{display:flex;flex-direction:column;gap:36px;}
+.dcard{background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden;}
+.dcard.top{border:2px solid var(--gold);}
+.dcard-hero{background:var(--ink);padding:32px 36px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden;}
+.dcard-hero::after{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(201,151,58,.15),transparent 65%);}
+.dcard-hero-left{position:relative;z-index:1;}
+.dcard-rank-badge{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:12px;}
+.dcard-addr{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);font-weight:700;color:#fff;line-height:1.2;}
+.dcard-city{font-size:14px;color:rgba(255,255,255,.5);margin-top:4px;}
+.dcard-url{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:12px;color:var(--gold2);text-decoration:none;}
+.dcard-url:hover{text-decoration:underline;}
+.dcard-hero-facts{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1;margin-top:18px;}
+.hfact{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 16px;text-align:center;min-width:78px;}
+.hfact-val{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;}
+.hfact-lbl{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;letter-spacing:.05em;}
+.dcard-big-score{position:relative;z-index:1;text-align:center;flex-shrink:0;}
+.big-circle{width:96px;height:96px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid;}
+.big-circle-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;line-height:1;}
+.big-circle-lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}
+.grade-word{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:8px;}
+
+/* ── DRIVE BANNER ── */
+.drive-banner{display:flex;align-items:center;justify-content:space-between;padding:16px 36px;border-bottom:1px solid var(--paper3);flex-wrap:wrap;gap:12px;}
+.drive-banner-left{display:flex;align-items:center;gap:14px;}
+.drive-icon{font-size:24px;}
+.drive-time{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;}
+.drive-label{font-size:13px;color:var(--ink3);margin-top:1px;}
+.drive-school{font-size:11px;color:var(--ink3);opacity:.6;}
+.drive-score-pill{padding:6px 16px;border-radius:100px;font-size:13px;font-weight:700;}
+.drive-fast{background:var(--green-light);color:var(--green);}
+.drive-med{background:var(--gold-light);color:var(--gold);}
+.drive-slow{background:var(--red-light);color:var(--red);}
+
+/* ── SCORECARD ── */
+.dcard-body{padding:28px 36px;display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+@media(max-width:680px){.dcard-body{grid-template-columns:1fr;}}
+.scores-section h4,.details-section h4{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--paper3);}
+.score-rows{display:flex;flex-direction:column;gap:10px;}
+.srow{display:flex;align-items:center;gap:10px;}
+.srow-lbl{font-size:13px;font-weight:500;width:130px;flex-shrink:0;}
+.srow-track{flex:1;height:5px;background:var(--paper3);border-radius:4px;overflow:hidden;}
+.srow-fill{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.22,1,.36,1);}
+.fill-green{background:linear-gradient(90deg,#a8d5c2,var(--green));}
+.fill-gold{background:linear-gradient(90deg,#f0d48a,var(--gold));}
+.fill-red{background:linear-gradient(90deg,#f0a8a0,var(--red));}
+.srow-val{width:32px;text-align:right;font-weight:700;font-size:13px;}
+
+/* ── LISTING DETAILS ── */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ditem{background:var(--paper);border-radius:8px;padding:9px 12px;}
+.ditem-lbl{font-size:10px;color:var(--ink3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px;}
+.ditem-val{font-size:13px;font-weight:600;}
+.ditem.full{grid-column:1/-1;}
+.ditem.warn{background:var(--red-light);border:1px solid var(--red);}
+.ditem.warn .ditem-lbl{color:var(--red);}
+
+/* ── NOTES + PROS/CONS ── */
+.notes-box{margin:0 36px 28px;padding:16px 20px;background:var(--paper);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;}
+.notes-box-h{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.notes-box p{font-size:14px;color:var(--ink3);line-height:1.7;font-style:italic;}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 36px 28px;}
+.pc-h{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.pc-h.pro{color:var(--green);}
+.pc-h.con{color:var(--red);}
+.pc-item{font-size:13px;color:var(--ink3);padding:7px 10px 7px 14px;border-radius:7px;margin-bottom:6px;line-height:1.5;display:flex;gap:8px;align-items:flex-start;}
+.pc-item.pro{background:var(--green-light);}
+.pc-item.con{background:var(--red-light);}
+.pc-item::before{font-weight:700;flex-shrink:0;margin-top:1px;}
+.pc-item.pro::before{content:'✓';color:var(--green);}
+.pc-item.con::before{content:'!';color:var(--red);}
+
+/* ── COMPARE TABLE ── */
+.compare-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--paper3);margin-bottom:56px;}
+.ctable{width:100%;border-collapse:collapse;font-size:13px;}
+.ctable th{padding:13px 16px;text-align:left;background:var(--ink);color:rgba(255,255,255,.6);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;}
+.ctable th:first-child{color:rgba(255,255,255,.3);}
+.ctable td{padding:11px 16px;border-bottom:1px solid var(--paper3);color:var(--ink3);vertical-align:middle;}
+.ctable tr:last-child td{border-bottom:none;}
+.ctable tr:hover td{background:var(--paper2);}
+.ctable td:first-child{font-size:11px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;}
+
+/* ── FOOTER ── */
+.ftr{background:var(--ink);padding:28px 60px;font-size:12px;color:rgba(255,255,255,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.ftr strong{color:rgba(255,255,255,.6);}
+
+@media(max-width:640px){
+  .hdr,.school-banner,main,.ftr{padding-left:20px;padding-right:20px;}
+  .hdr{padding-top:40px;padding-bottom:36px;}
+  .dcard-hero{padding:24px 20px;}
+  .drive-banner,.dcard-body,.notes-box,.pros-cons{padding-left:20px;padding-right:20px;}
+  .pros-cons{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-eyebrow">Our Home Search</div>
+    <h1>Finding Home in <em>Ohio</em></h1>
+    <p class="hdr-sub">Scored and ranked based on price, commute, space, and what matters most for our family.</p>
+    <div class="hdr-homes">
+
+      <a class="hdr-cat-btn" href="#home-7">
+        <div class="hdr-cat-label">List Price</div>
+        <div class="hdr-cat-addr">3846 Charring Cross Dr</div>
+        <div class="hdr-cat-val">$219,900</div>
+      </a>
+
+      <a class="hdr-cat-btn" href="#home-7">
+        <div class="hdr-cat-label">Monthly Payment</div>
+        <div class="hdr-cat-addr">3846 Charring Cross Dr</div>
+        <div class="hdr-cat-val">~$1,086/mo</div>
+      </a>
+
+      <a class="hdr-cat-btn" href="#home-2">
+        <div class="hdr-cat-label">Commute Time</div>
+        <div class="hdr-cat-addr">5866 Ogilby Dr</div>
+        <div class="hdr-cat-val">9 min</div>
+      </a>
+
+      <a class="hdr-cat-btn" href="#home-3">
+        <div class="hdr-cat-label">Price / Sq Ft</div>
+        <div class="hdr-cat-addr">4866 Lovers Ln</div>
+        <div class="hdr-cat-val">$130/sqft</div>
+      </a>
+
+      <a class="hdr-cat-btn" href="#home-2">
+        <div class="hdr-cat-label">Days on Market</div>
+        <div class="hdr-cat-addr">5866 Ogilby Dr</div>
+        <div class="hdr-cat-val">1 day</div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="school-banner">
+  Commute measured to: <strong>6923 Stow Rd, Hudson OH 44236</strong> &nbsp;·&nbsp; All scores weighted by family priorities
+</div>
+
+<main>
+
+  <!-- RANKINGS -->
+  <div class="sec-label">Rankings</div>
+  <div class="ranking" style="margin-bottom:52px">
+
+    <a class="rank-card top" href="#home-1">
+      <div class="rank-num">1</div>
+      <div class="rank-body">
+        <div>
+          <div class="rank-addr">4556 Fishcreek Rd</div>
+          <div class="rank-city">Stow, OH 44224</div>
+          <div class="rank-chips">
+            <span class="chip chip-green">$244,500</span>
+            <span class="chip chip-blue">12 min to school</span>
+            <span class="chip chip-gold">4 bed / 2 bath</span>
+            <span class="chip chip-gray">1,666 sqft · $147/sqft</span>
+            <span class="chip chip-gray">98 days on market</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-score-wrap">
+        <div class="rank-score score-b">
+          <div class="rank-score-num">77%</div>
+          <div class="rank-score-lbl">score</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="rank-card" href="#home-2">
+      <div class="rank-num">2</div>
+      <div class="rank-body">
+        <div>
+          <div class="rank-addr">5866 Ogilby Dr</div>
+          <div class="rank-city">Hudson, OH 44236</div>
+          <div class="rank-chips">
+            <span class="chip chip-red">$375,000 — Over Budget</span>
+            <span class="chip chip-green">9 min to school</span>
+            <span class="chip chip-gold">4 bed / 2.5 bath</span>
+            <span class="chip chip-gray">2,016 sqft · $186/sqft</span>
+            <span class="chip chip-green">New listing</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-score-wrap">
+        <div class="rank-score score-b">
+          <div class="rank-score-num">75%</div>
+          <div class="rank-score-lbl">score</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="rank-card" href="#home-3">
+      <div class="rank-num">3</div>
+      <div class="rank-body">
+        <div>
+          <div class="rank-addr">4866 Lovers Ln</div>
+          <div class="rank-city">Ravenna, OH 44266</div>
+          <div class="rank-chips">
+            <span class="chip chip-green">$249,900</span>
+            <span class="chip chip-red">24 min to school</span>
+            <span class="chip chip-gold">3 bed / 2 bath</span>
+            <span class="chip chip-gray">1,924 sqft · $130/sqft</span>
+            <span class="chip chip-gold">4-car garage</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-score-wrap">
+        <div class="rank-score score-c">
+          <div class="rank-score-num">65%</div>
+          <div class="rank-score-lbl">score</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="rank-card" href="#home-4">
+      <div class="rank-num">4</div>
+      <div class="rank-body">
+        <div>
+          <div class="rank-addr">1799 Oak Hill Dr</div>
+          <div class="rank-city">Kent, OH 44240</div>
+          <div class="rank-chips">
+            <span class="chip chip-green">$250,000</span>
+            <span class="chip chip-blue">17 min to school</span>
+            <span class="chip chip-gold">3 bed / 2.5 bath</span>
+            <span class="chip chip-gray">1,568 sqft · $159/sqft</span>
+            <span class="chip chip-gray">56 days on market</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-score-wrap">
+        <div class="rank-score score-c">
+          <div class="rank-score-num">62%</div>
+          <div class="rank-score-lbl">score</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="rank-card" href="#home-5">
+      <div class="rank-num">5</div>
+      <div class="rank-body">
+        <div>
+          <div class="rank-addr">10265 Beaver Trl</div>
+          <div class="rank-city">Aurora, OH 44202</div>
+          <div class="rank-chips">
+            <span class="chip chip-blue">$275,900</span>
+            <span class="chip chip-blue">15 min to school</span>
+            <span class="chip chip-gold">3 bed / 1.5 bath</span>
+            <span class="chip chip-gray">1,506 sqft · $183/sqft</span>
+            <span class="chip chip-gold">Lake community · Walk-out basement</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-score-wrap">
+        <div class="rank-score score-c">
+          <div class="rank-score-num">60%</div>
+          <div class="rank-score-lbl">score</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="rank-card" href="#home-6">
+      <div class="rank-num">6</div>
+      <div class="rank-body">
+        <div>
+          <div class="rank-addr">9431 Briar Dr</div>
+          <div class="rank-city">Streetsboro, OH 44241</div>
+          <div class="rank-chips">
+            <span class="chip chip-blue">$274,800</span>
+            <span class="chip chip-blue">12 min to school</span>
+            <span class="chip chip-red">3 bed / 1 bath</span>
+            <span class="chip chip-gray">1,836 sqft · $150/sqft</span>
+            <span class="chip chip-red">$7,427/yr tax</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-score-wrap">
+        <div class="rank-score score-d">
+          <div class="rank-score-num">59%</div>
+          <div class="rank-score-lbl">score</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="rank-card" href="#home-7">
+      <div class="rank-num">7</div>
+      <div class="rank-body">
+        <div>
+          <div class="rank-addr">3846 Charring Cross Dr</div>
+          <div class="rank-city">Stow, OH 44224</div>
+          <div class="rank-chips">
+            <span class="chip chip-green">$219,900 — Lowest Price</span>
+            <span class="chip chip-blue">14 min to school</span>
+            <span class="chip chip-red">3 bed / 1 bath</span>
+            <span class="chip chip-gray">1,591 sqft · $138/sqft</span>
+            <span class="chip chip-green">New listing</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-score-wrap">
+        <div class="rank-score score-d">
+          <div class="rank-score-num">58%</div>
+          <div class="rank-score-lbl">score</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="rank-card" href="#home-8">
+      <div class="rank-num">8</div>
+      <div class="rank-body">
+        <div>
+          <div class="rank-addr">1620 Sapphire Dr</div>
+          <div class="rank-city">Hudson, OH 44236</div>
+          <div class="rank-chips">
+            <span class="chip chip-red">$330,000 — Over Budget</span>
+            <span class="chip chip-green">11 min to school</span>
+            <span class="chip chip-gold">3 bed / 1.5 bath</span>
+            <span class="chip chip-gray">1,514 sqft · $218/sqft</span>
+            <span class="chip chip-red">217 days on market</span>
+          </div>
+        </div>
+      </div>
+      <div class="rank-score-wrap">
+        <div class="rank-score score-d">
+          <div class="rank-score-num">53%</div>
+          <div class="rank-score-lbl">score</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- DETAIL CARDS PLACEHOLDER -->
+  <div class="sec-label">Home Details</div>
+  <div class="detail-cards" id="detail-cards">
+
+    <!-- HOME 1 · FISHCREEK RD -->
+    <div class="dcard top" id="home-1">
+      <div class="dcard-hero">
+        <div class="dcard-hero-left">
+          <div class="dcard-rank-badge">★ #1 Ranked</div>
+          <div class="dcard-addr">4556 Fishcreek Rd</div>
+          <div class="dcard-city">Stow, OH 44224</div>
+          <a class="dcard-url" href="https://www.redfin.com/OH/Stow/4556-Fishcreek-Rd-44224/home/66515827" target="_blank">View on Redfin ↗</a>
+          <div class="dcard-hero-facts">
+            <div class="hfact"><div class="hfact-val">$244,500</div><div class="hfact-lbl">List Price</div></div>
+            <div class="hfact"><div class="hfact-val">4 / 2</div><div class="hfact-lbl">Bed / Bath</div></div>
+            <div class="hfact"><div class="hfact-val">1,666</div><div class="hfact-lbl">Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">$147</div><div class="hfact-lbl">Per Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">0.65 ac</div><div class="hfact-lbl">Lot Size</div></div>
+            <div class="hfact" style="border-color:rgba(201,151,58,.4);background:rgba(201,151,58,.1)"><div class="hfact-val" style="color:var(--gold2)">~$1,288</div><div class="hfact-lbl">Est. /month</div></div>
+          </div>
+        </div>
+        <div class="dcard-big-score">
+          <div class="big-circle score-b">
+            <div class="big-circle-num" style="color:var(--blue)">77%</div>
+            <div class="big-circle-lbl" style="color:var(--blue)">score</div>
+          </div>
+          <div class="grade-word" style="color:var(--blue)">Good Match</div>
+        </div>
+      </div>
+
+      <div class="drive-banner">
+        <div class="drive-banner-left">
+          <div class="drive-icon">🚗</div>
+          <div>
+            <div class="drive-time" style="color:var(--gold)">12 min</div>
+            <div class="drive-label">to daughter's school &nbsp;·&nbsp; <strong style="color:var(--gold)">Good commute</strong></div>
+            <div class="drive-school">6923 Stow Rd, Hudson OH 44236</div>
+          </div>
+        </div>
+        <div class="drive-score-pill drive-med">Location Score: 7/10</div>
+      </div>
+
+      <div class="dcard-body">
+        <div class="scores-section">
+          <h4>Scorecard</h4>
+          <div class="score-rows">
+            <div class="srow">
+              <div class="srow-lbl">Price</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:100%"></div></div>
+              <div class="srow-val" style="color:var(--green)">10</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Drive Time</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bedrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bathrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Sq Footage</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Listing Details</h4>
+          <div class="detail-grid">
+            <div class="ditem"><div class="ditem-lbl">Style</div><div class="ditem-val">Cape Cod · 2 stories</div></div>
+            <div class="ditem"><div class="ditem-lbl">Year Built</div><div class="ditem-val">1953</div></div>
+            <div class="ditem"><div class="ditem-lbl">Lot Size</div><div class="ditem-val">0.65 acres</div></div>
+            <div class="ditem"><div class="ditem-lbl">Garage</div><div class="ditem-val">2-car</div></div>
+            <div class="ditem"><div class="ditem-lbl">Basement</div><div class="ditem-val">Full</div></div>
+            <div class="ditem"><div class="ditem-lbl">Heating / Cooling</div><div class="ditem-val">Forced Air Gas / Central Air</div></div>
+            <div class="ditem"><div class="ditem-lbl">Roof</div><div class="ditem-val">Asphalt / Fiberglass</div></div>
+            <div class="ditem"><div class="ditem-lbl">Exterior</div><div class="ditem-val">Aluminum Siding</div></div>
+            <div class="ditem"><div class="ditem-lbl">Outdoor</div><div class="ditem-val">Deck + Patio</div></div>
+            <div class="ditem"><div class="ditem-lbl">HOA</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Annual Tax</div><div class="ditem-val">$4,735/yr ($395/mo)</div></div>
+            <div class="ditem"><div class="ditem-lbl">Days on Market</div><div class="ditem-val">98</div></div>
+            <div class="ditem full"><div class="ditem-lbl">Price History</div><div class="ditem-val">$260,000 → $259,500 → $244,500 &nbsp;(2 cuts, −$15,500)</div></div>
+            <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
+              <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard</div>
+              <div class="ditem-val">~$1,288/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I $793 + Tax $395 + Insurance $100 · No PMI</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ($12,225) · recast with $100K → $132,275 loan · 6.00% 30yr · LTV 54% · ~4 yrs payoff · ~$17K interest</div>
+            </div>
+            <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast</div>
+              <div class="ditem-val" style="color:#1a5c40">~$988/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I $493 + Tax $395 + Insurance $100</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">$82,275 loan · LTV 34% · With $30K Dec bonus → ~3 yrs payoff · ~$8,500 interest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <div class="pc-h pro">Pros</div>
+          <div class="pc-item pro">4 bedrooms — hits the target exactly</div>
+          <div class="pc-item pro">Full MIL apartment (separate entrance, kitchen, bath, deck) — rental income or family suite</div>
+          <div class="pc-item pro">Largest lot reviewed at 0.65 acres</div>
+          <div class="pc-item pro">Well under budget at $244,500 — room to negotiate</div>
+          <div class="pc-item pro">Full basement, deck and patio</div>
+          <div class="pc-item pro">2 price cuts show motivated seller</div>
+        </div>
+        <div>
+          <div class="pc-h con">Watch Out For</div>
+          <div class="pc-item con">1953 build — oldest home reviewed, expect aging systems</div>
+          <div class="pc-item con">1,666 sqft — 134 below the 1,800 target</div>
+          <div class="pc-item con">Aluminum siding — check condition carefully</div>
+          <div class="pc-item con">98 days on market — worth asking why it hasn't sold</div>
+          <div class="pc-item con">No fence mentioned — important for kids and dog</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-h">Key Note</div>
+        <p>Cape Cod with a fully attached MIL suite — separate entrance, own kitchen, bath, deck, and independently metered gas, electric, and water. No other home reviewed has this. At $244,500 with a motivated seller and 0.65 acres, it offers the best combination of price, space, and unique utility. The 98 DOM is worth a direct conversation with the agent.</p>
+      </div>
+    </div><!-- end home-1 -->
+
+    <!-- HOME 2 · OGILBY DR -->
+    <div class="dcard" id="home-2">
+      <div class="dcard-hero">
+        <div class="dcard-hero-left">
+          <div class="dcard-rank-badge">#2 Ranked</div>
+          <div class="dcard-addr">5866 Ogilby Dr</div>
+          <div class="dcard-city">Hudson, OH 44236</div>
+          <a class="dcard-url" href="https://www.redfin.com/OH/Hudson/5866-Ogilby-Dr-44236/home/75487770" target="_blank">View on Redfin ↗</a>
+          <div class="dcard-hero-facts">
+            <div class="hfact"><div class="hfact-val">$375,000</div><div class="hfact-lbl">List Price</div></div>
+            <div class="hfact"><div class="hfact-val">4 / 2.5</div><div class="hfact-lbl">Bed / Bath</div></div>
+            <div class="hfact"><div class="hfact-val">2,016</div><div class="hfact-lbl">Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">$186</div><div class="hfact-lbl">Per Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">0.46 ac</div><div class="hfact-lbl">Lot Size</div></div>
+            <div class="hfact" style="border-color:rgba(201,151,58,.4);background:rgba(201,151,58,.1)"><div class="hfact-val" style="color:var(--gold2)">~$2,072</div><div class="hfact-lbl">Est. /month</div></div>
+          </div>
+        </div>
+        <div class="dcard-big-score">
+          <div class="big-circle score-b">
+            <div class="big-circle-num" style="color:var(--blue)">75%</div>
+            <div class="big-circle-lbl" style="color:var(--blue)">score</div>
+          </div>
+          <div class="grade-word" style="color:var(--blue)">Good Match</div>
+        </div>
+      </div>
+
+      <div class="drive-banner">
+        <div class="drive-banner-left">
+          <div class="drive-icon">🚗</div>
+          <div>
+            <div class="drive-time" style="color:var(--green)">9 min</div>
+            <div class="drive-label">to daughter's school &nbsp;·&nbsp; <strong style="color:var(--green)">Best commute of all homes</strong></div>
+            <div class="drive-school">6923 Stow Rd, Hudson OH 44236</div>
+          </div>
+        </div>
+        <div class="drive-score-pill drive-fast">Location Score: 10/10</div>
+      </div>
+
+      <div class="dcard-body">
+        <div class="scores-section">
+          <h4>Scorecard</h4>
+          <div class="score-rows">
+            <div class="srow">
+              <div class="srow-lbl">Price</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:30%"></div></div>
+              <div class="srow-val" style="color:var(--red)">3</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Drive Time</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:100%"></div></div>
+              <div class="srow-val" style="color:var(--green)">10</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bedrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bathrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:90%"></div></div>
+              <div class="srow-val" style="color:var(--green)">9</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Sq Footage</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:100%"></div></div>
+              <div class="srow-val" style="color:var(--green)">10</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Listing Details</h4>
+          <div class="detail-grid">
+            <div class="ditem"><div class="ditem-lbl">Style</div><div class="ditem-val">Colonial · 2 stories</div></div>
+            <div class="ditem"><div class="ditem-lbl">Year Built</div><div class="ditem-val">1974</div></div>
+            <div class="ditem"><div class="ditem-lbl">Lot Size</div><div class="ditem-val">0.46 acres</div></div>
+            <div class="ditem"><div class="ditem-lbl">Garage</div><div class="ditem-val">2-car attached</div></div>
+            <div class="ditem"><div class="ditem-lbl">Basement</div><div class="ditem-val">Full, unfinished</div></div>
+            <div class="ditem"><div class="ditem-lbl">Fireplace</div><div class="ditem-val">Wood burning</div></div>
+            <div class="ditem"><div class="ditem-lbl">Heating / Cooling</div><div class="ditem-val">Forced Air Gas / Central Air</div></div>
+            <div class="ditem"><div class="ditem-lbl">Roof</div><div class="ditem-val">Asphalt / Fiberglass</div></div>
+            <div class="ditem"><div class="ditem-lbl">Exterior</div><div class="ditem-val">Aluminum Siding</div></div>
+            <div class="ditem"><div class="ditem-lbl">Outdoor</div><div class="ditem-val">Deck + Patio</div></div>
+            <div class="ditem"><div class="ditem-lbl">Annual Tax</div><div class="ditem-val">$5,235/yr ($436/mo)</div></div>
+            <div class="ditem"><div class="ditem-lbl">HOA</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Days on Market</div><div class="ditem-val">1 — New listing</div></div>
+            <div class="ditem full"><div class="ditem-lbl">Price History</div><div class="ditem-val">Just listed at $375,000 · Previously sold $378,000 (2022)</div></div>
+            <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
+              <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard</div>
+              <div class="ditem-val">~$2,072/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I $1,536 + Tax $436 + Insurance $100 · No PMI</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ($18,750) · recast with $100K → $256,250 loan · 6.00% 30yr · LTV 68% · ~7 yrs payoff · ~$60K interest</div>
+            </div>
+            <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast</div>
+              <div class="ditem-val" style="color:#1a5c40">~$1,772/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I $1,236 + Tax $436 + Insurance $100</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">$206,250 loan · LTV 55% · With $30K Dec bonus → ~5 yrs payoff · ~$41K interest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <div class="pc-h pro">Pros</div>
+          <div class="pc-item pro">Best commute of all homes — 9 min to school</div>
+          <div class="pc-item pro">4 bedrooms and 2.5 baths — exceeds both targets</div>
+          <div class="pc-item pro">2,016 sqft — only home that fully meets the space target</div>
+          <div class="pc-item pro">Hudson school district — highly rated</div>
+          <div class="pc-item pro">Full basement with finishing potential</div>
+          <div class="pc-item pro">Wood burning fireplace, deck, and patio</div>
+        </div>
+        <div>
+          <div class="pc-h con">Watch Out For</div>
+          <div class="pc-item con">$375,000 — $75K over the $300K budget</div>
+          <div class="pc-item con">$2,072/mo standard payment — highest of all homes reviewed</div>
+          <div class="pc-item con">~$60K total interest on the standard recast</div>
+          <div class="pc-item con">Just listed — no negotiating history yet</div>
+          <div class="pc-item con">1974 build — may need system updates</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-h">Key Note</div>
+        <p>The only home that checks every box on paper — 4 beds, 2.5 baths, 2,016 sqft, best commute, Hudson schools. The single issue is price: at $375K it's $75K over budget, and the interest cost on the larger loan is significantly higher than any other home. Worth seeing in person to decide if the location premium is worth it.</p>
+      </div>
+    </div><!-- end home-2 -->
+
+    <!-- HOME 3 · LOVERS LN -->
+    <div class="dcard" id="home-3">
+      <div class="dcard-hero">
+        <div class="dcard-hero-left">
+          <div class="dcard-rank-badge" style="background:var(--ink3)">#3 Ranked</div>
+          <div class="dcard-addr">4866 Lovers Ln</div>
+          <div class="dcard-city">Ravenna, OH 44266</div>
+          <a class="dcard-url" href="https://www.redfin.com/OH/Ravenna/4866-Lovers-Ln-44266/home/75378724" target="_blank">View on Redfin ↗</a>
+          <div class="dcard-hero-facts">
+            <div class="hfact"><div class="hfact-val">$249,900</div><div class="hfact-lbl">List Price</div></div>
+            <div class="hfact"><div class="hfact-val">3 / 2</div><div class="hfact-lbl">Bed / Bath</div></div>
+            <div class="hfact"><div class="hfact-val">1,924</div><div class="hfact-lbl">Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">$130</div><div class="hfact-lbl">Per Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">0.50 ac</div><div class="hfact-lbl">Lot Size</div></div>
+            <div class="hfact" style="border-color:rgba(201,151,58,.4);background:rgba(201,151,58,.1)"><div class="hfact-val" style="color:var(--gold2)">~$1,270</div><div class="hfact-lbl">Est. /month</div></div>
+          </div>
+        </div>
+        <div class="dcard-big-score">
+          <div class="big-circle score-c">
+            <div class="big-circle-num" style="color:var(--gold)">65%</div>
+            <div class="big-circle-lbl" style="color:var(--gold)">score</div>
+          </div>
+          <div class="grade-word" style="color:var(--gold)">Fair Match</div>
+        </div>
+      </div>
+
+      <div class="drive-banner">
+        <div class="drive-banner-left">
+          <div class="drive-icon">🚗</div>
+          <div>
+            <div class="drive-time" style="color:var(--red)">24 min</div>
+            <div class="drive-label">to daughter's school &nbsp;·&nbsp; <strong style="color:var(--red)">Longest commute reviewed</strong></div>
+            <div class="drive-school">6923 Stow Rd, Hudson OH 44236</div>
+          </div>
+        </div>
+        <div class="drive-score-pill drive-slow">Location Score: 3/10</div>
+      </div>
+
+      <div class="dcard-body">
+        <div class="scores-section">
+          <h4>Scorecard</h4>
+          <div class="score-rows">
+            <div class="srow">
+              <div class="srow-lbl">Price</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:100%"></div></div>
+              <div class="srow-val" style="color:var(--green)">10</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Drive Time</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:30%"></div></div>
+              <div class="srow-val" style="color:var(--red)">3</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bedrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:40%"></div></div>
+              <div class="srow-val" style="color:var(--red)">4</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bathrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Sq Footage</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:90%"></div></div>
+              <div class="srow-val" style="color:var(--green)">9</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Listing Details</h4>
+          <div class="detail-grid">
+            <div class="ditem"><div class="ditem-lbl">Style</div><div class="ditem-val">Ranch · 1 story</div></div>
+            <div class="ditem"><div class="ditem-lbl">Year Built</div><div class="ditem-val">1967</div></div>
+            <div class="ditem"><div class="ditem-lbl">Lot Size</div><div class="ditem-val">0.50 acres</div></div>
+            <div class="ditem"><div class="ditem-lbl">Garage</div><div class="ditem-val">4-car</div></div>
+            <div class="ditem"><div class="ditem-lbl">Basement</div><div class="ditem-val">Unknown — verify in person</div></div>
+            <div class="ditem"><div class="ditem-lbl">Heating / Cooling</div><div class="ditem-val">Forced Air Oil / Central Air</div></div>
+            <div class="ditem"><div class="ditem-lbl">Roof</div><div class="ditem-val">Asphalt / Fiberglass</div></div>
+            <div class="ditem"><div class="ditem-lbl">Exterior</div><div class="ditem-val">Aluminum / Vinyl Siding</div></div>
+            <div class="ditem"><div class="ditem-lbl">HOA</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Annual Tax</div><div class="ditem-val">$4,169/yr ($347/mo)</div></div>
+            <div class="ditem"><div class="ditem-lbl">Days on Market</div><div class="ditem-val">129</div></div>
+            <div class="ditem full"><div class="ditem-lbl">Price History</div><div class="ditem-val">$279,900 → $269,900 → $259,900 → $249,900 &nbsp;(3 cuts, −$30,000)</div></div>
+            <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
+              <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard</div>
+              <div class="ditem-val">~$1,270/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I $823 + Tax $347 + Insurance $100 · No PMI</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ($12,495) · recast with $100K → $137,405 loan · 6.00% 30yr · LTV 55% · ~4 yrs payoff · ~$18K interest</div>
+            </div>
+            <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast</div>
+              <div class="ditem-val" style="color:#1a5c40">~$971/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I $524 + Tax $347 + Insurance $100</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">$87,405 loan · LTV 35% · With $30K Dec bonus → ~3 yrs payoff · ~$9,500 interest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <div class="pc-h pro">Pros</div>
+          <div class="pc-item pro">Best price per sq ft of all homes — $130/sqft</div>
+          <div class="pc-item pro">1,924 sqft — second largest home reviewed</div>
+          <div class="pc-item pro">4-car garage — standout feature for storage or workshop</div>
+          <div class="pc-item pro">3 price cuts totaling $30K — highly motivated seller</div>
+          <div class="pc-item pro">Half-acre lot, central A/C, no HOA</div>
+          <div class="pc-item pro">Oil heat could be converted to gas over time</div>
+        </div>
+        <div>
+          <div class="pc-h con">Watch Out For</div>
+          <div class="pc-item con">24 min commute — longest of all homes, adds up daily</div>
+          <div class="pc-item con">Only 3 bedrooms — one short of target</div>
+          <div class="pc-item con">Oil heat — fuel costs are volatile, plan for conversion</div>
+          <div class="pc-item con">Basement unknown — must verify in person</div>
+          <div class="pc-item con">129 days on market — worth understanding why</div>
+          <div class="pc-item con">Ravenna location — farther from Stow/Hudson amenities</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-h">Key Note</div>
+        <p>The best value per square foot at $130/sqft with a 4-car garage that no other home can match. Three price cuts of $30K total signal serious seller motivation — there may be room to go lower. The 24-min commute is the primary drag on the score and will be a daily reality to weigh against the price advantage.</p>
+      </div>
+    </div><!-- end home-3 -->
+
+    <!-- HOME 4 · OAK HILL DR -->
+    <div class="dcard" id="home-4">
+      <div class="dcard-hero">
+        <div class="dcard-hero-left">
+          <div class="dcard-rank-badge" style="background:var(--ink3)">#4 Ranked</div>
+          <div class="dcard-addr">1799 Oak Hill Dr</div>
+          <div class="dcard-city">Kent, OH 44240</div>
+          <a class="dcard-url" href="https://www.redfin.com/OH/Kent/1799-Oak-Hill-Dr-44240/home/75381555" target="_blank">View on Redfin ↗</a>
+          <div class="dcard-hero-facts">
+            <div class="hfact"><div class="hfact-val">$250,000</div><div class="hfact-lbl">List Price</div></div>
+            <div class="hfact"><div class="hfact-val">3 / 2.5</div><div class="hfact-lbl">Bed / Bath</div></div>
+            <div class="hfact"><div class="hfact-val">1,568</div><div class="hfact-lbl">Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">$159</div><div class="hfact-lbl">Per Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">0.33 ac</div><div class="hfact-lbl">Lot Size</div></div>
+            <div class="hfact" style="border-color:rgba(201,151,58,.4);background:rgba(201,151,58,.1)"><div class="hfact-val" style="color:var(--gold2)">~$1,334</div><div class="hfact-lbl">Est. /month</div></div>
+          </div>
+        </div>
+        <div class="dcard-big-score">
+          <div class="big-circle score-c">
+            <div class="big-circle-num" style="color:var(--gold)">62%</div>
+            <div class="big-circle-lbl" style="color:var(--gold)">score</div>
+          </div>
+          <div class="grade-word" style="color:var(--gold)">Fair Match</div>
+        </div>
+      </div>
+
+      <div class="drive-banner">
+        <div class="drive-banner-left">
+          <div class="drive-icon">🚗</div>
+          <div>
+            <div class="drive-time" style="color:var(--gold)">17 min</div>
+            <div class="drive-label">to daughter's school &nbsp;·&nbsp; <strong style="color:var(--gold)">Moderate commute</strong></div>
+            <div class="drive-school">6923 Stow Rd, Hudson OH 44236</div>
+          </div>
+        </div>
+        <div class="drive-score-pill drive-med">Location Score: 5/10</div>
+      </div>
+
+      <div class="dcard-body">
+        <div class="scores-section">
+          <h4>Scorecard</h4>
+          <div class="score-rows">
+            <div class="srow">
+              <div class="srow-lbl">Price</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:80%"></div></div>
+              <div class="srow-val" style="color:var(--green)">8</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Drive Time</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">5</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bedrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:40%"></div></div>
+              <div class="srow-val" style="color:var(--red)">4</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bathrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:90%"></div></div>
+              <div class="srow-val" style="color:var(--green)">9</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Sq Footage</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Listing Details</h4>
+          <div class="detail-grid">
+            <div class="ditem"><div class="ditem-lbl">Style</div><div class="ditem-val">Ranch · 1 story</div></div>
+            <div class="ditem"><div class="ditem-lbl">Year Built</div><div class="ditem-val">1972</div></div>
+            <div class="ditem"><div class="ditem-lbl">Lot Size</div><div class="ditem-val">0.33 acres</div></div>
+            <div class="ditem"><div class="ditem-lbl">Garage</div><div class="ditem-val">2-car attached</div></div>
+            <div class="ditem"><div class="ditem-lbl">Basement</div><div class="ditem-val">Full</div></div>
+            <div class="ditem"><div class="ditem-lbl">Heating / Cooling</div><div class="ditem-val">Baseboard + Forced Air / Central Air</div></div>
+            <div class="ditem"><div class="ditem-lbl">Roof</div><div class="ditem-val">Asphalt / Fiberglass</div></div>
+            <div class="ditem"><div class="ditem-lbl">Exterior</div><div class="ditem-val">Brick</div></div>
+            <div class="ditem"><div class="ditem-lbl">HOA</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Annual Tax</div><div class="ditem-val">$4,920/yr ($410/mo)</div></div>
+            <div class="ditem"><div class="ditem-lbl">Days on Market</div><div class="ditem-val">56</div></div>
+            <div class="ditem full"><div class="ditem-lbl">Price History</div><div class="ditem-val">$280,000 → $250,000 &nbsp;(relisted, 1 cut, −$30,000)</div></div>
+            <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
+              <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard</div>
+              <div class="ditem-val">~$1,334/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I $824 + Tax $410 + Insurance $100 · No PMI</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ($12,500) · recast with $100K → $137,500 loan · 6.00% 30yr · LTV 55% · ~4 yrs payoff · ~$18,500 interest</div>
+            </div>
+            <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast</div>
+              <div class="ditem-val" style="color:#1a5c40">~$1,034/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I $524 + Tax $410 + Insurance $100</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">$87,500 loan · LTV 35% · With $30K Dec bonus → ~3 yrs payoff · ~$9,500 interest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <div class="pc-h pro">Pros</div>
+          <div class="pc-item pro">2.5 baths — best bathroom count of all 3-bedroom homes</div>
+          <div class="pc-item pro">Full basement — good storage and expansion potential</div>
+          <div class="pc-item pro">Brick exterior — durable, low maintenance</div>
+          <div class="pc-item pro">$30K price cut from $280K — motivated seller</div>
+          <div class="pc-item pro">Ranch layout — single story, easy for young kids</div>
+          <div class="pc-item pro">No HOA</div>
+        </div>
+        <div>
+          <div class="pc-h con">Watch Out For</div>
+          <div class="pc-item con">3 bedrooms — one short of target</div>
+          <div class="pc-item con">1,568 sqft — below 1,800 target</div>
+          <div class="pc-item con">17 min commute — on the longer side</div>
+          <div class="pc-item con">Baseboard + forced air combo — older dual-system setup</div>
+          <div class="pc-item con">56 days on market — relisted, worth asking why</div>
+          <div class="pc-item con">Kent location — slightly farther from Stow/Hudson</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-h">Key Note</div>
+        <p>The standout feature here is 2.5 baths in a 3-bedroom home — more bathrooms than most homes reviewed at this price point. The brick exterior and full basement add long-term value. The 17-min commute and single-bedroom shortfall are the main trade-offs. Was listed at $280K and dropped to $250K — there may be further flexibility.</p>
+      </div>
+    </div><!-- end home-4 -->
+
+    <!-- HOME 5 · BEAVER TRL -->
+    <div class="dcard" id="home-5">
+      <div class="dcard-hero">
+        <div class="dcard-hero-left">
+          <div class="dcard-rank-badge" style="background:var(--ink3)">#5 Ranked</div>
+          <div class="dcard-addr">10265 Beaver Trl</div>
+          <div class="dcard-city">Aurora, OH 44202</div>
+          <a class="dcard-url" href="https://www.redfin.com/OH/Aurora/10265-Beaver-Trl-44202/home/66417574" target="_blank">View on Redfin ↗</a>
+          <div class="dcard-hero-facts">
+            <div class="hfact"><div class="hfact-val">$275,900</div><div class="hfact-lbl">List Price</div></div>
+            <div class="hfact"><div class="hfact-val">3 / 1.5</div><div class="hfact-lbl">Bed / Bath</div></div>
+            <div class="hfact"><div class="hfact-val">1,506</div><div class="hfact-lbl">Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">$183</div><div class="hfact-lbl">Per Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">0.28 ac</div><div class="hfact-lbl">Lot Size</div></div>
+            <div class="hfact" style="border-color:rgba(201,151,58,.4);background:rgba(201,151,58,.1)"><div class="hfact-val" style="color:var(--gold2)">~$1,439</div><div class="hfact-lbl">Est. /month</div></div>
+          </div>
+        </div>
+        <div class="dcard-big-score">
+          <div class="big-circle score-c">
+            <div class="big-circle-num" style="color:var(--gold)">60%</div>
+            <div class="big-circle-lbl" style="color:var(--gold)">score</div>
+          </div>
+          <div class="grade-word" style="color:var(--gold)">Fair Match</div>
+        </div>
+      </div>
+
+      <div class="drive-banner">
+        <div class="drive-banner-left">
+          <div class="drive-icon">🚗</div>
+          <div>
+            <div class="drive-time" style="color:var(--gold)">15 min</div>
+            <div class="drive-label">to daughter's school &nbsp;·&nbsp; <strong style="color:var(--gold)">Good commute</strong></div>
+            <div class="drive-school">6923 Stow Rd, Hudson OH 44236</div>
+          </div>
+        </div>
+        <div class="drive-score-pill drive-med">Location Score: 7/10</div>
+      </div>
+
+      <div class="dcard-body">
+        <div class="scores-section">
+          <h4>Scorecard</h4>
+          <div class="score-rows">
+            <div class="srow">
+              <div class="srow-lbl">Price</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:80%"></div></div>
+              <div class="srow-val" style="color:var(--green)">8</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Drive Time</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bedrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:40%"></div></div>
+              <div class="srow-val" style="color:var(--red)">4</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bathrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">5</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Sq Footage</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Listing Details</h4>
+          <div class="detail-grid">
+            <div class="ditem"><div class="ditem-lbl">Style</div><div class="ditem-val">2 stories</div></div>
+            <div class="ditem"><div class="ditem-lbl">Year Built</div><div class="ditem-val">1973</div></div>
+            <div class="ditem"><div class="ditem-lbl">Lot Size</div><div class="ditem-val">0.28 acres</div></div>
+            <div class="ditem"><div class="ditem-lbl">Garage</div><div class="ditem-val">2-car attached</div></div>
+            <div class="ditem"><div class="ditem-lbl">Basement</div><div class="ditem-val">Finished walk-out / daylight</div></div>
+            <div class="ditem"><div class="ditem-lbl">Heating / Cooling</div><div class="ditem-val">Forced Air Gas / Central Air</div></div>
+            <div class="ditem"><div class="ditem-lbl">Roof</div><div class="ditem-val">Asphalt / Fiberglass</div></div>
+            <div class="ditem"><div class="ditem-lbl">Exterior</div><div class="ditem-val">Vinyl Siding</div></div>
+            <div class="ditem"><div class="ditem-lbl">Outdoor</div><div class="ditem-val">Fence + Deck + Patio</div></div>
+            <div class="ditem"><div class="ditem-lbl">Community</div><div class="ditem-val">Lake community</div></div>
+            <div class="ditem"><div class="ditem-lbl">Annual Tax</div><div class="ditem-val">$3,751/yr ($313/mo) — lowest reviewed</div></div>
+            <div class="ditem"><div class="ditem-lbl">HOA</div><div class="ditem-val">$54/mo (lake amenities)</div></div>
+            <div class="ditem"><div class="ditem-lbl">Days on Market</div><div class="ditem-val">108</div></div>
+            <div class="ditem full"><div class="ditem-lbl">Price History</div><div class="ditem-val">$279,000 → $275,900 &nbsp;(1 cut, −$3,100)</div></div>
+            <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
+              <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard (incl. HOA)</div>
+              <div class="ditem-val">~$1,439/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I $972 + Tax $313 + Insurance $100 + HOA $54 · No PMI</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ($13,795) · recast with $100K → $162,105 loan · 6.00% 30yr · LTV 59% · ~5 yrs payoff · ~$27K interest</div>
+            </div>
+            <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast (incl. HOA)</div>
+              <div class="ditem-val" style="color:#1a5c40">~$1,139/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I $672 + Tax $313 + Insurance $100 + HOA $54</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">$112,105 loan · LTV 41% · With $30K Dec bonus → ~4 yrs payoff · ~$15K interest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <div class="pc-h pro">Pros</div>
+          <div class="pc-item pro">Lowest property tax reviewed — $3,751/yr ($313/mo)</div>
+          <div class="pc-item pro">Finished walk-out basement — usable living space</div>
+          <div class="pc-item pro">Lake community with HOA amenities for only $54/mo</div>
+          <div class="pc-item pro">Fenced yard, deck, and patio — great outdoor setup</div>
+          <div class="pc-item pro">2-car attached garage, central A/C</div>
+          <div class="pc-item pro">108 DOM — seller likely open to negotiating</div>
+        </div>
+        <div>
+          <div class="pc-h con">Watch Out For</div>
+          <div class="pc-item con">3 bedrooms — one short of target</div>
+          <div class="pc-item con">1,506 sqft — smallest of the Fair Match homes</div>
+          <div class="pc-item con">1.5 baths — tight for a family of 4</div>
+          <div class="pc-item con">Smallest lot reviewed at 0.28 acres</div>
+          <div class="pc-item con">HOA adds ongoing cost — verify what it covers</div>
+          <div class="pc-item con">Very small price cut ($3,100) despite 108 DOM</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-h">Key Note</div>
+        <p>The lowest property tax of any home reviewed saves real money every month. The finished walk-out basement adds usable square footage beyond the listed 1,506 sqft. Lake community living at $54/mo HOA is solid value if the amenities fit the lifestyle. The 108 DOM with only a $3,100 price cut suggests the seller may be stubborn on price — worth a stronger offer.</p>
+      </div>
+    </div><!-- end home-5 -->
+
+    <!-- HOME 6 · BRIAR DR -->
+    <div class="dcard" id="home-6">
+      <div class="dcard-hero">
+        <div class="dcard-hero-left">
+          <div class="dcard-rank-badge" style="background:var(--ink3)">#6 Ranked</div>
+          <div class="dcard-addr">9431 Briar Dr</div>
+          <div class="dcard-city">Streetsboro, OH 44241</div>
+          <a class="dcard-url" href="https://www.redfin.com/OH/Streetsboro/9431-Briar-Dr-44241/home/75384912" target="_blank">View on Redfin ↗</a>
+          <div class="dcard-hero-facts">
+            <div class="hfact"><div class="hfact-val">$274,800</div><div class="hfact-lbl">List Price</div></div>
+            <div class="hfact"><div class="hfact-val">3 / 1</div><div class="hfact-lbl">Bed / Bath</div></div>
+            <div class="hfact"><div class="hfact-val">1,836</div><div class="hfact-lbl">Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">$150</div><div class="hfact-lbl">Per Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">0.51 ac</div><div class="hfact-lbl">Lot Size</div></div>
+            <div class="hfact" style="border-color:rgba(192,57,43,.4);background:rgba(192,57,43,.1)"><div class="hfact-val" style="color:#e57373">~$1,684</div><div class="hfact-lbl">Est. /month</div></div>
+          </div>
+        </div>
+        <div class="dcard-big-score">
+          <div class="big-circle score-d">
+            <div class="big-circle-num" style="color:var(--red)">59%</div>
+            <div class="big-circle-lbl" style="color:var(--red)">score</div>
+          </div>
+          <div class="grade-word" style="color:var(--red)">Below Target</div>
+        </div>
+      </div>
+
+      <div class="drive-banner">
+        <div class="drive-banner-left">
+          <div class="drive-icon">🚗</div>
+          <div>
+            <div class="drive-time" style="color:var(--gold)">12 min</div>
+            <div class="drive-label">to daughter's school &nbsp;·&nbsp; <strong style="color:var(--gold)">Good commute</strong></div>
+            <div class="drive-school">6923 Stow Rd, Hudson OH 44236</div>
+          </div>
+        </div>
+        <div class="drive-score-pill drive-med">Location Score: 7/10</div>
+      </div>
+
+      <div class="dcard-body">
+        <div class="scores-section">
+          <h4>Scorecard</h4>
+          <div class="score-rows">
+            <div class="srow">
+              <div class="srow-lbl">Price</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:80%"></div></div>
+              <div class="srow-val" style="color:var(--green)">8</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Drive Time</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bedrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:40%"></div></div>
+              <div class="srow-val" style="color:var(--red)">4</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bathrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:10%"></div></div>
+              <div class="srow-val" style="color:var(--red)">1</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Sq Footage</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:90%"></div></div>
+              <div class="srow-val" style="color:var(--green)">9</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Listing Details</h4>
+          <div class="detail-grid">
+            <div class="ditem"><div class="ditem-lbl">Style</div><div class="ditem-val">Ranch · 1 story · Renovated</div></div>
+            <div class="ditem"><div class="ditem-lbl">Year Built</div><div class="ditem-val">1957</div></div>
+            <div class="ditem"><div class="ditem-lbl">Lot Size</div><div class="ditem-val">0.51 acres</div></div>
+            <div class="ditem"><div class="ditem-lbl">Garage</div><div class="ditem-val">2-car attached</div></div>
+            <div class="ditem"><div class="ditem-lbl">Basement</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Heating / Cooling</div><div class="ditem-val">Forced Air Gas / Central Air</div></div>
+            <div class="ditem"><div class="ditem-lbl">Roof</div><div class="ditem-val">Asphalt / Fiberglass</div></div>
+            <div class="ditem"><div class="ditem-lbl">Exterior</div><div class="ditem-val">Vinyl Siding</div></div>
+            <div class="ditem"><div class="ditem-lbl">Outdoor</div><div class="ditem-val">Deck + Patio</div></div>
+            <div class="ditem"><div class="ditem-lbl">HOA</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Days on Market</div><div class="ditem-val">23</div></div>
+            <div class="ditem full warn">
+              <div class="ditem-lbl">Annual Tax — Caution</div>
+              <div class="ditem-val">$7,427/yr ($619/mo) — highest of all homes reviewed by far</div>
+            </div>
+            <div class="ditem full"><div class="ditem-lbl">Price History</div><div class="ditem-val">$284,800 → $274,800 &nbsp;(1 cut, −$10,000)</div></div>
+            <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
+              <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard</div>
+              <div class="ditem-val">~$1,684/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I $965 + Tax $619 + Insurance $100 · No PMI</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ($13,740) · recast with $100K → $161,060 loan · 6.00% 30yr · LTV 59% · ~5 yrs payoff · ~$26K interest</div>
+            </div>
+            <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast</div>
+              <div class="ditem-val" style="color:#1a5c40">~$1,385/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I $666 + Tax $619 + Insurance $100</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">$111,060 loan · LTV 40% · With $30K Dec bonus → ~4 yrs payoff · ~$14K interest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <div class="pc-h pro">Pros</div>
+          <div class="pc-item pro">Completely renovated — modern farmhouse aesthetic, move-in ready</div>
+          <div class="pc-item pro">1,836 sqft — meets the 1,800 sqft target</div>
+          <div class="pc-item pro">Good commute at 12 min</div>
+          <div class="pc-item pro">Large lot at 0.51 acres</div>
+          <div class="pc-item pro">2-car attached garage, deck, patio</div>
+          <div class="pc-item pro">No HOA</div>
+        </div>
+        <div>
+          <div class="pc-h con">Watch Out For</div>
+          <div class="pc-item con">$7,427/yr tax ($619/mo) — adds ~$300/mo vs. average homes reviewed</div>
+          <div class="pc-item con">Only 1 bathroom — serious concern for a family of 4</div>
+          <div class="pc-item con">3 bedrooms — one short of target</div>
+          <div class="pc-item con">No basement — no storage or storm shelter option</div>
+          <div class="pc-item con">1957 build under renovation cosmetics</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-h">Key Note</div>
+        <p>The renovation makes it look great and the sqft meets the target, but the $7,427 annual tax is a serious red flag — at $619/mo it adds roughly $300 more per month than comparable homes, negating much of the price advantage. One bathroom for a family of 4 is a practical dealbreaker. Verify the tax figure before scheduling a showing.</p>
+      </div>
+    </div><!-- end home-6 -->
+
+    <!-- HOME 7 · CHARRING CROSS DR -->
+    <div class="dcard" id="home-7">
+      <div class="dcard-hero">
+        <div class="dcard-hero-left">
+          <div class="dcard-rank-badge" style="background:var(--ink3)">#7 Ranked</div>
+          <div class="dcard-addr">3846 Charring Cross Dr</div>
+          <div class="dcard-city">Stow, OH 44224</div>
+          <a class="dcard-url" href="https://www.redfin.com/OH/Stow/3846-Charring-Cross-Dr-44224/home/79991205" target="_blank">View on Redfin ↗</a>
+          <div class="dcard-hero-facts">
+            <div class="hfact"><div class="hfact-val">$219,900</div><div class="hfact-lbl">List Price</div></div>
+            <div class="hfact"><div class="hfact-val">3 / 1</div><div class="hfact-lbl">Bed / Bath</div></div>
+            <div class="hfact"><div class="hfact-val">1,591</div><div class="hfact-lbl">Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">$138</div><div class="hfact-lbl">Per Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">0.30 ac</div><div class="hfact-lbl">Lot Size</div></div>
+            <div class="hfact" style="border-color:rgba(201,151,58,.4);background:rgba(201,151,58,.1)"><div class="hfact-val" style="color:var(--gold2)">~$1,086</div><div class="hfact-lbl">Est. /month</div></div>
+          </div>
+        </div>
+        <div class="dcard-big-score">
+          <div class="big-circle score-d">
+            <div class="big-circle-num" style="color:var(--red)">58%</div>
+            <div class="big-circle-lbl" style="color:var(--red)">score</div>
+          </div>
+          <div class="grade-word" style="color:var(--red)">Below Target</div>
+        </div>
+      </div>
+
+      <div class="drive-banner">
+        <div class="drive-banner-left">
+          <div class="drive-icon">🚗</div>
+          <div>
+            <div class="drive-time" style="color:var(--gold)">14 min</div>
+            <div class="drive-label">to daughter's school &nbsp;·&nbsp; <strong style="color:var(--gold)">Good commute</strong></div>
+            <div class="drive-school">6923 Stow Rd, Hudson OH 44236</div>
+          </div>
+        </div>
+        <div class="drive-score-pill drive-med">Location Score: 7/10</div>
+      </div>
+
+      <div class="dcard-body">
+        <div class="scores-section">
+          <h4>Scorecard</h4>
+          <div class="score-rows">
+            <div class="srow">
+              <div class="srow-lbl">Price</div>
+              <div class="srow-track"><div class="srow-fill fill-green" style="width:100%"></div></div>
+              <div class="srow-val" style="color:var(--green)">10</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Drive Time</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bedrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:40%"></div></div>
+              <div class="srow-val" style="color:var(--red)">4</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bathrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:10%"></div></div>
+              <div class="srow-val" style="color:var(--red)">1</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Sq Footage</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Listing Details</h4>
+          <div class="detail-grid">
+            <div class="ditem"><div class="ditem-lbl">Style</div><div class="ditem-val">Ranch · 1 story</div></div>
+            <div class="ditem"><div class="ditem-lbl">Year Built</div><div class="ditem-val">1962</div></div>
+            <div class="ditem"><div class="ditem-lbl">Lot Size</div><div class="ditem-val">0.30 acres</div></div>
+            <div class="ditem"><div class="ditem-lbl">Garage</div><div class="ditem-val">2-car attached</div></div>
+            <div class="ditem"><div class="ditem-lbl">Basement</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Heating / Cooling</div><div class="ditem-val">Forced Air Gas / Central Air</div></div>
+            <div class="ditem"><div class="ditem-lbl">Roof</div><div class="ditem-val">Asphalt / Fiberglass</div></div>
+            <div class="ditem"><div class="ditem-lbl">Exterior</div><div class="ditem-val">Vinyl Siding</div></div>
+            <div class="ditem"><div class="ditem-lbl">Outdoor</div><div class="ditem-val">Patio</div></div>
+            <div class="ditem"><div class="ditem-lbl">HOA</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Annual Tax</div><div class="ditem-val">$4,000/yr ($333/mo)</div></div>
+            <div class="ditem"><div class="ditem-lbl">Days on Market</div><div class="ditem-val">1 — Just listed</div></div>
+            <div class="ditem full"><div class="ditem-lbl">Price History</div><div class="ditem-val">Just listed at $219,900 · Previously sold $200,000</div></div>
+            <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
+              <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard</div>
+              <div class="ditem-val">~$1,086/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I $653 + Tax $333 + Insurance $100 · No PMI</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ($10,995) · recast with $100K → $108,905 loan · 6.00% 30yr · LTV 50% · ~4 yrs payoff · ~$14K interest</div>
+            </div>
+            <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast</div>
+              <div class="ditem-val" style="color:#1a5c40">~$786/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I $353 + Tax $333 + Insurance $100</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">$58,905 loan · LTV 27% · With $30K Dec bonus → ~2 yrs payoff · ~$5,200 interest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <div class="pc-h pro">Pros</div>
+          <div class="pc-item pro">Lowest list price reviewed at $219,900</div>
+          <div class="pc-item pro">Lowest monthly payment reviewed at ~$1,086/mo</div>
+          <div class="pc-item pro">Best case payment of just ~$786/mo — remarkable</div>
+          <div class="pc-item pro">Just listed — fresh to market, no stale history</div>
+          <div class="pc-item pro">Good location in Stow, 14 min to school</div>
+          <div class="pc-item pro">2-car attached garage, no HOA</div>
+        </div>
+        <div>
+          <div class="pc-h con">Watch Out For</div>
+          <div class="pc-item con">1 bathroom — significant concern for a family of 4</div>
+          <div class="pc-item con">3 bedrooms — one short of target</div>
+          <div class="pc-item con">No basement — no storm shelter or extra storage</div>
+          <div class="pc-item con">1,591 sqft — below target</div>
+          <div class="pc-item con">1962 build — expect aging mechanicals</div>
+          <div class="pc-item con">Just listed at $219,900 vs. prior sale of $200,000 — small margin</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-h">Key Note</div>
+        <p>The cheapest home and lowest monthly payment of everything reviewed. In the best case scenario, the loan is paid off in roughly 2 years with ~$5,200 total interest — no other home comes close. The hard reality: 1 bathroom for 4 people is a daily friction point. Worth visiting only if price is the absolute priority and a bathroom addition is in the longer-term plan.</p>
+      </div>
+    </div><!-- end home-7 -->
+
+    <!-- HOME 8 · SAPPHIRE DR -->
+    <div class="dcard" id="home-8">
+      <div class="dcard-hero">
+        <div class="dcard-hero-left">
+          <div class="dcard-rank-badge" style="background:var(--ink3)">#8 Ranked</div>
+          <div class="dcard-addr">1620 Sapphire Dr</div>
+          <div class="dcard-city">Hudson, OH 44236</div>
+          <a class="dcard-url" href="https://www.redfin.com/OH/Hudson/1620-Sapphire-Dr-44236/home/80033830" target="_blank">View on Redfin ↗</a>
+          <div class="dcard-hero-facts">
+            <div class="hfact"><div class="hfact-val">$330,000</div><div class="hfact-lbl">List Price</div></div>
+            <div class="hfact"><div class="hfact-val">3 / 1.5</div><div class="hfact-lbl">Bed / Bath</div></div>
+            <div class="hfact"><div class="hfact-val">1,514</div><div class="hfact-lbl">Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">$218</div><div class="hfact-lbl">Per Sq Ft</div></div>
+            <div class="hfact"><div class="hfact-val">0.47 ac</div><div class="hfact-lbl">Lot Size</div></div>
+            <div class="hfact" style="border-color:rgba(192,57,43,.4);background:rgba(192,57,43,.1)"><div class="hfact-val" style="color:#e57373">~$1,872</div><div class="hfact-lbl">Est. /month</div></div>
+          </div>
+        </div>
+        <div class="dcard-big-score">
+          <div class="big-circle score-d">
+            <div class="big-circle-num" style="color:var(--red)">53%</div>
+            <div class="big-circle-lbl" style="color:var(--red)">score</div>
+          </div>
+          <div class="grade-word" style="color:var(--red)">Below Target</div>
+        </div>
+      </div>
+
+      <div class="drive-banner">
+        <div class="drive-banner-left">
+          <div class="drive-icon">🚗</div>
+          <div>
+            <div class="drive-time" style="color:var(--green)">11 min</div>
+            <div class="drive-label">to daughter's school &nbsp;·&nbsp; <strong style="color:var(--green)">Great commute</strong></div>
+            <div class="drive-school">6923 Stow Rd, Hudson OH 44236</div>
+          </div>
+        </div>
+        <div class="drive-score-pill drive-fast">Location Score: 7/10</div>
+      </div>
+
+      <div class="dcard-body">
+        <div class="scores-section">
+          <h4>Scorecard</h4>
+          <div class="score-rows">
+            <div class="srow">
+              <div class="srow-lbl">Price</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">5</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Drive Time</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:70%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">7</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bedrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-red" style="width:40%"></div></div>
+              <div class="srow-val" style="color:var(--red)">4</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Bathrooms</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">5</div>
+            </div>
+            <div class="srow">
+              <div class="srow-lbl">Sq Footage</div>
+              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
+              <div class="srow-val" style="color:var(--gold)">5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h4>Listing Details</h4>
+          <div class="detail-grid">
+            <div class="ditem"><div class="ditem-lbl">Style</div><div class="ditem-val">2 stories</div></div>
+            <div class="ditem"><div class="ditem-lbl">Year Built</div><div class="ditem-val">1983</div></div>
+            <div class="ditem"><div class="ditem-lbl">Lot Size</div><div class="ditem-val">0.47 acres</div></div>
+            <div class="ditem"><div class="ditem-lbl">Garage</div><div class="ditem-val">2-car attached</div></div>
+            <div class="ditem"><div class="ditem-lbl">Basement</div><div class="ditem-val">Full, partially finished</div></div>
+            <div class="ditem"><div class="ditem-lbl">Heating / Cooling</div><div class="ditem-val">Forced Air / Central Air</div></div>
+            <div class="ditem"><div class="ditem-lbl">Roof</div><div class="ditem-val">Asphalt / Fiberglass</div></div>
+            <div class="ditem"><div class="ditem-lbl">Exterior</div><div class="ditem-val">Vinyl Siding</div></div>
+            <div class="ditem"><div class="ditem-lbl">Outdoor</div><div class="ditem-val">Patio</div></div>
+            <div class="ditem"><div class="ditem-lbl">HOA</div><div class="ditem-val">None</div></div>
+            <div class="ditem"><div class="ditem-lbl">Annual Tax</div><div class="ditem-val">$5,901/yr ($492/mo)</div></div>
+            <div class="ditem warn full">
+              <div class="ditem-lbl">Days on Market — Caution</div>
+              <div class="ditem-val">217 days — relisted multiple times, market has rejected higher prices</div>
+            </div>
+            <div class="ditem full"><div class="ditem-lbl">Price History</div><div class="ditem-val">$350,000 → $340,000 → $330,000 &nbsp;(2 cuts, −$20,000 · relisted)</div></div>
+            <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
+              <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard</div>
+              <div class="ditem-val">~$1,872/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I $1,280 + Tax $492 + Insurance $100 · No PMI</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ($16,500) · recast with $100K → $213,500 loan · 6.00% 30yr · LTV 65% · ~6 yrs payoff · ~$43K interest</div>
+            </div>
+            <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast</div>
+              <div class="ditem-val" style="color:#1a5c40">~$1,572/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I $980 + Tax $492 + Insurance $100</span></div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">$163,500 loan · LTV 50% · With $30K Dec bonus → ~5 yrs payoff · ~$28K interest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <div class="pc-h pro">Pros</div>
+          <div class="pc-item pro">Hudson school district — highly rated</div>
+          <div class="pc-item pro">Great commute at 11 min</div>
+          <div class="pc-item pro">Partially finished basement adds usable space</div>
+          <div class="pc-item pro">Large lot at 0.47 acres</div>
+          <div class="pc-item pro">2-car attached garage</div>
+          <div class="pc-item pro">217 DOM means the seller is likely very motivated — offer low</div>
+        </div>
+        <div>
+          <div class="pc-h con">Watch Out For</div>
+          <div class="pc-item con">$330,000 — most expensive home reviewed, over $300K budget</div>
+          <div class="pc-item con">Highest $/sqft at $218 — least value for money</div>
+          <div class="pc-item con">$1,872/mo standard payment — second highest reviewed</div>
+          <div class="pc-item con">$5,901/yr tax — second highest reviewed</div>
+          <div class="pc-item con">3 beds, 1.5 baths, 1,514 sqft — misses all three targets</div>
+          <div class="pc-item con">217 days on market — market has spoken at $350K and $340K</div>
+        </div>
+      </div>
+
+      <div class="notes-box">
+        <div class="notes-box-h">Key Note</div>
+        <p>The Hudson location and school district are genuine positives, but this home asks the most while delivering the least — over budget, smallest finished sqft, highest $/sqft, and 217 days on market. The market has already said no at $350K and $340K. If the Hudson location is a firm priority, the long DOM is leverage: a significant offer below $310K may be worth testing.</p>
+      </div>
+    </div><!-- end home-8 -->
+
+  </div><!-- end detail-cards -->
+
+  <!-- COMPARE TABLE -->
+  <div class="sec-label" style="margin-top:52px">Score Breakdown</div>
+  <div class="compare-wrap">
+    <table class="ctable">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Wt</th>
+          <th>#1 Fishcreek</th>
+          <th>#2 Ogilby</th>
+          <th>#3 Lovers Ln</th>
+          <th>#4 Oak Hill</th>
+          <th>#5 Beaver Trl</th>
+          <th>#6 Briar</th>
+          <th>#7 Charring Cross</th>
+          <th>#8 Sapphire</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>List Price</td><td>—</td>
+          <td>$244,500</td><td>$375,000</td><td>$249,900</td><td>$250,000</td>
+          <td>$275,900</td><td>$274,800</td><td>$219,900</td><td>$330,000</td>
+        </tr>
+        <tr>
+          <td>Price / Sq Ft</td><td>—</td>
+          <td>$147</td><td>$186</td><td><strong>$130</strong></td><td>$159</td>
+          <td>$183</td><td>$150</td><td>$138</td><td>$218</td>
+        </tr>
+        <tr>
+          <td>Est. /mo (std)</td><td>—</td>
+          <td>~$1,288</td><td>~$2,072</td><td>~$1,270</td><td>~$1,334</td>
+          <td>~$1,439</td><td>~$1,684</td><td><strong>~$1,086</strong></td><td>~$1,872</td>
+        </tr>
+        <tr>
+          <td>Price Score</td><td>10</td>
+          <td><span class="chip chip-green">10/10</span></td>
+          <td><span class="chip chip-red">3/10</span></td>
+          <td><span class="chip chip-green">10/10</span></td>
+          <td><span class="chip chip-green">8/10</span></td>
+          <td><span class="chip chip-green">8/10</span></td>
+          <td><span class="chip chip-green">8/10</span></td>
+          <td><span class="chip chip-green">10/10</span></td>
+          <td><span class="chip chip-gold">5/10</span></td>
+        </tr>
+        <tr>
+          <td>Drive Time</td><td>10</td>
+          <td><span class="chip chip-gold">7/10 · 12 min</span></td>
+          <td><span class="chip chip-green">10/10 · 9 min</span></td>
+          <td><span class="chip chip-red">3/10 · 24 min</span></td>
+          <td><span class="chip chip-gold">5/10 · 17 min</span></td>
+          <td><span class="chip chip-gold">7/10 · 15 min</span></td>
+          <td><span class="chip chip-gold">7/10 · 12 min</span></td>
+          <td><span class="chip chip-gold">7/10 · 14 min</span></td>
+          <td><span class="chip chip-gold">7/10 · 11 min</span></td>
+        </tr>
+        <tr>
+          <td>Bedrooms</td><td>8</td>
+          <td><span class="chip chip-gold">7/10 · 4 bed</span></td>
+          <td><span class="chip chip-gold">7/10 · 4 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+        </tr>
+        <tr>
+          <td>Bathrooms</td><td>7</td>
+          <td><span class="chip chip-gold">7/10 · 2 ba</span></td>
+          <td><span class="chip chip-green">9/10 · 2.5 ba</span></td>
+          <td><span class="chip chip-gold">7/10 · 2 ba</span></td>
+          <td><span class="chip chip-green">9/10 · 2.5 ba</span></td>
+          <td><span class="chip chip-gold">5/10 · 1.5 ba</span></td>
+          <td><span class="chip chip-red">1/10 · 1 ba</span></td>
+          <td><span class="chip chip-red">1/10 · 1 ba</span></td>
+          <td><span class="chip chip-gold">5/10 · 1.5 ba</span></td>
+        </tr>
+        <tr>
+          <td>Sq Footage</td><td>6</td>
+          <td><span class="chip chip-gold">7/10 · 1,666</span></td>
+          <td><span class="chip chip-green">10/10 · 2,016</span></td>
+          <td><span class="chip chip-green">9/10 · 1,924</span></td>
+          <td><span class="chip chip-gold">5/10 · 1,568</span></td>
+          <td><span class="chip chip-gold">5/10 · 1,506</span></td>
+          <td><span class="chip chip-green">9/10 · 1,836</span></td>
+          <td><span class="chip chip-gold">5/10 · 1,591</span></td>
+          <td><span class="chip chip-gold">5/10 · 1,514</span></td>
+        </tr>
+        <tr>
+          <td>Annual Tax</td><td>—</td>
+          <td>$4,735</td><td>$5,235</td><td>$4,169</td><td>$4,920</td>
+          <td><strong>$3,751</strong></td>
+          <td style="color:var(--red);font-weight:700">$7,427 !</td>
+          <td>$4,000</td><td>$5,901</td>
+        </tr>
+        <tr>
+          <td colspan="2"><strong>Overall Score</strong></td>
+          <td><strong style="color:var(--blue)">77% — Good</strong></td>
+          <td><strong style="color:var(--blue)">75% — Good</strong></td>
+          <td><strong style="color:var(--gold)">65% — Fair</strong></td>
+          <td><strong style="color:var(--gold)">62% — Fair</strong></td>
+          <td><strong style="color:var(--gold)">60% — Fair</strong></td>
+          <td><strong style="color:var(--red)">59% — Below</strong></td>
+          <td><strong style="color:var(--red)">58% — Below</strong></td>
+          <td><strong style="color:var(--red)">53% — Below</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <!-- COMPARE TABLE -->
+  <div class="sec-label" style="margin-top:52px">Score Breakdown</div>
+  <div class="compare-wrap">
+    <table class="ctable">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Wt</th>
+          <th>#1 Fishcreek</th>
+          <th>#2 Ogilby</th>
+          <th>#3 Lovers Ln</th>
+          <th>#4 Oak Hill</th>
+          <th>#5 Beaver Trl</th>
+          <th>#6 Briar</th>
+          <th>#7 Charring Cross</th>
+          <th>#8 Sapphire</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>List Price</td><td>—</td>
+          <td>$244,500</td><td>$375,000</td><td>$249,900</td><td>$250,000</td>
+          <td>$275,900</td><td>$274,800</td><td>$219,900</td><td>$330,000</td>
+        </tr>
+        <tr>
+          <td>Price / Sq Ft</td><td>—</td>
+          <td>$147</td><td>$186</td><td><strong>$130</strong></td><td>$159</td>
+          <td>$183</td><td>$150</td><td>$138</td><td>$218</td>
+        </tr>
+        <tr>
+          <td>Est. /mo (std)</td><td>—</td>
+          <td>~$1,288</td><td>~$2,072</td><td>~$1,270</td><td>~$1,334</td>
+          <td>~$1,439</td><td>~$1,684</td><td><strong>~$1,086</strong></td><td>~$1,872</td>
+        </tr>
+        <tr>
+          <td>Price Score</td><td>10</td>
+          <td><span class="chip chip-green">10/10</span></td>
+          <td><span class="chip chip-red">3/10</span></td>
+          <td><span class="chip chip-green">10/10</span></td>
+          <td><span class="chip chip-green">8/10</span></td>
+          <td><span class="chip chip-green">8/10</span></td>
+          <td><span class="chip chip-green">8/10</span></td>
+          <td><span class="chip chip-green">10/10</span></td>
+          <td><span class="chip chip-gold">5/10</span></td>
+        </tr>
+        <tr>
+          <td>Drive Time</td><td>10</td>
+          <td><span class="chip chip-gold">7/10 · 12 min</span></td>
+          <td><span class="chip chip-green">10/10 · 9 min</span></td>
+          <td><span class="chip chip-red">3/10 · 24 min</span></td>
+          <td><span class="chip chip-gold">5/10 · 17 min</span></td>
+          <td><span class="chip chip-gold">7/10 · 15 min</span></td>
+          <td><span class="chip chip-gold">7/10 · 12 min</span></td>
+          <td><span class="chip chip-gold">7/10 · 14 min</span></td>
+          <td><span class="chip chip-gold">7/10 · 11 min</span></td>
+        </tr>
+        <tr>
+          <td>Bedrooms</td><td>8</td>
+          <td><span class="chip chip-gold">7/10 · 4 bed</span></td>
+          <td><span class="chip chip-gold">7/10 · 4 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+          <td><span class="chip chip-red">4/10 · 3 bed</span></td>
+        </tr>
+        <tr>
+          <td>Bathrooms</td><td>7</td>
+          <td><span class="chip chip-gold">7/10 · 2 ba</span></td>
+          <td><span class="chip chip-green">9/10 · 2.5 ba</span></td>
+          <td><span class="chip chip-gold">7/10 · 2 ba</span></td>
+          <td><span class="chip chip-green">9/10 · 2.5 ba</span></td>
+          <td><span class="chip chip-gold">5/10 · 1.5 ba</span></td>
+          <td><span class="chip chip-red">1/10 · 1 ba</span></td>
+          <td><span class="chip chip-red">1/10 · 1 ba</span></td>
+          <td><span class="chip chip-gold">5/10 · 1.5 ba</span></td>
+        </tr>
+        <tr>
+          <td>Sq Footage</td><td>6</td>
+          <td><span class="chip chip-gold">7/10 · 1,666</span></td>
+          <td><span class="chip chip-green">10/10 · 2,016</span></td>
+          <td><span class="chip chip-green">9/10 · 1,924</span></td>
+          <td><span class="chip chip-gold">5/10 · 1,568</span></td>
+          <td><span class="chip chip-gold">5/10 · 1,506</span></td>
+          <td><span class="chip chip-green">9/10 · 1,836</span></td>
+          <td><span class="chip chip-gold">5/10 · 1,591</span></td>
+          <td><span class="chip chip-gold">5/10 · 1,514</span></td>
+        </tr>
+        <tr>
+          <td>Annual Tax</td><td>—</td>
+          <td>$4,735</td><td>$5,235</td><td>$4,169</td><td>$4,920</td>
+          <td><strong>$3,751</strong></td>
+          <td style="color:var(--red);font-weight:700">$7,427 !</td>
+          <td>$4,000</td><td>$5,901</td>
+        </tr>
+        <tr>
+          <td colspan="2"><strong>Overall Score</strong></td>
+          <td><strong style="color:var(--blue)">77% — Good</strong></td>
+          <td><strong style="color:var(--blue)">75% — Good</strong></td>
+          <td><strong style="color:var(--gold)">65% — Fair</strong></td>
+          <td><strong style="color:var(--gold)">62% — Fair</strong></td>
+          <td><strong style="color:var(--gold)">60% — Fair</strong></td>
+          <td><strong style="color:var(--red)">59% — Below</strong></td>
+          <td><strong style="color:var(--red)">58% — Below</strong></td>
+          <td><strong style="color:var(--red)">53% — Below</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<div class="ftr">
+  <div>Our Home Search · Ohio 2026 · <strong>8 homes reviewed</strong></div>
+  <div>Target: $300K · 4 bed · 1,800 sqft · &le;15 min to school</div>
+</div>
+
+</body>
+</html>
