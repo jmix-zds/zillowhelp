@@ -6,7 +6,7 @@ A single-page home comparison tool built to help our family evaluate and rank ho
 
 The page scores and ranks candidate homes based on five weighted categories, then presents each home with full listing details, financial projections, pros/cons, and a side-by-side comparison table.
 
-**Live page:** `https://[username].github.io/zillowhelp/home-search_5.html`
+**Live page:** `https://[username].github.io/zillowhelp/`
 
 ---
 
@@ -58,7 +58,7 @@ total = monthly_PI + (annual_tax / 12) + $100 insurance [+ HOA if applicable]
    ```
    1234 Example St, City, OH 44XXX - XX minutes
    ```
-5. Open a Claude Code session in this repo and say: *"Parse [filename].html and add it to home-search_5.html"*
+5. Open a Claude Code session in this repo and say: *"Parse [filename].html and add it to index.html"*
 
 Claude will extract all property data from the Redfin HTML (price, beds, baths, sqft, tax, HOA, basement, heating, roof, price history, etc.), calculate the score, calculate all three payment scenarios, and insert the full card into the page.
 
@@ -71,11 +71,11 @@ Claude will extract all property data from the Redfin HTML (price, beds, baths, 
 ## Project Structure
 
 ```
-home-search_5.html   — The entire page: CSS, HTML, and data in one file
+index.html   — The entire page: CSS, HTML, and data in one file
 README.md            — This file
 ```
 
-All CSS and content lives in `home-search_5.html` — no build step, no dependencies beyond Google Fonts. It opens directly in a browser or serves from GitHub Pages as-is.
+All CSS and content lives in `index.html` — no build step, no dependencies beyond Google Fonts. It opens directly in a browser or serves from GitHub Pages as-is.
 
 ---
 
