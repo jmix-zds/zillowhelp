@@ -283,7 +283,7 @@ def extract_comps(html):
         beds_m   = re.search(r'(\d+)\s*beds?', content, re.IGNORECASE)
         baths_m  = re.search(r'([\d.]+)\s*baths?', content, re.IGNORECASE)
         sqft_m   = re.search(r'([\d,]+)\s*sq\s*ft', content, re.IGNORECASE)
-        addr_m   = re.search(r'(\d+\s+\w[^,]+,\s+\w[^,]+,\s+OH\s+\d+)', content)
+        addr_m   = re.search(r'(\d+\s+(?!sq\b)(?!\d)[A-Za-z][^,]+,\s+[A-Za-z][^,]+,\s+OH\s+\d+)', content, re.IGNORECASE)
 
         price = int(price_m.group(1).replace(',', '')) if price_m else 0
         beds  = int(beds_m.group(1)) if beds_m else 0
