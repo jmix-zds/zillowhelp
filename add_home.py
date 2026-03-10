@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
-add_home.py — Parse saved Redfin HTML files and generate home cards for index.html
+add_home.py — Parse a saved Redfin HTML file and generate a home card for index.html
 
 Usage:
-    python3 add_home.py                          # scan ~/Documents/Househunting/*.html
-    python3 add_home.py path/to/redfin.html      # single file
-    python3 add_home.py path/to/redfin.html --commute 14
+    python3 add_home.py "path/to/redfin_save.html"
+    python3 add_home.py "path/to/redfin_save.html" --commute 14
 
-Commute times are read from ~/Documents/Househunting/traveltime.txt automatically.
-Output is printed to stdout — review it, then hand to Claude to insert into index.html.
+If --commute is omitted, the script reads from ~/Documents/Househunting/traveltime.txt.
+Output is printed to stdout so you can review it, then paste into index.html.
 """
 
 import re
@@ -16,28 +15,8 @@ import sys
 import os
 import argparse
 import math
-import glob
 
-HOUSEHUNTING_DIR  = os.path.expanduser("~/Documents/Househunting")
-TRAVELTIME_FILE   = os.path.join(HOUSEHUNTING_DIR, "traveltime.txt")
-
-
-# ---------------------------------------------------------------------------
-# Address parser
-# ---------------------------------------------------------------------------
-
-def parse_address(title):
-    """Return (street_addr, city_state_zip) from a Redfin page title."""
-    # Strip everything from " - " onward: "4866 Lovers Ln, Ravenna, OH 44266 - 3 Bed..."
-    clean = re.sub(r'\s*[-–|]\s.*$', '', title).strip()
-    # Match "123 Street, City, OH 12345"
-    m = re.match(r'^(.+?),\s+([^,]+,\s*OH\s*\d+)$', clean)
-    if m:
-        return m.group(1).strip(), m.group(2).strip()
-    # Fallback: first comma split
-    parts = clean.split(',', 1)
-    return parts[0].strip(), (parts[1].strip() if len(parts) > 1 else '')
-
+TRAVELTIME_FILE = os.path.expanduser("~/Documents/Househunting/traveltime.txt")
 
 # ---------------------------------------------------------------------------
 # Scoring
@@ -88,79 +67,44 @@ def calc_score(price, drive, beds, baths, sqft):
     return round(pct), sp, sd, sb, sba, ss
 
 def score_grade(pct):
-    if pct >= 80: return "score-a", "var(--green)", "Strong Match"
+    if pct >= 70: return "score-b", "var(--blue)",  "Good Match"
     if pct >= 60: return "score-c", "var(--gold)",  "Fair Match"
     return        "score-d", "var(--red)",   "Below Target"
-
 
 # ---------------------------------------------------------------------------
 # Financial model
 # ---------------------------------------------------------------------------
 
 def monthly_pi(loan, annual_rate=0.06, years=30):
-    if loan <= 0:
-        return 0.0
     r = annual_rate / 12
     n = years * 12
     return loan * r / (1 - (1 + r) ** -n)
 
-def simulate_payoff(loan, annual_rate=0.06, monthly_base=None, annual_bonus=30_000):
-    """Simulate payoff applying monthly P&I + $30K December bonus each year.
-    Returns (years_to_payoff, total_interest_paid)."""
-    if loan <= 0:
-        return 0.0, 0
-    if monthly_base is None:
-        monthly_base = monthly_pi(loan, annual_rate)
-    balance       = float(loan)
-    total_interest = 0.0
-    month         = 0
-    while balance > 0 and month < 360:
-        month += 1
-        interest       = balance * (annual_rate / 12)
-        total_interest += interest
-        principal      = monthly_base - interest
-        balance       -= principal
-        if balance <= 0:
-            break
-        if month % 12 == 0:          # December bonus
-            balance -= annual_bonus
-            if balance <= 0:
-                break
-    return round(month / 12, 1), round(total_interest)
-
 def calc_payments(price, tax_annual, hoa_monthly=0):
-    # --- Standard: 5% down + $100K recast ---
-    down_std     = price * 0.05
-    loan_std     = price - down_std - 100_000
-    loan_std     = max(loan_std, 0)
-    pi_std       = monthly_pi(loan_std)
-    ltv_std      = loan_std / price * 100
+    down         = price * 0.05
+    initial_loan = price - down
 
-    # --- Best Case: $25K flat down + $180K recast ---
-    down_best    = 25_000
-    loan_best    = price - down_best - 180_000
-    loan_best    = max(loan_best, 0)
-    pi_best      = monthly_pi(loan_best)
-    ltv_best     = loan_best / price * 100
+    loan_std  = initial_loan - 100_000
+    loan_best = initial_loan - 150_000
 
-    mo_tax       = tax_annual / 12
-    insurance    = 100
+    pi_std  = monthly_pi(loan_std)
+    pi_best = monthly_pi(loan_best)
 
-    total_std    = pi_std  + mo_tax + insurance + hoa_monthly
-    total_best   = pi_best + mo_tax + insurance + hoa_monthly
+    mo_tax = tax_annual / 12
+    insurance = 100
 
-    payoff_std_yrs,  interest_std  = simulate_payoff(loan_std,  monthly_base=pi_std)
-    payoff_best_yrs, interest_best = simulate_payoff(loan_best, monthly_base=pi_best)
+    total_std  = pi_std  + mo_tax + insurance + hoa_monthly
+    total_best = pi_best + mo_tax + insurance + hoa_monthly
+
+    ltv_std  = loan_std  / price * 100
+    ltv_best = loan_best / price * 100
 
     return dict(
-        down_std=down_std,   down_best=down_best,
+        down=down, initial_loan=initial_loan,
         loan_std=loan_std,   pi_std=pi_std,   total_std=total_std,   ltv_std=ltv_std,
         loan_best=loan_best, pi_best=pi_best, total_best=total_best, ltv_best=ltv_best,
-        mo_tax=mo_tax,       hoa_monthly=hoa_monthly,
-        payoff_std_yrs=payoff_std_yrs,   interest_std=interest_std,
-        payoff_best_yrs=payoff_best_yrs, interest_best=interest_best,
+        mo_tax=mo_tax, hoa_monthly=hoa_monthly,
     )
-
 
 # ---------------------------------------------------------------------------
 # HTML parsing helpers
@@ -172,22 +116,37 @@ def li(html, key):
     m = re.search(pattern, html, re.IGNORECASE)
     if m:
         return m.group(1).strip()
+    # Broader fallback
     m2 = re.search(rf'{re.escape(key)}[:\s]+([^<\n]+)', html, re.IGNORECASE)
     return m2.group(1).strip() if m2 else None
 
 def parse_redfin(html):
     data = {}
 
-    # --- Title / Address ---
+    # --- Address & URL ---
     m = re.search(r'<title>([^<]+)</title>', html)
     data['title'] = m.group(1).strip() if m else ''
-    data['street'], data['city_zip'] = parse_address(data['title'])
 
-    # --- URL ---
     m = re.search(r'<meta property="og:url" content="([^"]+)"', html)
     if not m:
         m = re.search(r'<link rel="canonical" href="([^"]+)"', html)
     data['url'] = m.group(1) if m else ''
+
+    # --- Parse street address and city/zip from URL ---
+    # URL format: .../OH/Streetsboro/572-David-Dr-44241/home/...
+    addr_m = re.search(r'/OH/([^/]+)/([^/]+)/home/', data['url'])
+    if addr_m:
+        city_raw = addr_m.group(1).replace('-', ' ').title()
+        slug = addr_m.group(2)  # e.g. "572-David-Dr-44241"
+        zip_m = re.search(r'(\d{5})$', slug)
+        zip_code = zip_m.group(1) if zip_m else ''
+        street_slug = re.sub(r'-\d{5}$', '', slug)  # strip zip
+        street = re.sub(r'-', ' ', street_slug).title()
+        data['street'] = street
+        data['city_line'] = f"{city_raw}, OH {zip_code}"
+    else:
+        data['street'] = 'TODO: street address'
+        data['city_line'] = 'TODO: City, OH zip'
 
     # --- Price ---
     m = re.search(r'\$(\d[\d,]+)\s*(?:<[^>]+>)?\s*(?:List Price|listing price)', html, re.IGNORECASE)
@@ -204,6 +163,7 @@ def parse_redfin(html):
         data['baths'] = float(m.group(2))
         data['sqft']  = int(m.group(3).replace(',', ''))
     else:
+        # Fallback: search entryItems
         bm = re.search(r'Bedrooms?[:\s]+(\d+)', html, re.IGNORECASE)
         data['beds']  = int(bm.group(1)) if bm else 0
         bam = re.search(r'Bathrooms?[:\s]+([\d.]+)', html, re.IGNORECASE)
@@ -222,7 +182,7 @@ def parse_redfin(html):
     data['lot'] = raw if raw else '—'
 
     # --- Style / Stories ---
-    style   = li(html, 'Style')
+    style = li(html, 'Style')
     stories = li(html, 'Stories')
     if style and stories:
         data['style'] = f"{style} · {stories} stor{'y' if stories=='1' else 'ies'}"
@@ -231,8 +191,10 @@ def parse_redfin(html):
     else:
         data['style'] = '—'
 
-    # --- Roof / HVAC / Garage / Basement / Exterior / Outdoor ---
-    data['roof']     = li(html, 'Roof')     or '—'
+    # --- Roof ---
+    data['roof'] = li(html, 'Roof') or '—'
+
+    # --- Heating / Cooling ---
     heat = li(html, 'Heating')
     cool = li(html, 'Cooling')
     if heat and cool:
@@ -241,29 +203,31 @@ def parse_redfin(html):
         data['hvac'] = heat
     else:
         data['hvac'] = '—'
-    data['garage']   = li(html, 'Garage')   or '—'
+
+    # --- Garage ---
+    data['garage'] = li(html, 'Garage') or '—'
+
+    # --- Basement ---
     data['basement'] = li(html, 'Basement') or '—'
+
+    # --- Exterior ---
     data['exterior'] = li(html, 'Exterior') or '—'
-    data['outdoor']  = li(html, 'Outdoor')  or li(html, 'Patio') or '—'
+
+    # --- Outdoor / Patio ---
+    data['outdoor'] = li(html, 'Outdoor') or li(html, 'Patio') or '—'
 
     # --- Annual Tax ---
     m = re.search(r'Annual Tax Amount[:\s]+\$?([\d,]+)', html, re.IGNORECASE)
     if not m:
         m = re.search(r'Annual Tax[:\s]+\$?([\d,]+)', html, re.IGNORECASE)
     if not m:
-        # JSON: "taxesDue":2432.8
-        m = re.search(r'"taxesDue"[:\s]+([\d,]+(?:\.\d+)?)', html)
-    if not m:
         m = re.search(r'Tax[:\s]+\$?([\d,]+)\s*/\s*yr', html, re.IGNORECASE)
-    data['tax'] = int(float(m.group(1).replace(',', ''))) if m else 0
+    data['tax'] = int(m.group(1).replace(',', '')) if m else 0
 
-    # --- HOA --- (try JSON field first, then structured label)
-    m = re.search(r'monthlyHoaDues[\\\"]+\s*:+\s*(\d+)', html, re.IGNORECASE)
+    # --- HOA ---
+    m = re.search(r'HOA dues[^$]*\$(\d[\d,]*)', html, re.IGNORECASE)
     if not m:
-        m = re.search(r'"HOA Dues"[^"]*"[^"]*\$(\d[\d,]*)', html, re.IGNORECASE)
-    if not m:
-        # Tight match: "HOA dues" then within 40 chars a $NNN/mo pattern
-        m = re.search(r'HOA dues[^$\n]{0,40}\$(\d[\d,]*)\s*/\s*mo', html, re.IGNORECASE)
+        m = re.search(r'role="button">\$(\d[\d,]*)', html)
     data['hoa'] = int(m.group(1).replace(',', '')) if m else 0
 
     # --- Days on Market ---
@@ -272,15 +236,18 @@ def parse_redfin(html):
         m = re.search(r'cumulativeDaysOnMarket":\s*(\d+)', html)
     data['dom'] = int(m.group(1)) if m else 0
 
-    # --- Price History ---
+    # --- Price History (simple extraction) ---
     ph_entries = re.findall(
         r'(Listed|Price Change|Relisted|Sold|Pending)[^\$]*\$([\d,]+)',
         html, re.IGNORECASE
     )
-    data['price_history'] = ph_entries[:6]
+    data['price_history'] = ph_entries[:6]  # most recent 6
 
     # --- $/sqft ---
-    data['price_per_sqft'] = round(data['price'] / data['sqft']) if data['sqft'] else 0
+    if data['sqft']:
+        data['price_per_sqft'] = round(data['price'] / data['sqft'])
+    else:
+        data['price_per_sqft'] = 0
 
     return data
 
@@ -298,35 +265,38 @@ def extract_comps(html):
     section = re.sub(r'<svg[^>]*>.*?</svg>', '', section, flags=re.DOTALL)
     section = re.sub(r'<img[^>]*>', '', section)
     section = re.sub(r'<ul class="bp-Carousel[^"]*".*?</ul>', '', section, flags=re.DOTALL)
-    clean   = re.sub(r'<[^>]+>', ' ', section)
-    clean   = re.sub(r'&nbsp;', ' ', clean)
-    clean   = re.sub(r'\s+', ' ', clean).strip()
+    clean = re.sub(r'<[^>]+>', ' ', section)
+    clean = re.sub(r'&nbsp;', ' ', clean)
+    clean = re.sub(r'\s+', ' ', clean).strip()
 
-    range_m    = re.search(r'priced between (\$[\d,K]+) (?:to|and) (\$[\d,K]+)', clean, re.IGNORECASE)
+    # Redfin's stated range
+    range_m = re.search(r'priced between (\$[\d,K]+) (?:to|and) (\$[\d,K]+)', clean, re.IGNORECASE)
     comp_range = f"{range_m.group(1)} – {range_m.group(2)}" if range_m else ''
 
     comps = []
     parts = re.split(r'(SOLD \w+ \d+, \d+)', clean)
     for i in range(1, len(parts), 2):
-        date    = parts[i]
+        date = parts[i]
         content = parts[i+1] if i+1 < len(parts) else ''
 
-        price_m = re.search(r'\$([\d,]+)', content)
-        beds_m  = re.search(r'(\d+)\s*beds?', content, re.IGNORECASE)
-        baths_m = re.search(r'([\d.]+)\s*baths?', content, re.IGNORECASE)
-        sqft_m  = re.search(r'([\d,]+)\s*sq\s*ft', content, re.IGNORECASE)
-        addr_m  = re.search(r'(\d+\s+\w[^,]+,\s+\w[^,]+,\s+OH\s+\d+)', content)
+        price_m  = re.search(r'\$([\d,]+)', content)
+        beds_m   = re.search(r'(\d+)\s*beds?', content, re.IGNORECASE)
+        baths_m  = re.search(r'([\d.]+)\s*baths?', content, re.IGNORECASE)
+        sqft_m   = re.search(r'([\d,]+)\s*sq\s*ft', content, re.IGNORECASE)
+        addr_m   = re.search(r'(\d+\s+\w[^,]+,\s+\w[^,]+,\s+OH\s+\d+)', content)
 
-        price    = int(price_m.group(1).replace(',', '')) if price_m else 0
-        beds     = int(beds_m.group(1)) if beds_m else 0
-        baths    = float(baths_m.group(1)) if baths_m else 0
+        price = int(price_m.group(1).replace(',', '')) if price_m else 0
+        beds  = int(beds_m.group(1)) if beds_m else 0
+        baths = float(baths_m.group(1)) if baths_m else 0
         sqft_raw = sqft_m.group(1).replace(',', '') if sqft_m else '0'
-        sqft     = int(sqft_raw) if sqft_raw != '0' else 0
-        addr     = addr_m.group(1).strip() if addr_m else content[:60].strip()
-        ppsf     = round(price / sqft) if sqft else 0
+        sqft  = int(sqft_raw) if sqft_raw != '0' else 0
+        addr  = addr_m.group(1).strip() if addr_m else content[:60].strip()
 
+        ppsf = round(price / sqft) if sqft else 0
+
+        # Notes: grab first descriptive fragment after the address
         notes_m = re.search(r'(?:larger|smaller|newer|older|basement)[^\.\n]{0,80}', content, re.IGNORECASE)
-        notes   = notes_m.group(0).strip() if notes_m else ''
+        notes = notes_m.group(0).strip() if notes_m else ''
 
         comps.append(dict(date=date, price=price, beds=beds, baths=baths,
                           sqft=sqft, ppsf=ppsf, addr=addr, notes=notes))
@@ -392,11 +362,9 @@ def bar_text_color(val, max_val):
 # ---------------------------------------------------------------------------
 
 def payment_color(total):
-    if total <= 1400:  return '', ''
-    if total <= 1800:  return (' style="border-color:rgba(201,151,58,.4);background:rgba(201,151,58,.1)"',
-                                ' style="color:var(--gold2)"')
-    return                    (' style="border-color:rgba(192,57,43,.4);background:rgba(192,57,43,.1)"',
-                                ' style="color:#e57373"')
+    if total <= 1400:  return ""
+    if total <= 1800:  return ' style="border-color:rgba(201,151,58,.4);background:rgba(201,151,58,.1)"', ' style="color:var(--gold2)"'
+    return                    ' style="border-color:rgba(192,57,43,.4);background:rgba(192,57,43,.1)"',  ' style="color:#e57373"'
 
 
 # ---------------------------------------------------------------------------
@@ -417,42 +385,172 @@ def fmt_price_history(entries):
 # ---------------------------------------------------------------------------
 
 def fmt(n):
+    """Format number with commas."""
     return f"{n:,}"
 
 def fmtd(n):
+    """Format dollar amount."""
     return f"${n:,}"
+
+def generate_pros_cons(d, drive_minutes, fin):
+    """Auto-generate pros and cons HTML items from parsed data."""
+    pros = []
+    cons = []
+    price = d['price']
+    beds  = d['beds']
+    baths = d['baths']
+    sqft  = d['sqft']
+    year  = int(d['year']) if str(d['year']).isdigit() else 0
+    dom   = d['dom']
+    hoa   = d['hoa']
+    tax   = d['tax']
+    lot_raw = str(d.get('lot', '—'))
+    garage  = str(d.get('garage', '—'))
+    basement = str(d.get('basement', '—')).lower()
+
+    # --- PROS ---
+    if price <= 250000:
+        pros.append(f"In budget at ${price:,}")
+    elif price <= 300000:
+        pros.append(f"Reasonably priced at ${price:,} — within target range")
+
+    if drive_minutes <= 10:
+        pros.append(f"{drive_minutes} min commute — excellent, exceeds target")
+    elif drive_minutes <= 15:
+        pros.append(f"{drive_minutes} min commute — well within 15-min target")
+
+    if beds >= 4:
+        pros.append(f"{beds} bedrooms — hits the family target")
+
+    if baths >= 2.5:
+        pros.append(f"{baths:.1g} baths — great for a family of 4")
+    elif baths == 2.0:
+        pros.append("2 full baths — meets minimum comfort threshold")
+
+    if sqft >= 1800:
+        pros.append(f"Spacious at {sqft:,} sqft — above target")
+    elif sqft >= 1600:
+        pros.append(f"{sqft:,} sqft — close to 1,800 target")
+
+    if hoa == 0:
+        pros.append("No HOA — no monthly association fees")
+
+    if garage and garage not in ('—', 'None', '0'):
+        pros.append(f"{garage}-car garage")
+
+    # Lot size
+    lot_m = re.search(r'([\d.]+)', lot_raw)
+    if lot_m:
+        lot_acres = float(lot_m.group(1))
+        if lot_acres >= 0.5:
+            pros.append(f"Large lot at {lot_acres} acres — good outdoor space")
+
+    if dom <= 7:
+        pros.append("Just listed — fresh to market, no stale history")
+    elif dom <= 30:
+        pros.append(f"Only {dom} days on market — moving quickly")
+
+    if fin['total_best'] < 1200:
+        pros.append(f"Best-case payment of ~${round(fin['total_best']):,}/mo — very affordable")
+
+    # --- CONS ---
+    if price > 350000:
+        cons.append(f"Over budget at ${price:,} — significantly above $300K target")
+    elif price > 300000:
+        cons.append(f"Over budget at ${price:,} — above $300K target")
+
+    if drive_minutes > 20:
+        cons.append(f"{drive_minutes} min commute — well beyond 15-min target")
+    elif drive_minutes > 15:
+        cons.append(f"{drive_minutes} min commute — exceeds 15-min target")
+
+    if beds < 3:
+        cons.append(f"Only {beds} bedrooms — significantly below target of 4")
+    elif beds == 3:
+        cons.append("3 bedrooms — one short of 4-bed target")
+
+    if baths < 1.5:
+        cons.append(f"{baths:.1g} bathroom{'s' if baths != 1 else ''} — significant concern for a family of 4")
+    elif baths == 1.5:
+        cons.append("1.5 baths — only one full bath for daily use")
+
+    if sqft > 0 and sqft < 1400:
+        cons.append(f"Only {sqft:,} sqft — well below 1,800 sqft target")
+    elif sqft > 0 and sqft < 1600:
+        cons.append(f"{sqft:,} sqft — below 1,800 sqft target")
+
+    if year and year < 1970:
+        cons.append(f"{year} build — expect aging mechanicals and systems")
+    elif year and year < 1990:
+        cons.append(f"{year} build — may need updates to systems/finishes")
+
+    if hoa > 0:
+        cons.append(f"HOA ${hoa:,}/mo adds ${hoa*12:,}/yr to cost of ownership")
+
+    if tax > 6000:
+        cons.append(f"High annual tax at ${tax:,}/yr (${round(tax/12):,}/mo)")
+    elif tax > 4000:
+        cons.append(f"Annual tax of ${tax:,}/yr (${round(tax/12):,}/mo) — worth factoring in")
+
+    if dom > 90:
+        cons.append(f"{dom} days on market — investigate why it hasn't sold")
+    elif dom > 60:
+        cons.append(f"{dom} days on market — worth asking why")
+
+    if basement in ('—', 'none', 'sump pump', 'sump pump only'):
+        cons.append("No finished basement — limited storm shelter / storage")
+
+    # Format as HTML
+    def pro_item(text):
+        return f'          <div class="pc-item pro">{text}</div>'
+    def con_item(text):
+        return f'          <div class="pc-item con">{text}</div>'
+
+    pros_html = '\n'.join(pro_item(p) for p in pros) if pros else pro_item('—')
+    cons_html = '\n'.join(con_item(c) for c in cons) if cons else con_item('—')
+    return pros_html, cons_html
+
 
 def generate_card(data, drive_minutes, rank, home_id):
     d = data
     pct, sp, sd, sb, sba, ss = calc_score(d['price'], drive_minutes, d['beds'], d['baths'], d['sqft'])
     fin = calc_payments(d['price'], d['tax'], d['hoa'])
     comps, comp_range = extract_comps(d['_html'])
+    pros_html, cons_html = generate_pros_cons(d, drive_minutes, fin)
 
     grade_cls, grade_color, grade_word = score_grade(pct)
-    dl, dc  = drive_label(drive_minutes)
+    dl, dc = drive_label(drive_minutes)
     ds_label, ds_cls = drive_score_label(drive_minutes)
 
-    ppsf          = d['price_per_sqft']
+    ppsf = d['price_per_sqft']
     baths_display = f"{d['baths']:.1g}" if d['baths'] != int(d['baths']) else str(int(d['baths']))
-    street        = d['street']
-    city_zip      = d['city_zip']
 
-    hfact_style, val_style = payment_color(fin['total_std'])
-    hoa_line  = f" + HOA ${fmt(d['hoa'])}" if d['hoa'] else ''
-    no_pmi    = " · No PMI" if fin['ltv_std'] <= 80 else ''
+    # Payment display
+    pay_color = payment_color(fin['total_std'])
+    if isinstance(pay_color, tuple):
+        hfact_style, val_style = pay_color
+    else:
+        hfact_style, val_style = '', ''
 
+    hoa_line = f" + HOA ${fmt(d['hoa'])}" if d['hoa'] else ''
+    no_pmi   = " · No PMI" if fin['ltv_std'] <= 80 else ''
+
+    # Score bar widths (out of max possible per category)
     bar_w = {
-        'price': f"{sp/10*100:.0f}%",
-        'drive': f"{sd/10*100:.0f}%",
-        'beds':  f"{sb/7*100:.0f}%",
-        'baths': f"{sba/9*100:.0f}%",
-        'sqft':  f"{ss/10*100:.0f}%",
+        'price':  f"{sp/10*100:.0f}%",
+        'drive':  f"{sd/10*100:.0f}%",
+        'beds':   f"{sb/7*100:.0f}%",
+        'baths':  f"{sba/9*100:.0f}%",
+        'sqft':   f"{ss/10*100:.0f}%",
     }
 
-    ph      = fmt_price_history(d['price_history'])
-    tax_mo  = round(d['tax'] / 12)
+    ph = fmt_price_history(d['price_history'])
+    tax_mo = round(d['tax'] / 12)
+
+    # HOA display
     hoa_display = fmtd(d['hoa']) + '/mo' if d['hoa'] else 'None'
 
+    # DOM display
     dom = d['dom']
     if dom == 0 or dom == 1:
         dom_display = "1 — Just listed"
@@ -463,24 +561,17 @@ def generate_card(data, drive_minutes, rank, home_id):
     else:
         dom_display = f"{dom} — investigate"
 
-    # Payoff display
-    def payoff_str(yrs, interest):
-        yrs_label = f"~{yrs:.0f} yr" if yrs == int(yrs) else f"~{yrs} yrs"
-        return f"{yrs_label} payoff · ~{fmtd(interest)} interest"
-
-    std_payoff  = payoff_str(fin['payoff_std_yrs'],  fin['interest_std'])
-    best_payoff = payoff_str(fin['payoff_best_yrs'], fin['interest_best'])
-
-    comps_html = _comps_html(comps, comp_range, d, ppsf, street)
+    # Comps table
+    comps_html = _comps_html(comps, comp_range, d, ppsf)
 
     card = f"""
-    <!-- HOME {rank} · {street.upper()} -->
+    <!-- HOME {rank} · {d['title'][:40].upper()} -->
     <div class="dcard" id="home-{home_id}">
       <div class="dcard-hero">
         <div class="dcard-hero-left">
           <div class="dcard-rank-badge" style="background:var(--ink3)">#{rank} Ranked</div>
-          <div class="dcard-addr">{street}</div>
-          <div class="dcard-city">{city_zip}</div>
+          <div class="dcard-addr">{d['street']}</div>
+          <div class="dcard-city">{d['city_line']}</div>
           <a class="dcard-url" href="{d['url']}" target="_blank">View on Redfin ↗</a>
           <div class="dcard-hero-facts">
             <div class="hfact"><div class="hfact-val">{fmtd(d['price'])}</div><div class="hfact-lbl">List Price</div></div>
@@ -541,22 +632,6 @@ def generate_card(data, drive_minutes, rank, home_id):
               <div class="srow-track"><div class="srow-fill {bar_color(ss,10)}" style="width:{bar_w['sqft']}"></div></div>
               <div class="srow-val" style="color:{bar_text_color(ss,10)}">{ss}</div>
             </div>
-            <div class="srow-divider">Personal Assessment</div>
-            <div class="srow">
-              <div class="srow-lbl">Condition</div>
-              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
-              <div class="srow-val" style="color:var(--gold)">—</div>
-            </div>
-            <div class="srow">
-              <div class="srow-lbl">Potential</div>
-              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
-              <div class="srow-val" style="color:var(--gold)">—</div>
-            </div>
-            <div class="srow">
-              <div class="srow-lbl">Gut Feel</div>
-              <div class="srow-track"><div class="srow-fill fill-gold" style="width:50%"></div></div>
-              <div class="srow-val" style="color:var(--gold)">—</div>
-            </div>
           </div>
         </div>
 
@@ -579,12 +654,12 @@ def generate_card(data, drive_minutes, rank, home_id):
             <div class="ditem full" style="background:var(--gold-light);border:1px solid var(--gold)">
               <div class="ditem-lbl" style="color:var(--gold)">Est. Monthly Payment · Standard</div>
               <div class="ditem-val">~{fmtd(round(fin['total_std']))}/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">P&amp;I {fmtd(round(fin['pi_std']))} + Tax {fmtd(tax_mo)} + Insurance $100{hoa_line}{no_pmi}</span></div>
-              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ({fmtd(round(fin['down_std']))}) · recast with $100K → {fmtd(round(fin['loan_std']))} loan · 6.00% 30yr · LTV {fin['ltv_std']:.0f}% · {std_payoff}</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">5% down ({fmtd(round(fin['down']))}) · recast with $100K → {fmtd(round(fin['loan_std']))} loan · 6.00% 30yr · LTV {fin['ltv_std']:.0f}%</div>
             </div>
             <div class="ditem full" style="background:#e8f5e9;border:1px solid #2d7a5a;border-left:4px solid #2d7a5a">
-              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $25K down + $180K recast</div>
+              <div class="ditem-lbl" style="color:#1a5c40">Best Case · $150K recast</div>
               <div class="ditem-val" style="color:#1a5c40">~{fmtd(round(fin['total_best']))}/mo &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px;color:var(--ink3)">P&amp;I {fmtd(round(fin['pi_best']))} + Tax {fmtd(tax_mo)} + Insurance $100{hoa_line}</span></div>
-              <div style="font-size:11px;color:var(--ink3);margin-top:3px">{fmtd(round(fin['loan_best']))} loan · LTV {fin['ltv_best']:.0f}% · {best_payoff}</div>
+              <div style="font-size:11px;color:var(--ink3);margin-top:3px">{fmtd(round(fin['loan_best']))} loan · LTV {fin['ltv_best']:.0f}%</div>
             </div>
           </div>
         </div>
@@ -593,13 +668,11 @@ def generate_card(data, drive_minutes, rank, home_id):
       <div class="pros-cons">
         <div>
           <div class="pc-h pro">Pros</div>
-          <!-- TODO: add pros -->
-          <div class="pc-item pro">TODO</div>
+{pros_html}
         </div>
         <div>
           <div class="pc-h con">Watch Out For</div>
-          <!-- TODO: add cons -->
-          <div class="pc-item con">TODO</div>
+{cons_html}
         </div>
       </div>
 
@@ -613,20 +686,21 @@ def generate_card(data, drive_minutes, rank, home_id):
     return card, pct, fin
 
 
-def _comps_html(comps, comp_range, data, ppsf, street=''):
+def _comps_html(comps, comp_range, data, ppsf):
     if not comps:
         return ''
 
+    rows = []
+    # Subject row
     baths_display = f"{data['baths']:.1g}" if data['baths'] != int(data['baths']) else str(int(data['baths']))
-    subj_addr = street or 'This home'
-    rows = [f"""            <tr class="ct-subj">
-              <td><strong>{subj_addr}</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
+    rows.append(f"""            <tr class="ct-subj">
+              <td><strong>{data['street']}</strong> <span style="font-size:10px;color:var(--gold2)">(this home)</span></td>
               <td>Listed</td><td class="ct-price">{fmtd(data['price'])}</td>
               <td>{data['beds']} / {baths_display}</td>
               <td>{fmt(data['sqft']) if data['sqft'] else '—'}</td>
               <td>{fmtd(ppsf) if ppsf else '—'}</td>
               <td>—</td>
-            </tr>"""]
+            </tr>""")
 
     for c in comps:
         rows.append(f"""            <tr>
@@ -640,7 +714,7 @@ def _comps_html(comps, comp_range, data, ppsf, street=''):
             </tr>""")
 
     rows_html = '\n'.join(rows)
-    n       = len(comps)
+    n = len(comps)
     summary = f"Comps range: <strong>{comp_range}</strong>" if comp_range else f"{n} nearby recent sales"
 
     return f"""
@@ -666,134 +740,90 @@ def _comps_html(comps, comp_range, data, ppsf, street=''):
 def print_summary(data, drive_minutes, fin, pct):
     d = data
     print("\n" + "="*60)
-    print(f"  {d['street']}, {d['city_zip']}")
+    print("PARSED DATA SUMMARY")
     print("="*60)
-    print(f"  URL:           {d['url']}")
-    print(f"  Price:         ${d['price']:,}")
-    print(f"  Beds/Baths:    {d['beds']} bed / {d['baths']} bath")
-    print(f"  Sqft:          {d['sqft']:,}  (${d['price_per_sqft']}/sqft)")
-    print(f"  Year Built:    {d['year']}")
-    print(f"  Lot:           {d['lot']}")
-    print(f"  Style:         {d['style']}")
-    print(f"  Garage:        {d['garage']}")
-    print(f"  Basement:      {d['basement']}")
-    print(f"  HVAC:          {d['hvac']}")
-    print(f"  Roof:          {d['roof']}")
-    print(f"  Exterior:      {d['exterior']}")
-    if d['hoa']:
-        print(f"  HOA:           ${d['hoa']}/mo")
-    else:
-        print(f"  HOA:           None")
-    print(f"  Annual Tax:    ${d['tax']:,}/yr  (${round(d['tax']/12)}/mo)")
-    print(f"  DOM:           {d['dom']}")
-    print(f"  Drive:         {drive_minutes} min")
-    print(f"  Score:         {pct}%")
-    print(f"  Std /mo:       ~${round(fin['total_std']):,}  ({fin['payoff_std_yrs']}yr payoff, ~${fin['interest_std']:,} interest)")
-    print(f"  Best case /mo: ~${round(fin['total_best']):,}  ({fin['payoff_best_yrs']}yr payoff, ~${fin['interest_best']:,} interest)")
-    print("="*60)
+    print(f"  URL:          {d['url']}")
+    print(f"  Price:        ${d['price']:,}")
+    print(f"  Beds/Baths:   {d['beds']} bed / {d['baths']} bath")
+    print(f"  Sqft:         {d['sqft']:,}  (${d['price_per_sqft']}/sqft)")
+    print(f"  Year Built:   {d['year']}")
+    print(f"  Lot:          {d['lot']}")
+    print(f"  Style:        {d['style']}")
+    print(f"  Garage:       {d['garage']}")
+    print(f"  Basement:     {d['basement']}")
+    print(f"  HVAC:         {d['hvac']}")
+    print(f"  Roof:         {d['roof']}")
+    print(f"  Exterior:     {d['exterior']}")
+    print(f"  HOA:          ${d['hoa']}/mo" if d['hoa'] else "  HOA:          None")
+    print(f"  Annual Tax:   ${d['tax']:,}/yr  (${round(d['tax']/12)}/mo)")
+    print(f"  DOM:          {d['dom']}")
+    print(f"  Drive:        {drive_minutes} min")
+    print(f"  Score:        {pct}%")
+    print(f"  Est/mo (std): ~${round(fin['total_std']):,}")
+    print(f"  Est/mo (best):~${round(fin['total_best']):,}")
+    print("="*60 + "\n")
 
 
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
-def process_file(html_file, commute_override=None):
-    """Parse one HTML file, return (data, drive_minutes, fin, pct) or None on error."""
-    if not os.path.exists(html_file):
-        print(f"ERROR: File not found: {html_file}", file=sys.stderr)
-        return None
+def main():
+    parser = argparse.ArgumentParser(description='Parse a Redfin HTML save and generate a home card.')
+    parser.add_argument('html_file', help='Path to the saved Redfin HTML file')
+    parser.add_argument('--commute', type=int, default=None, help='Drive time in minutes to school')
+    parser.add_argument('--rank', type=int, default=99, help='Rank number for the card (default: 99)')
+    parser.add_argument('--id', type=int, default=99, help='home-N id for the card (default: 99)')
+    parser.add_argument('--output', default=None, help='Write card HTML to this file instead of stdout')
+    args = parser.parse_args()
 
-    with open(html_file, 'r', encoding='utf-8', errors='ignore') as f:
+    if not os.path.exists(args.html_file):
+        print(f"ERROR: File not found: {args.html_file}", file=sys.stderr)
+        sys.exit(1)
+
+    with open(args.html_file, 'r', encoding='utf-8', errors='ignore') as f:
         html = f.read()
 
-    data       = parse_redfin(html)
-    data['_html'] = html
-    data['_file'] = html_file
+    data = parse_redfin(html)
+    data['_html'] = html  # store for comps extraction
 
-    drive_minutes = commute_override
+    # Commute lookup
+    drive_minutes = args.commute
     if drive_minutes is None:
-        # Try street address from parsed title first, then filename
-        addr_fragment = data['street'] or os.path.basename(html_file)[:20]
+        # Try to match address from filename
+        basename = os.path.basename(args.html_file)
+        addr_m = re.match(r'(\d+\s+\w[^,]+)', basename)
+        addr_fragment = addr_m.group(1) if addr_m else basename[:20]
         drive_minutes = lookup_commute(addr_fragment)
         if drive_minutes is None:
-            # Fallback: match by filename
-            basename      = os.path.basename(html_file)
-            addr_m        = re.match(r'(\d+\s+\w[^,]+)', basename)
-            addr_fragment = addr_m.group(1) if addr_m else basename[:20]
-            drive_minutes = lookup_commute(addr_fragment)
-        if drive_minutes is None:
-            print(f"WARNING: No commute found for '{data['street']}' in {TRAVELTIME_FILE}", file=sys.stderr)
-            print(f"         Add it to traveltime.txt or use --commute MINUTES", file=sys.stderr)
+            print(f"WARNING: Could not find commute for '{addr_fragment}' in {TRAVELTIME_FILE}", file=sys.stderr)
+            print("         Add it to traveltime.txt or use --commute MINUTES", file=sys.stderr)
             drive_minutes = 0
 
     pct, *_ = calc_score(data['price'], drive_minutes, data['beds'], data['baths'], data['sqft'])
-    fin      = calc_payments(data['price'], data['tax'], data['hoa'])
+    fin = calc_payments(data['price'], data['tax'], data['hoa'])
 
-    return data, drive_minutes, fin, pct
+    print_summary(data, drive_minutes, fin, pct)
 
+    card, pct, fin = generate_card(data, drive_minutes, args.rank, args.id)
 
-def main():
-    parser = argparse.ArgumentParser(description='Parse Redfin HTML saves and generate home cards.')
-    parser.add_argument('html_file', nargs='?', default=None,
-                        help='Path to a saved Redfin HTML file (omit to scan ~/Documents/Househunting/)')
-    parser.add_argument('--commute', type=int, default=None,
-                        help='Drive time in minutes (only used with a single file)')
-    args = parser.parse_args()
-
-    # ---- Collect files to process ----
-    if args.html_file:
-        files = [os.path.expanduser(args.html_file)]
+    if args.output:
+        with open(args.output, 'w') as f:
+            f.write(card)
+        print(f"Card written to: {args.output}")
     else:
-        pattern = os.path.join(HOUSEHUNTING_DIR, '*.html')
-        files   = sorted(glob.glob(pattern))
-        if not files:
-            print(f"No HTML files found in {HOUSEHUNTING_DIR}", file=sys.stderr)
-            sys.exit(1)
-        print(f"Found {len(files)} HTML file(s) in {HOUSEHUNTING_DIR}")
-
-    # ---- Parse all files ----
-    results = []
-    for f in files:
-        commute = args.commute if args.html_file else None
-        result  = process_file(f, commute_override=commute)
-        if result:
-            results.append(result)
-
-    if not results:
-        print("No files parsed successfully.", file=sys.stderr)
-        sys.exit(1)
-
-    # ---- Sort by score descending ----
-    results.sort(key=lambda r: r[3], reverse=True)
-
-    # ---- Print all summaries ----
-    print("\n" + "="*60)
-    print(f"  RANKINGS ({len(results)} homes)")
-    print("="*60)
-    for rank, (data, drive, fin, pct) in enumerate(results, 1):
-        print(f"  #{rank}  {pct}%  {data['street']}  (~${round(fin['total_best']):,}/mo best case · {fin['payoff_best_yrs']}yr payoff)")
-    print()
-
-    for rank, (data, drive, fin, pct) in enumerate(results, 1):
-        print_summary(data, drive, fin, pct)
-
-    # ---- Generate all cards ----
-    print("\n" + "="*60)
-    print("GENERATED CARD HTML — paste into index.html in order shown")
-    print("="*60)
-
-    for home_id, (rank, (data, drive, fin, pct)) in enumerate(
-            ((r, result) for r, result in enumerate(results, 1)), 1):
-        card, *_ = generate_card(data, drive, rank, home_id)
+        print("\n" + "-"*60)
+        print("GENERATED CARD HTML (copy into index.html)")
+        print("-"*60)
         print(card)
-
-    print("="*60)
-    print("\nTODOs after pasting:")
-    print("  1. Fill in pros/cons for each card")
-    print("  2. Add key note / summary paragraph for each card")
-    print("  3. Add comps analysis sentence for each card")
-    print("  4. Update rankings section, compare table, and header buttons")
-    print("  5. Add personal scores once evaluated in person")
+        print("-"*60)
+        print("\nTODOs after pasting:")
+        print("  1. Fill in street address and city in dcard-addr / dcard-city")
+        print("  2. Replace pros/cons TODO items with real observations")
+        print("  3. Replace notes-box TODO with key note")
+        print("  4. Replace comps-range TODO with analysis")
+        print("  5. Update rankings section, compare table, and header buttons")
+        print("  6. Add commute time to traveltime.txt if not already there")
 
 
 if __name__ == '__main__':
